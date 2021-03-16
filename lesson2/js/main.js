@@ -15,7 +15,5 @@ image.alt = "ブックマーク";
 image.width = 20;
 image.height = 20;
 
-link.appendChild(image);
-list.appendChild(link);
-task02Id.appendChild(list);
+task02Id.appendChild(list).appendChild(link).appendChild(image);
 
