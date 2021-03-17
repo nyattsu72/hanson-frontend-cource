@@ -1,8 +1,19 @@
 "static";
 
-//task01
-const task01Id = document.getElementById("task01");
+//task02
+const task02Id = document.getElementById("task02");
 
-const newLi = document.createElement("li");
-newLi.textContent = "Task01:このDOMをhtml内のulの中に差し込んでください";
-task01Id.appendChild(newLi);
+const list = document.createElement("li");
+
+const link = document.createElement('a');
+link.href = "1.html";
+link.textContent = "これです";
+
+const image = document.createElement('img');
+image.src = "/images/bookmark.png";
+image.alt = "ブックマーク";
+image.width = 20;
+image.height = 20;
+
+task02Id.appendChild(list).appendChild(link).appendChild(image);
+
