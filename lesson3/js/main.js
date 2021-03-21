@@ -9,10 +9,9 @@ let createListArray = [
 ]
 
 createListArray.forEach(function(value){
-  console.log(value.anchor);
   let createdLi = document.createElement('li');
 
-    let createdImg = document.createElement('img');
+  let createdImg = document.createElement('img');
   createdImg.src = "/images/bookmark.png";
   createdImg.width = 20;
   createdImg.height = 20;
