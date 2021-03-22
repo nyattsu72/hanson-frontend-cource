@@ -1,6 +1,6 @@
 'use strict';
 
-const task03 = document.getElementById('list-contents');
+const listContents = document.getElementById('list-contents');
 const createdUl = document.createElement('ul');
 
 const createLists = [
@@ -21,6 +21,6 @@ createLists.forEach(function(item){
   createdAnchor.textContent = item.text;
 
   createdAnchor.insertAdjacentElement('afterbegin',createdImg);
-  task03.appendChild(createdUl).appendChild(createdLi).appendChild(createdAnchor);
+  listContents.appendChild(createdUl).appendChild(createdLi).appendChild(createdAnchor);
 
 })
