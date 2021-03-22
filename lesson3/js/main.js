@@ -3,7 +3,7 @@
 const task03 = document.getElementById('list-contents');
 const createdUl = document.createElement('ul');
 
-let createLists = [
+const createLists = [
   { anchor: 'a1.html', text: 'a1' },
   { anchor: 'a2.html', text: 'a2' }
 ]
