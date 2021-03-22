@@ -24,15 +24,3 @@ createLists.forEach(function(item){
   task03.appendChild(createdUl).appendChild(createdLi).appendChild(createdAnchor);
 
 })
-
-
-
-
-
-
-
-
-
-
-
-// console.log(createdLi);
