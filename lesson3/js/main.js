@@ -3,12 +3,12 @@
 const task03 = document.getElementById('task03');
 const createdUl = document.createElement('ul');
 
-let createListArray = [
+let createLists = [
   { anchor: 'a1.html', text: 'a1' },
   { anchor: 'a2.html', text: 'a2' }
 ]
 
-createListArray.forEach(function(value){
+createLists.forEach(function(item){
   let createdLi = document.createElement('li');
 
   let createdImg = document.createElement('img');
@@ -16,11 +16,11 @@ createListArray.forEach(function(value){
   createdImg.width = 20;
   createdImg.height = 20;
 
-  let createdA = document.createElement('a');
-  createdA.href = value.anchor;
-  createdA.textContent = value.text;
+  let createdAnchor = document.createElement('a');
+  createdAnchor.href = item.anchor;
+  createdAnchor.textContent = item.text;
 
-  createdA.insertAdjacentElement('afterbegin',createdImg);
+  createdAnchor.insertAdjacentElement('afterbegin',createdImg);
   task03.appendChild(createdUl).appendChild(createdLi).appendChild(createdA);
 
 })
