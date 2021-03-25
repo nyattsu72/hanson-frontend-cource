@@ -8,15 +8,15 @@ menuContents.push(
   { to: 'message.html', img: '2.png', alt: '画像2', text: 'メッセージ' });
 
 menuContents.forEach(function (item) {
-  let createdListItem = document.createElement('li');
+  const createdListItem = document.createElement('li');
 
-  let createdImg = document.createElement('img');
+  const createdImg = document.createElement('img');
   createdImg.src = item.img;
   createdImg.alt = item.alt;
   createdImg.width = 40;
   createdImg.height = 40;
 
-  let createdAnchor = document.createElement('a');
+  const createdAnchor = document.createElement('a');
   createdAnchor.href = item.to;
   createdAnchor.textContent = item.text;
 
