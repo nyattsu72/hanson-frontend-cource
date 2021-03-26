@@ -6,7 +6,7 @@ const menuContents = [{ to: "bookmark.html", img: '1.png', alt: '画像1', text:
 
 
 
-menuContents.forEach(function (item) {
+menuContents.forEach(item => {
   const createdListItem = document.createElement('li');
 
   const createdImg = document.createElement('img');
