@@ -13,18 +13,18 @@ const fetchMenuContents = new Promise((resolve) => {
 
 
 fetchMenuContents.then((values) => {
-  values.forEach(item => {
+  values.forEach(value => {
     const listItem = document.createElement('li');
 
     const listImg = document.createElement('img');
-    listImg.src = item.img;
-    listImg.alt = item.alt;
+    listImg.src = value.img;
+    listImg.alt = value.alt;
     listImg.width = 40;
     listImg.height = 40;
 
     const listAnchor = document.createElement('a');
-    listAnchor.href = item.to;
-    listAnchor.textContent = item.text;
+    listAnchor.href = value.to;
+    listAnchor.textContent = value.text;
 
     listAnchor.insertAdjacentElement('afterbegin', listImg);
     menuContainer.appendChild(menuLists).appendChild(listItem).appendChild(listAnchor);
