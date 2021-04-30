@@ -14,7 +14,7 @@ window.onload = () => {
   });
   
   fetchMenuContents.then((values) => {
-    loading.classList.add('js-hidden');
+    loading.style.display = "none";
 
     values.forEach(value => {
     
