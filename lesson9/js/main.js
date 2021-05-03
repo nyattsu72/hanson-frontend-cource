@@ -7,17 +7,13 @@ const loading = document.getElementById('loading');
 
 window.onload = () => {
   async function creatMenuList() {
-    const menuPromise = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(menuContents);
-    },3000)
-  });
-
-    const result = await menuPromise;
-    
-    return result;
-    
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(menuContents);
+      },3000)
+    });
   }
+  
   creatMenuList().then((values) => {
     loading.style.display = "none";
     values.forEach(value => {
