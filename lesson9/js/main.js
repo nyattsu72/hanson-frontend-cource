@@ -1,9 +1,9 @@
 'use strict';
-const menuContainer = document.getElementById('menu-container');
+const menuContainer = document.getElementById('js-menu_container');
 const menuLists = document.createElement('ul');
 const menuContents = [{ to: "bookmark.html", img: 'images/1.png', alt: '画像1', text: 'ブックマーク' },
   { to: 'message.html', img: 'images/2.png', alt: '画像2', text: 'メッセージ' }];
-const loading = document.getElementById('loading');
+const loading = document.getElementById('js-loading');
 
 window.onload = () => {
   async function creatMenuList() {
