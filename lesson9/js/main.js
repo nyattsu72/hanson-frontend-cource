@@ -5,23 +5,10 @@ const menuContents = [{ to: "bookmark.html", img: 'images/1.png', alt: '画像1'
   { to: 'message.html', img: 'images/2.png', alt: '画像2', text: 'メッセージ' }];
 const loading = document.getElementById('js-loading');
 
-window.onload = () => {
-  async function creatMenuList() {
-    const menuPromise = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(menuContents);
-    },3000)
-  });
+function createMenuList(values) {
+  loading.style.display = "none";
 
-    const result = await menuPromise;
-    
-    return result;
-    
-  }
-  creatMenuList().then((values) => {
-    loading.style.display = "none";
-    values.forEach(value => {
-    
+  values.forEach(value => {    
       const listItem = document.createElement('li');
 
       const listImg = document.createElement('img');
@@ -40,5 +27,19 @@ window.onload = () => {
 
       menuContainer.appendChild(menuLists).appendChild(listItem);
     });
-  });
 }
+
+window.onload = () => {
+  const fetchMenuContents = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(menuContents);
+    }, 3000)
+  });
+
+  async function callMenuContents() {
+    const menuContentsValues = await fetchMenuContents;
+    createMenuList(menuContentsValues);
+  }
+  callMenuContents();
+};
+
