@@ -35,18 +35,18 @@ function createMenuList(values) {
     });
 }
 
-window.onload = () => {
-  const fetchMenuContents = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(menuContents);
-    }, 3000)
-  });
+const fetchMenuContents = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(menuContents);
+  }, 3000)
+});
 
-  async function callMenuContents() {
-    const menuContentsValues = await fetchMenuContents;
-    loaderHidden();
-    createMenuList(menuContentsValues);
-  }
-  callMenuContents();
-};
+async function callMenuContents() {
+  const menuContentsValues = await fetchMenuContents;
+  loaderHidden();
+  createMenuList(menuContentsValues);
+}
+  
+callMenuContents();
+
 
