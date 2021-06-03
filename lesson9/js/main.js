@@ -3,14 +3,11 @@ const menuContainer = document.getElementById('js-menu_container');
 const menuLists = document.createElement('ul');
 const menuContents = [{ to: "bookmark.html", img: 'images/1.png', alt: '画像1', text: 'ブックマーク' },
   { to: 'message.html', img: 'images/2.png', alt: '画像2', text: 'メッセージ' }];
+const loading = document.getElementById('js-loading');
 
-
-function loaderHidden() {
-
-  const loading = document.getElementById('js-loading');
-  loading.style.display = "none";
-
-}
+const loadingImg = document.createElement('img');
+loadingImg.src = "images/loading-circle.gif";
+loadingImg.classList.add('el_loadingImg');
 
 function createMenuList(values) {
   
@@ -36,6 +33,7 @@ function createMenuList(values) {
 }
 
 const fetchMenuContents = new Promise((resolve, reject) => {
+  loading.appendChild(loadingImg);
   setTimeout(() => {
     resolve(menuContents);
   }, 3000)
@@ -43,7 +41,7 @@ const fetchMenuContents = new Promise((resolve, reject) => {
 
 async function callMenuContents() {
   const menuContentsValues = await fetchMenuContents;
-  loaderHidden();
+  loading.remove();
   createMenuList(menuContentsValues);
 }
   
