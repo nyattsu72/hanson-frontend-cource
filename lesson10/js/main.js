@@ -36,20 +36,22 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   loading.appendChild(loadingImg);
   setTimeout(() => {
     resolve(menuContents);
-    reject('Could not get the value');
+    reject(new Error('Could not get the value'));
     }, 3000);
 });
 
 async function callMenuContents() {
   try {
     const menuContentsValues = await fetchMenuContents;
-    return menuContentsValues;
+    loading.remove();
+    createMenuList(menuContentsValues);
   } catch (e) {
+    alert(e);
+    loading.remove();
+    menuContainer.textContent = '表示することができませんでした';
     console.error("error：", e.message);
   } finally {
-  console.log('completed');
-  loading.remove();
-  createMenuList(menuContentsValues);
+  console.log('completed!');
   }
 }
 
