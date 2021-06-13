@@ -43,13 +43,12 @@ const fetchMenuContents = new Promise((resolve, reject) => {
 async function callMenuContents() {
   try {
     const menuContentsValues = await fetchMenuContents;
-    loading.remove();
     createMenuList(menuContentsValues);
   } catch (e) {
-    loading.remove();
     menuContainer.textContent = '表示することができませんでした';
     console.error("error：", e.message);
   } finally {
+    loading.remove();
   console.log('completed!');
   }
 }
