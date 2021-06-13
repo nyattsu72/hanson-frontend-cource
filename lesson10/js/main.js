@@ -46,7 +46,6 @@ async function callMenuContents() {
     loading.remove();
     createMenuList(menuContentsValues);
   } catch (e) {
-    alert(e);
     loading.remove();
     menuContainer.textContent = '表示することができませんでした';
     console.error("error：", e.message);
