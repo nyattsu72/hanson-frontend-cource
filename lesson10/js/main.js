@@ -49,7 +49,7 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   const checkArray = Object.keys(menuContents);
   console.log(checkArray);
   setTimeout(() => {
-    if (!checkArray.length == 0) {
+    if (!checkArray.length == 0 || !checkArray == null) {
       resolve(menuContents);
     } else {
       reject(new Error("Could not get the value"));
