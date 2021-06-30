@@ -46,9 +46,9 @@ function createMenuList(values) {
 
 const fetchMenuContents = new Promise((resolve, reject) => {
   loading.appendChild(loadingImg);
-  const checkArray = Object.keys(menuContents);
+
   setTimeout(() => {
-    if (checkArray.length > 0 || !checkArray == null) {
+    if (menuContents.length > 0) {
       resolve(menuContents);
     } else {
       reject(new Error("Could not get the value"));
