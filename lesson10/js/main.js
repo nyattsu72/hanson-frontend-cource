@@ -23,6 +23,8 @@ loadingImg.src = "images/loading-circle.gif";
 loadingImg.classList.add("el_loadingImg");
 
 function createMenuList(values) {
+  const fragment = document.createDocumentFragment();
+
   values.forEach((value) => {
     const listItem = document.createElement("li");
 
@@ -36,12 +38,10 @@ function createMenuList(values) {
     listAnchor.href = value.to;
     listAnchor.textContent = value.text;
 
-    const fragment = document.createDocumentFragment();
-    fragment.appendChild(listAnchor).appendChild(listImg);
-    listItem.appendChild(fragment);
-
-    menuContainer.appendChild(menuLists).appendChild(listItem);
+    fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
   });
+
+  menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
 const fetchMenuContents = new Promise((resolve, reject) => {
