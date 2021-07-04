@@ -41,6 +41,7 @@ function createMenuList(values) {
     fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
   });
 
+  const menuLists = document.createElement("ul");
   menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
