@@ -18,9 +18,13 @@ const menuContents = [
 
 const loading = document.getElementById("js-loading");
 
-const loadingImg = document.createElement("img");
-loadingImg.src = "images/loading-circle.gif";
-loadingImg.classList.add("el_loadingImg");
+function showLoadingImg() {
+  const loadingImg = document.createElement("img");
+  loadingImg.src = "images/loading-circle.gif";
+  loadingImg.classList.add("el_loadingImg");
+
+  loading.appendChild(loadingImg);
+}
 
 function createMenuList(values) {
   const fragment = document.createDocumentFragment();
@@ -41,12 +45,11 @@ function createMenuList(values) {
     fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
   });
 
-  const menuLists = document.createElement("ul");
   menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
 const fetchMenuContents = new Promise((resolve, reject) => {
-  loading.appendChild(loadingImg);
+  showLoadingImg();
 
   setTimeout(() => {
     if (menuContents.length > 0) {
