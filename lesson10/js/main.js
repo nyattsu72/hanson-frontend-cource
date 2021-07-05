@@ -52,10 +52,10 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   showLoadingImg();
 
   setTimeout(() => {
-    if (menuContents.length > 0) {
-      resolve(menuContents);
-    } else {
+    if (Array.isArray(menuContents) && !menuContents.length) {
       reject(new Error("Could not get the value"));
+    } else {
+      resolve(menuContents);
     }
   }, 3000);
 });
