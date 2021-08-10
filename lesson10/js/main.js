@@ -2,18 +2,18 @@
 const menuContainer = document.getElementById("js-menu_container");
 const menuLists = document.createElement("ul");
 const menuContents = [
-  {
-    to: "bookmark.html",
-    img: "images/1.png",
-    alt: "画像1",
-    text: "ブックマーク",
-  },
-  {
-    to: "message.html",
-    img: "images/2.png",
-    alt: "画像2",
-    text: "メッセージ",
-  },
+  // {
+  //   to: "bookmark.html",
+  //   img: "images/1.png",
+  //   alt: "画像1",
+  //   text: "ブックマーク",
+  // },
+  // {
+  //   to: "message.html",
+  //   img: "images/2.png",
+  //   alt: "画像2",
+  //   text: "メッセージ",
+  // },
 ];
 
 const loading = document.getElementById("js-loading");
@@ -52,18 +52,24 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   showLoadingImg();
 
   setTimeout(() => {
-    if (Array.isArray(menuContents) && !menuContents.length) {
-      reject(new Error("Could not get the value"));
-    } else {
+    if (menuContents.length >= 0){
       resolve(menuContents);
+    } else {
+      reject(new Error("Could not get the value"));
     }
   }, 3000);
 });
 
+console.log(menuContents.length)
+
 async function callMenuContents() {
   try {
     const menuContentsValues = await fetchMenuContents;
-    createMenuList(menuContentsValues);
+    if(menuContents.length > 0){
+      createMenuList(menuContentsValues);
+    }else{
+      menuContainer.textContent = "表示するメニューがありませんでした";
+    }
   } catch (e) {
     menuContainer.textContent = "表示することができませんでした";
     console.error("error：", e.message);
