@@ -60,8 +60,6 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-console.log(menuContents.length)
-
 async function callMenuContents() {
   try {
     const menuContentsValues = await fetchMenuContents;
