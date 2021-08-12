@@ -52,10 +52,10 @@ const fetchMenuContents = new Promise((resolve, reject) => {
   showLoadingImg();
 
   setTimeout(() => {
-    if (Array.isArray(menuContents) && !menuContents.length) {
-      reject(new Error("Could not get the value"));
-    } else {
+    if (menuContents.length >= 0){
       resolve(menuContents);
+    } else {
+      reject(new Error("Could not get the value"));
     }
   }, 3000);
 });
@@ -63,7 +63,11 @@ const fetchMenuContents = new Promise((resolve, reject) => {
 async function callMenuContents() {
   try {
     const menuContentsValues = await fetchMenuContents;
-    createMenuList(menuContentsValues);
+    if(menuContents.length > 0){
+      createMenuList(menuContentsValues);
+    }else{
+      menuContainer.textContent = "表示するメニューがありませんでした";
+    }
   } catch (e) {
     menuContainer.textContent = "表示することができませんでした";
     console.error("error：", e.message);
