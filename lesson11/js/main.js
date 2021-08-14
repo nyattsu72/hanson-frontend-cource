@@ -1,10 +1,6 @@
 "use strict";
 const menuContainer = document.getElementById("js-menu_container");
 const menuLists = document.createElement("ul");
-
-const requestURL = await fetch("https://jsondata.okiba.me/v1/json/gU7av210812202623");
-const menuContents = await requestURL.json();
-
 const loading = document.getElementById("js-loading");
 
 function showLoadingImg() {
@@ -28,7 +24,7 @@ function createMenuList(values) {
     listImg.height = 40;
 
     const listAnchor = document.createElement("a");
-    listAnchor.href = value.to;
+    listAnchor.href = value.a;
     listAnchor.textContent = value.text;
 
     fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
@@ -37,32 +33,33 @@ function createMenuList(values) {
   menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
-const fetchMenuContents = new Promise((resolve, reject) => {
+async function fetchMenuContents(){
   showLoadingImg();
 
-  setTimeout(() => {
-    if (menuContents.length >= 0){
-      resolve(menuContents);
-    } else {
-      reject(new Error("Could not get the value"));
-    }
-  }, 3000);
-});
+  const menuDataURL = 'https://jsondata.okiba.me/v1/json/78xRb210814201731';
+  const response = await fetch(menuDataURL);
+
+  console.log(response.status);
+
+  if(response.status === 200){
+    return await response.json()
+  }else{
+   console.error("Could not get the value");
+  }
+
+}
 
 async function callMenuContents() {
-  try {
-    const menuContentsValues = await fetchMenuContents;
-    if(menuContents.length > 0){
-      createMenuList(menuContentsValues);
-    }else{
-      menuContainer.textContent = "表示するメニューがありませんでした";
-    }
-  } catch (e) {
-    menuContainer.textContent = "表示することができませんでした";
-    console.error("error：", e.message);
-  } finally {
-    loading.remove();
-  }
+  // try {
+    const menuContentsValues = await fetchMenuContents();
+    console.log(menuContentsValues);
+    createMenuList(menuContentsValues);
+
+  // } catch (e) {
+  //   menuContainer.textContent = "表示することができませんでした";
+  // } finally {
+  //   loading.remove();
+  // }
 }
 
 callMenuContents();
