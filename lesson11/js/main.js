@@ -38,7 +38,6 @@ function createMenuList(values) {
 
 async function fetchMenuContents(){
   showLoadingImg();
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const menuDataURL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
   const response = await fetch(menuDataURL);
