@@ -38,32 +38,34 @@ function createMenuList(values) {
 
 async function fetchMenuContents(){
   showLoadingImg();
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const menuDataURL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
   const response = await fetch(menuDataURL);
-
-  console.log(response.status);
-
+  
   if(response.status === 200){
-    return await response.json();
+    return response.json();
+
   }else{
    console.error("Could not get the value");
   }
+
+  
 
 }
 
 async function callMenuContents() {
   try {
     const menuContents = await fetchMenuContents();
-    console.log(menuContents);
     createMenuList(menuContents);
 
-    
-
-  } catch (e) {
+  } catch {
     menuContainer.textContent = "表示することができませんでした";
+    console.error("Could not get the value");
+
   } finally {
     loading.remove();
+    
   }
 }
 
