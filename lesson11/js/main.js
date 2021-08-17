@@ -44,13 +44,11 @@ async function fetchMenuContents(){
   const response = await fetch(menuDataURL);
   
   if(response.status === 200){
-    return response.json();
+    return await response.json();
 
   }else{
    console.error("Could not get the value");
   }
-
-  
 
 }
 
