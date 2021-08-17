@@ -11,11 +11,10 @@ function showLoadingImg() {
   loading.appendChild(loadingImg);
 }
 
-function createMenuList(values) {
+function createMenuList({data}) {
   const fragment = document.createDocumentFragment();
 
-  Object.keys(values).forEach((key) => {
-    values[key].forEach(value => {
+  data.forEach((value) => {
       const listItem = document.createElement("li");
   
       const listImg = document.createElement("img");
@@ -30,8 +29,7 @@ function createMenuList(values) {
   
       fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
 
-    })
-  });
+    });
 
   menuContainer.appendChild(menuLists).appendChild(fragment);
 }
