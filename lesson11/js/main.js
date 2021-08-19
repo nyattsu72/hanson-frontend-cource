@@ -34,11 +34,12 @@ function createMenuList({data}) {
   menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
+const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
+
 async function fetchMenuContents(){
   showLoadingImg();
 
-  const menuDataURL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
-  const response = await fetch(menuDataURL);
+  const response = await fetch(MENU_DATA_URL);
   
   if(response.status === 200){
     return await response.json();
