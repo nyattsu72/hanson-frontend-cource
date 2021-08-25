@@ -38,7 +38,7 @@ async function fetchMenuContents() {
     const json = await response.json();
     return json.data;
   } catch {
-    console.error("error： HTTP error, status = ", +response.status);
+    console.error("Could not get the value");
   }
 }
 
