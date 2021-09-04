@@ -1,13 +1,22 @@
 'use strict';
 const menuContainer = document.getElementById('js-menu_container');
 const menuLists = document.createElement('ul');
-const loading = document.getElementById('js-loading');
 
 function showLoadingImg() {
+	const createLoadingBox = document.createElement('div');
+	createLoadingBox.classList.add('ly_loading');
+	createLoadingBox.id = 'js-loading';
+	console.log(createLoadingBox);
 	const loadingImg = document.createElement('img');
 	loadingImg.src = 'images/loading-circle.gif';
 	loadingImg.classList.add('el_loadingImg');
-	loading.appendChild(loadingImg);
+	const getBody = document.getElementsByTagName('body');
+	getBody[0].appendChild(createLoadingBox).appendChild(loadingImg);
+}
+
+function hideLoadingImg() {
+	const loading = document.getElementById('js-loading');
+	loading.remove();
 }
 
 function createMenuList(data) {
@@ -35,9 +44,10 @@ const clickBtn = document.getElementById('js-loadmenu');
 clickBtn.addEventListener(
 	'click',
 	() => {
+		menuLists.remove();
 		callMenuContents();
 	},
-	{ once: true }
+	false
 );
 
 async function fetchMenuContents() {
@@ -62,6 +72,6 @@ async function callMenuContents() {
 	} catch {
 		menuContainer.textContent = '表示することができませんでした';
 	} finally {
-		loading.remove();
+		hideLoadingImg();
 	}
 }
