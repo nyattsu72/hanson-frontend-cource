@@ -18,9 +18,13 @@ function hideLoadingImg() {
 	loading.remove();
 }
 
+function removeInnerHTML(element) {
+	element.innerHTML = '';
+}
+
 function createMenuList(data) {
 	const fragment = document.createDocumentFragment();
-	menuLists.innerHTML = '';
+	removeInnerHTML(menuLists);
 
 	data.forEach((value) => {
 		const listItem = document.createElement('li');
