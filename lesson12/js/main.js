@@ -6,7 +6,6 @@ function showLoadingImg() {
 	const createLoadingBox = document.createElement('div');
 	createLoadingBox.classList.add('ly_loading');
 	createLoadingBox.id = 'js-loading';
-	console.log(createLoadingBox);
 	const loadingImg = document.createElement('img');
 	loadingImg.src = 'images/loading-circle.gif';
 	loadingImg.classList.add('el_loadingImg');
@@ -21,6 +20,7 @@ function hideLoadingImg() {
 
 function createMenuList(data) {
 	const fragment = document.createDocumentFragment();
+	menuLists.innerHTML = '';
 
 	data.forEach((value) => {
 		const listItem = document.createElement('li');
@@ -38,18 +38,16 @@ function createMenuList(data) {
 	menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
-const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
-
-const clickBtn = document.getElementById('js-loadmenu');
+const clickBtn = document.getElementById('js-loadmenuBtn');
 clickBtn.addEventListener(
 	'click',
 	() => {
-		menuLists.remove();
 		callMenuContents();
 	},
 	false
 );
 
+const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
 async function fetchMenuContents() {
 	showLoadingImg();
 	try {
@@ -65,6 +63,7 @@ async function callMenuContents() {
 	try {
 		const menuContents = await fetchMenuContents();
 		if (menuContents.length > 0) {
+			console.log(menuContainer);
 			createMenuList(menuContents);
 		} else {
 			menuContainer.textContent = '表示するメニューがありませんでした';
