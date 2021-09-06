@@ -63,7 +63,6 @@ async function callMenuContents() {
 	try {
 		const menuContents = await fetchMenuContents();
 		if (menuContents.length > 0) {
-			console.log(menuContainer);
 			createMenuList(menuContents);
 		} else {
 			menuContainer.textContent = '表示するメニューがありませんでした';
