@@ -76,3 +76,20 @@ async function callMenuContents() {
 		hideLoadingImg();
 	}
 }
+
+//Modal
+const openModalBtn = document.getElementById('js-openModalBtn');
+const modalContainer = document.getElementById('js-modalContainer');
+const closeModlBtn = document.getElementById('js-closeModal');
+const modalBg = document.createElement('div');
+
+openModalBtn.addEventListener('click', () => {
+	modalContainer.style.visibility = 'visible';
+	modalContainer.style.opacity = '1';
+});
+
+closeModlBtn.addEventListener('click', () => {
+	modalContainer.style.visibility = 'hidden';
+	modalContainer.style.opacity = '0';
+	removeInnerHTML(menuLists);
+});
