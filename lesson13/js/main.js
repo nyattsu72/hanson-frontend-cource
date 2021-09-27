@@ -31,23 +31,8 @@ function createModalWindow() {
 	modalWindow.appendChild(modal);
 	document.body.appendChild(modalWindow);
 
-	const closeModlBtn = document.getElementById('js-closeModal');
-
-	closeModlBtn.addEventListener(
-		'click',
-		() => {
-			const modalContainer = document.getElementById('js-modalContainer');
-			const bgFixed = document.getElementById('js-bgFixed');
-			removeInnerHTML(modalWindow);
-			removeInnerHTML(menuLists);
-			document.body.removeAttribute('style');
-			bgFixed.remove();
-			modalContainer.remove();
-		},
-		false
-	);
-
 	loadMenu();
+	closeModalWindow();
 }
 
 //open Modal
@@ -73,6 +58,25 @@ function loadMenu() {
 		(event) => {
 			callMenuContents();
 			event.stopPropagation();
+		},
+		false
+	);
+}
+
+function closeModalWindow() {
+	const closeModlBtn = document.getElementById('js-closeModal');
+
+	closeModlBtn.addEventListener(
+		'click',
+		() => {
+			const modalContainer = document.getElementById('js-modalContainer');
+			const modalWindow = document.createElement('div');
+			const bgFixed = document.getElementById('js-bgFixed');
+			removeInnerHTML(modalWindow);
+			removeInnerHTML(menuLists);
+			document.body.removeAttribute('style');
+			bgFixed.remove();
+			modalContainer.remove();
 		},
 		false
 	);
