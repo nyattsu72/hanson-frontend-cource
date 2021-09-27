@@ -1,7 +1,6 @@
 'use strict';
 //Modal
 const modalContainer = document.getElementById('js-modalContainer');
-const modalBg = document.createElement('div');
 const modalWindow = document.createElement('div');
 
 function createModalWindow() {
@@ -47,10 +46,11 @@ function createModalWindow() {
 	closeModlBtn.addEventListener(
 		'click',
 		() => {
+			const bgFixed = document.getElementById('js-bgFixed');
 			removeInnerHTML(modalWindow);
 			removeInnerHTML(menuLists);
 			document.body.removeAttribute('style');
-			modalBg.remove();
+			bgFixed.remove();
 			modalWindow.remove();
 		},
 		false
@@ -137,6 +137,8 @@ const openModalBtn = document.getElementById('js-openModalBtn');
 openModalBtn.addEventListener(
 	'click',
 	() => {
+		const modalBg = document.createElement('div');
+		modalBg.id = 'js-bgFixed';
 		modalBg.classList.add('el_modalBg');
 		document.body.appendChild(modalBg);
 		createModalWindow();
