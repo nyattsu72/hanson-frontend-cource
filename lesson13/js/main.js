@@ -127,7 +127,6 @@ function createMenuList(data) {
 
 const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
 async function fetchMenuContents() {
-	showLoadingImg();
 	try {
 		const response = await fetch(MENU_DATA_URL);
 		const json = await response.json();
@@ -138,6 +137,7 @@ async function fetchMenuContents() {
 }
 
 async function callMenuContents() {
+	showLoadingImg();
 	const menuContainer = document.getElementById('js-menu_container');
 	try {
 		const menuContents = await fetchMenuContents();
