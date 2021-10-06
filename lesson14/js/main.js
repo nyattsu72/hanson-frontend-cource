@@ -4,27 +4,35 @@ const menuLists = document.createElement('ul');
 
 function createModalWindow() {
 	const modalWindow = document.createElement('div');
-	const modal = document.createDocumentFragment();
-	const createMenuBtn = document.createElement('button');
-	const createCloseBtn = document.createElement('button');
 	const createMenuContainer = document.createElement('div');
 
 	//modal container
 	modalWindow.classList.add('bl_modal');
 	modalWindow.setAttribute('id', 'js-modalContainer');
 
+	//input button
+	const createInputButton = document.createElement('input');
+	createInputButton.type = 'number';
+	createInputButton.placeholder = 'please input number';
+	createInputButton.required;
+	createInputButton.setAttribute('class', 'el_input');
+
 	//menu button
+	const createMenuBtn = document.createElement('button');
 	createMenuBtn.setAttribute('id', 'js-loadmenuBtn');
 	createMenuBtn.setAttribute('class', 'btn');
 	createMenuBtn.textContent = `MENU`;
 
 	//close button
+	const createCloseBtn = document.createElement('button');
 	createCloseBtn.setAttribute('id', 'js-closeModal');
 	createCloseBtn.setAttribute('class', 'el_closeModalBtn');
 	createCloseBtn.textContent = '×';
 
 	createMenuContainer.setAttribute('id', 'js-menu_container');
+	const modal = document.createDocumentFragment();
 
+	modal.appendChild(createInputButton);
 	modal.appendChild(createMenuBtn);
 	modal.appendChild(createCloseBtn);
 	modal.appendChild(createMenuContainer);
