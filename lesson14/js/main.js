@@ -67,7 +67,6 @@ function loadMenu() {
 		'click',
 		(event) => {
 			const inputNumber = document.getElementById('number');
-			console.log(inputNumber);
 			if (!inputNumber.value === false) {
 				getInputValue();
 				callMenuContents();
