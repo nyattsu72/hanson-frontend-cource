@@ -10,13 +10,6 @@ function createModalWindow() {
 	modalWindow.classList.add('bl_modal');
 	modalWindow.setAttribute('id', 'js-modalContainer');
 
-	//input button
-	const createInputButton = document.createElement('input');
-	createInputButton.type = 'number';
-	createInputButton.placeholder = 'please input number';
-	createInputButton.required;
-	createInputButton.setAttribute('class', 'el_input');
-
 	//menu button
 	const createMenuBtn = document.createElement('button');
 	createMenuBtn.setAttribute('id', 'js-loadmenuBtn');
@@ -28,6 +21,15 @@ function createModalWindow() {
 	createCloseBtn.setAttribute('id', 'js-closeModal');
 	createCloseBtn.setAttribute('class', 'el_closeModalBtn');
 	createCloseBtn.textContent = '×';
+
+	//input area
+
+	const createInputButton = document.createElement('input');
+	createInputButton.type = 'number';
+	createInputButton.placeholder = 'please input number';
+	createInputButton.min = '1';
+	createInputButton.setAttribute('id', 'number');
+	createInputButton.setAttribute('class', 'el_input');
 
 	createMenuContainer.setAttribute('id', 'js-menu_container');
 	const modal = document.createDocumentFragment();
@@ -64,8 +66,14 @@ function loadMenu() {
 	loadMenuBtn.addEventListener(
 		'click',
 		(event) => {
-			callMenuContents();
-			event.stopPropagation();
+			const inputNumber = document.getElementById('number');
+			console.log(inputNumber);
+			if (!inputNumber.value === false) {
+				getInputValue();
+				callMenuContents();
+			} else {
+				alert('未入力です。');
+			}
 		},
 		false
 	);
@@ -88,6 +96,11 @@ function closeModalWindow() {
 		},
 		false
 	);
+}
+
+function getInputValue() {
+	const inputNumber = document.getElementById('number');
+	console.log(inputNumber.value);
 }
 
 //CREATE MENU contents
