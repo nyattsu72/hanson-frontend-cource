@@ -2,44 +2,8 @@
 //Modal
 const menuLists = document.createElement('ul');
 
-function createModalWindow() {
-	const modalWindow = document.createElement('div');
-	const createMenuContainer = document.createElement('div');
-
-	//modal container
-	modalWindow.classList.add('bl_modal');
-	modalWindow.setAttribute('id', 'js-modalContainer');
-
-	//menu button
-	const createMenuBtn = document.createElement('button');
-	createMenuBtn.setAttribute('id', 'js-loadmenuBtn');
-	createMenuBtn.setAttribute('class', 'btn');
-	createMenuBtn.textContent = `MENU`;
-
-	//close button
-	const createCloseBtn = document.createElement('button');
-	createCloseBtn.setAttribute('id', 'js-closeModal');
-	createCloseBtn.setAttribute('class', 'el_closeModalBtn');
-	createCloseBtn.textContent = '×';
-
-	//input area
-
-	const createInputButton = document.createElement('input');
-	createInputButton.type = 'number';
-	createInputButton.placeholder = 'please input number';
-	createInputButton.min = '1';
-	createInputButton.setAttribute('id', 'number');
-	createInputButton.setAttribute('class', 'el_input');
-
-	createMenuContainer.setAttribute('id', 'js-menu_container');
-	const modal = document.createDocumentFragment();
-
-	modal.appendChild(createInputButton);
-	modal.appendChild(createMenuBtn);
-	modal.appendChild(createCloseBtn);
-	modal.appendChild(createMenuContainer);
-	modalWindow.appendChild(modal);
-	document.body.appendChild(modalWindow);
+function operationModalWindow() {
+	const getModalWindow = document.getElementById('js-modalContainer');
 
 	loadMenu();
 	closeModalWindow();
@@ -51,11 +15,12 @@ const openModalBtn = document.getElementById('js-openModalBtn');
 openModalBtn.addEventListener(
 	'click',
 	() => {
+		const getModal = document.getElementById('js-modalContainer');
+		getModal.classList.add('is-visible');
 		const modalBg = document.createElement('div');
 		modalBg.id = 'js-bgFixed';
 		modalBg.classList.add('el_modalBg');
 		document.body.appendChild(modalBg);
-		createModalWindow();
 		document.body.style.position = 'fixed';
 	},
 	false
@@ -78,29 +43,19 @@ function loadMenu() {
 	);
 }
 
-function closeModalWindow() {
-	const closeModlBtn = document.getElementById('js-closeModal');
+const closeModlBtn = document.getElementById('js-closeModal');
 
-	closeModlBtn.addEventListener(
-		'click',
-		() => {
-			const modalContainer = document.getElementById('js-modalContainer');
-			const modalWindow = document.createElement('div');
-			const bgFixed = document.getElementById('js-bgFixed');
-			removeInnerHTML(modalWindow);
-			removeInnerHTML(menuLists);
-			document.body.removeAttribute('style');
-			bgFixed.remove();
-			modalContainer.remove();
-		},
-		false
-	);
-}
-
-function getInputValue() {
-	const inputNumber = document.getElementById('number');
-	console.log(inputNumber.value);
-}
+closeModlBtn.addEventListener(
+	'click',
+	() => {
+		const getModal = document.getElementById('js-modalContainer');
+		getModal.classList.remove('is-visible');
+		const bgFixed = document.getElementById('js-bgFixed');
+		document.body.removeAttribute('style');
+		bgFixed.remove();
+	},
+	false
+);
 
 //CREATE MENU contents
 function showLoadingImg() {
@@ -125,6 +80,8 @@ function removeInnerHTML(element) {
 
 //menulist
 function createMenuList(data) {
+	const createMenuContainer = document.createElement('div');
+	createMenuContainer.setAttribute('id', 'js-menu_container');
 	const menuContainer = document.getElementById('js-menu_container');
 	const fragment = document.createDocumentFragment();
 	removeInnerHTML(menuLists);
@@ -142,7 +99,12 @@ function createMenuList(data) {
 		listAnchor.textContent = value.text;
 		fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
 	});
-	menuContainer.appendChild(menuLists).appendChild(fragment);
+
+	const menuContents = menuContainer
+		.appendChild(menuLists)
+		.appendChild(fragment);
+	const btnArea = document.querySelector('.bl-btnArea');
+	btnArea.after(menuContents);
 }
 
 const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
