@@ -43,7 +43,7 @@ form.addEventListener(
 	() => {
 		const inputNumber = document.getElementById('number');
 		if (!inputNumber.value === false) {
-			getInputNumber();
+			outputNumber();
 			closeModal();
 			callMenuContents();
 		} else {
@@ -53,7 +53,7 @@ form.addEventListener(
 	false
 );
 
-function getInputNumber() {
+function outputNumber() {
 	const inputNumber = document.getElementById('number');
 	console.log(inputNumber.value);
 }
