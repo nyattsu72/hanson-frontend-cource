@@ -16,6 +16,7 @@ openModalBtn.addEventListener(
 	false
 );
 
+//close modal
 function closeModal() {
 	const getModal = document.getElementById('js-modalContainer');
 	getModal.classList.remove('is-visible');
@@ -24,7 +25,6 @@ function closeModal() {
 	bgFixed.remove();
 }
 
-//close modal
 function closeButton() {
 	const closeModlBtn = document.getElementById('js-closeModal');
 	closeModlBtn.addEventListener(
@@ -60,7 +60,6 @@ function getInputNumber() {
 
 //CREATE MENU contents
 function showLoadingImg() {
-	const menuContainer = document.getElementById('js-menu_container');
 	const createLoadingBox = document.createElement('div');
 	createLoadingBox.classList.add('ly_loading');
 	createLoadingBox.id = 'js-loading';
