@@ -1,17 +1,6 @@
 'use strict';
-//Modal
-const menuLists = document.createElement('ul');
-
-function operationModalWindow() {
-	const getModalWindow = document.getElementById('js-modalContainer');
-
-	loadMenu();
-	closeModalWindow();
-}
-
 //open Modal
 const openModalBtn = document.getElementById('js-openModalBtn');
-
 openModalBtn.addEventListener(
 	'click',
 	() => {
@@ -22,40 +11,52 @@ openModalBtn.addEventListener(
 		modalBg.classList.add('el_modalBg');
 		document.body.appendChild(modalBg);
 		document.body.style.position = 'fixed';
+		closeButton();
 	},
 	false
 );
 
-function loadMenu() {
-	const loadMenuBtn = document.getElementById('js-loadmenuBtn');
-	loadMenuBtn.addEventListener(
+function closeModal() {
+	const getModal = document.getElementById('js-modalContainer');
+	getModal.classList.remove('is-visible');
+	const bgFixed = document.getElementById('js-bgFixed');
+	document.body.removeAttribute('style');
+	bgFixed.remove();
+}
+
+//close modal
+function closeButton() {
+	const closeModlBtn = document.getElementById('js-closeModal');
+	closeModlBtn.addEventListener(
 		'click',
-		(event) => {
-			const inputNumber = document.getElementById('number');
-			if (!inputNumber.value === false) {
-				getInputValue();
-				callMenuContents();
-			} else {
-				alert('未入力です。');
-			}
+		() => {
+			closeModal();
 		},
 		false
 	);
 }
 
-const closeModlBtn = document.getElementById('js-closeModal');
-
-closeModlBtn.addEventListener(
+//input event
+const form = document.getElementById('js-loadmenuBtn');
+form.addEventListener(
 	'click',
 	() => {
-		const getModal = document.getElementById('js-modalContainer');
-		getModal.classList.remove('is-visible');
-		const bgFixed = document.getElementById('js-bgFixed');
-		document.body.removeAttribute('style');
-		bgFixed.remove();
+		const inputNumber = document.getElementById('number');
+		if (!inputNumber.value === false) {
+			getInputNumber();
+			closeModal();
+			callMenuContents();
+		} else {
+			alert('未入力です。');
+		}
 	},
 	false
 );
+
+function getInputNumber() {
+	const inputNumber = document.getElementById('number');
+	console.log(inputNumber.value);
+}
 
 //CREATE MENU contents
 function showLoadingImg() {
@@ -66,7 +67,8 @@ function showLoadingImg() {
 	const loadingImg = document.createElement('img');
 	loadingImg.src = 'images/loading-circle.gif';
 	loadingImg.classList.add('el_loadingImg');
-	menuContainer.appendChild(createLoadingBox).appendChild(loadingImg);
+	const getBody = document.getElementsByTagName('body');
+	getBody[0].appendChild(createLoadingBox).appendChild(loadingImg);
 }
 
 function hideLoadingImg() {
@@ -78,10 +80,9 @@ function removeInnerHTML(element) {
 	element.innerHTML = '';
 }
 
-//menulist
+//create menulist
 function createMenuList(data) {
-	const createMenuContainer = document.createElement('div');
-	createMenuContainer.setAttribute('id', 'js-menu_container');
+	const menuLists = document.createElement('ul');
 	const menuContainer = document.getElementById('js-menu_container');
 	const fragment = document.createDocumentFragment();
 	removeInnerHTML(menuLists);
@@ -100,11 +101,7 @@ function createMenuList(data) {
 		fragment.appendChild(listItem).appendChild(listAnchor).appendChild(listImg);
 	});
 
-	const menuContents = menuContainer
-		.appendChild(menuLists)
-		.appendChild(fragment);
-	const btnArea = document.querySelector('.bl-btnArea');
-	btnArea.after(menuContents);
+	menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
 const MENU_DATA_URL = 'https://jsondata.okiba.me/v1/json/Aticp210816214718';
