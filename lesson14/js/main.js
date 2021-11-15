@@ -80,8 +80,8 @@ function removeInnerHTML(element) {
 }
 
 //create menulist
+const menuLists = document.createElement('ul');
 function createMenuList(data) {
-	const menuLists = document.createElement('ul');
 	const menuContainer = document.getElementById('js-menu_container');
 	const fragment = document.createDocumentFragment();
 	removeInnerHTML(menuLists);
