@@ -1,5 +1,4 @@
 'use strict';
-//open Modal
 const openModalBtn = document.getElementById('js-openModalBtn');
 openModalBtn.addEventListener(
 	'click',
@@ -16,7 +15,6 @@ openModalBtn.addEventListener(
 	false
 );
 
-//close modal
 function closeModal() {
 	const getModal = document.getElementById('js-modalContainer');
 	getModal.classList.remove('is-visible');
@@ -36,7 +34,6 @@ function closeButton() {
 	);
 }
 
-//input event
 const form = document.getElementById('js-loadmenuBtn');
 form.addEventListener(
 	'click',
@@ -58,7 +55,6 @@ function outputNumber() {
 	console.log(inputNumber.value);
 }
 
-//CREATE MENU contents
 function showLoadingImg() {
 	const createLoadingBox = document.createElement('div');
 	createLoadingBox.classList.add('ly_loading');
@@ -79,7 +75,6 @@ function removeInnerHTML(element) {
 	element.innerHTML = '';
 }
 
-//create menulist
 const menuLists = document.createElement('ul');
 function createMenuList(data) {
 	const menuContainer = document.getElementById('js-menu_container');
