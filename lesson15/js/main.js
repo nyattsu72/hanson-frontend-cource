@@ -102,7 +102,7 @@ function createMenuList(data) {
 	menuContainer.appendChild(menuLists).appendChild(fragment);
 }
 
-const MENU_DATA_URL = 'http://myjson.dit.upm.es/api/bins/ivk7';
+const MENU_DATA_URL = 'https://myjson.dit.upm.es/api/bins/ivk7';
 async function fetchMenuContents() {
 	try {
 		const response = await fetch(MENU_DATA_URL);
