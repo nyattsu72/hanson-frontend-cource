@@ -37,10 +37,12 @@ function closeButton() {
 const form = document.getElementById('js-loadmenuBtn');
 form.addEventListener(
 	'click',
-	() => {
+	(event) => {
+		event.preventDefault();
 		const inputNumber = document.getElementById('number');
-		if (!inputNumber.value === false) {
-			outputNumber();
+		const inputText = document.getElementById('words');
+		if (!inputNumber.value === false && !inputText.value === false) {
+			outputForm();
 			closeModal();
 			callMenuContents();
 		} else {
@@ -50,9 +52,11 @@ form.addEventListener(
 	false
 );
 
-function outputNumber() {
+function outputForm() {
 	const inputNumber = document.getElementById('number');
+	const inputText = document.getElementById('words');
 	console.log(inputNumber.value);
+	console.log(inputText.value);
 }
 
 function showLoadingImg() {
