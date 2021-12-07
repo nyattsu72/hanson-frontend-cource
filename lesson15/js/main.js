@@ -34,6 +34,11 @@ function closeButton() {
 	);
 }
 
+function hideModalButton() {
+	const openModalBtn = document.getElementById('js-openModalBtn');
+	openModalBtn.remove();
+}
+
 const form = document.getElementById('js-loadmenuBtn');
 form.addEventListener(
 	'click',
@@ -45,6 +50,7 @@ form.addEventListener(
 			outputForm();
 			closeModal();
 			callMenuContents();
+			hideModalButton();
 		} else {
 			alert('未入力です。');
 		}
