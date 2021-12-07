@@ -5,10 +5,10 @@ openModalBtn.addEventListener(
 	() => {
 		const getModal = document.getElementById('js-modalContainer');
 		getModal.classList.add('is-visible');
-		const modalBg = document.createElement('div');
-		modalBg.id = 'js-bgFixed';
-		modalBg.classList.add('el_modalBg');
-		document.body.appendChild(modalBg);
+		document.body.insertAdjacentHTML(
+			'afterbegin',
+			'<div id="js-bgFixed" class="el_modalBg"></div>'
+		);
 		document.body.style.position = 'fixed';
 		closeButton();
 	},
@@ -18,9 +18,9 @@ openModalBtn.addEventListener(
 function closeModal() {
 	const getModal = document.getElementById('js-modalContainer');
 	getModal.classList.remove('is-visible');
-	const bgFixed = document.getElementById('js-bgFixed');
 	document.body.removeAttribute('style');
-	bgFixed.remove();
+	const modalBg = document.getElementById('js-bgFixed');
+	modalBg.remove();
 }
 
 function closeButton() {
