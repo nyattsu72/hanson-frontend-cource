@@ -10,7 +10,6 @@ openModalBtn.addEventListener(
 			'<div id="js-bgFixed" class="el_modalBg"></div>'
 		);
 		document.body.style.position = 'fixed';
-		closeButton();
 	},
 	false
 );
@@ -23,16 +22,14 @@ function closeModal() {
 	modalBg.remove();
 }
 
-function closeButton() {
-	const closeModlBtn = document.getElementById('js-closeModal');
-	closeModlBtn.addEventListener(
-		'click',
-		() => {
-			closeModal();
-		},
-		false
-	);
-}
+const closeModlBtn = document.getElementById('js-closeModal');
+closeModlBtn.addEventListener(
+	'click',
+	() => {
+		closeModal();
+	},
+	false
+);
 
 function hideModalButton() {
 	const openModalBtn = document.getElementById('js-openModalBtn');
