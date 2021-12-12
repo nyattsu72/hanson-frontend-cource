@@ -59,7 +59,7 @@ function outputForm() {
 	const inputNumber = document.getElementById('number');
 	const inputText = document.getElementById('words');
 	console.log(inputNumber.value);
-	console.log(inputText.value);
+	console.log(inputText.value.trim());
 }
 
 function showLoadingImg() {
