@@ -43,11 +43,7 @@ form.addEventListener(
 		event.preventDefault();
 		const inputNumber = document.getElementById('number');
 		const inputText = document.getElementById('words');
-		if (
-			inputNumber.value &&
-			inputText.value &&
-			!inputText.value.match(/\S/g) === false
-		) {
+		if (inputNumber.value && inputText.value && inputText.value.trim()) {
 			outputForm();
 			closeModal();
 			callMenuContents();
