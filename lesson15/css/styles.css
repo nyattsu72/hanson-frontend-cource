@@ -1,0 +1,128 @@
+body {
+	font-family: sans-serif;
+	color: #666;
+	position: relative;
+	width: 100%;
+}
+
+h1 {
+	color: rgb(0, 119, 255);
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+span {
+	display: block;
+	font-size: 20px;
+}
+
+a {
+	color: rgb(153, 198, 248);
+	font-size: 1.8rem;
+}
+
+.ly_loading {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+
+.el_loadingImg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.btn {
+	padding: 10px 20px;
+}
+
+.bl_btnArea {
+	background-color: royalblue;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.bl_paragraph {
+	width: 100%;
+	background-color: #fff;
+	padding: 40px;
+}
+
+.bl_paragraph:nth-child(even) {
+	background-color: #f4f4f4;
+}
+
+/*Modal*/
+.bl_modal {
+	width: 80%;
+	max-width: 900px;
+	background-color: rgba(255, 255, 255, 1);
+	padding: 40px 20px;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	z-index: 100;
+	transform: translateX(-50%);
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.3s opacity ease-in;
+}
+
+.bl_modal.is-visible {
+	visibility: visible;
+	opacity: 1;
+	transition: 0.3s opacity ease-in;
+}
+
+.el_closeModalBtn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	appearance: none;
+	font-size: 50px;
+	line-height: 50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+
+.el_closeModalBtn:hover {
+	color: #fff;
+	background-color: #666;
+	transition: color, background-color 0.6s ease-out;
+}
+
+.el_modalBg {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.el_input {
+	margin-right: 20px;
+	padding: 10px;
+}
+
+.form-item {
+	display: flex;
+	margin-top: 2rem;
+}
+
+.form-item:first-child {
+	margin-top: 0;
+}
+
+.form-item dt {
+	width: 25%;
+}
