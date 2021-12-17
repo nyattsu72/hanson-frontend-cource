@@ -13,26 +13,66 @@
 		<section class="news">
 			<h1>もりけん塾<span>news</span></h1>
 			<div class="news-category">
-				<ul class="tab-list">
-					<li class="tab-list-item">
-						<button class="tab-button" aria-selected="true">ニュース</button>
+				<ul class="tab-list" role="tablist">
+					<li class="tab-list-item" role="presentation">
+						<button
+							id="tab-1"
+							class="tab-button js-tabButton"
+							aria-selected="true"
+							aria-controls="panel-1"
+							role="tab"
+						>
+							ニュース
+						</button>
 					</li>
-					<li class="tab-list-item">
-						<button class="tab-button" aria-selected="false">経済</button>
+					<li class="tab-list-item" role="presentation">
+						<button
+							id="tab-2"
+							class="tab-button js-tabButton"
+							aria-selected="false"
+							aria-controls="panel-2"
+							role="tab"
+						>
+							経済
+						</button>
 					</li>
-					<li class="tab-list-item">
-						<button class="tab-button" aria-selected="false">エンタメ</button>
+					<li class="tab-list-item" role="presentation">
+						<button
+							id="tab-3"
+							class="tab-button js-tabButton"
+							aria-selected="false"
+							aria-controls="panel-3"
+							role="tab"
+						>
+							エンタメ
+						</button>
 					</li>
-					<li class="tab-list-item">
-						<button class="tab-button" aria-selected="false">スポーツ</button>
+					<li class="tab-list-item" role="presentation">
+						<button
+							id="tab-4"
+							class="tab-button js-tabButton"
+							aria-selected="false"
+							aria-controls="panel-4"
+							role="tab"
+						>
+							スポーツ
+						</button>
 					</li>
-					<li class="tab-list-item">
-						<button class="tab-button" aria-selected="false">国内</button>
+					<li class="tab-list-item" role="presentation">
+						<button
+							id="tab-5"
+							class="tab-button js-tabButton"
+							aria-selected="false"
+							aria-controls="panel-5"
+							role="tab"
+						>
+							国内
+						</button>
 					</li>
 				</ul>
 			</div>
 			<div class="news-contents">
-				<div class="news-area category_illust" aria-hidden="false">
+				<div id="panel-1" class="news-area category_illust" aria-hidden="false" aria-labelledby="tab-1" rolee="tabpanel">
 					<ul class="news-list">
 						<li class="news-item">
 							<a href="" class="news-link">総合ニュース Topic01</a
@@ -51,7 +91,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="news-area category_illust" aria-hidden="true">
+				<div id="panel-2" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-2" rolee="tabpanel">
 					<ul class="news-list">
 						<li class="news-item">
 							<a href="" class="news-link">総合ニュース Topic01</a
@@ -69,7 +109,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="news-area category_illust" aria-hidden="true">
+				<div id="panel-3" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-3" rolee="tabpanel">
 					<ul class="news-list">
 						<li class="news-item">
 							<a href="" class="news-link">総合ニュース Topic01</a
@@ -87,7 +127,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="news-area category_illust" aria-hidden="true">
+				<div id="panel-4" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-4" rolee="tabpanel">
 					<ul class="news-list">
 						<li class="news-item">
 							<a href="" class="news-link">総合ニュース Topic01</a
@@ -105,9 +145,8 @@
 						</li>
 					</ul>
 				</div>
-				<div class="news-area category_illust" aria-hidden="true">
-					<ul class="news-list">
-						<li class="news-item">
+				<div id="panel-5" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-5" rolee="tabpanel">
+					<ul class="news-list">t
 							<a href="" class="news-link">総合ニュース Topic01</a
 							><span class="comment-count"></span>
 						</li>
