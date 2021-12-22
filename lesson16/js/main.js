@@ -18,3 +18,23 @@ function changeTabs(e) {
 	const selectedPanel = document.getElementById(getSelectedTadID);
 	selectedPanel.setAttribute('aria-hidden', false);
 }
+let tabFocus = 0;
+tabList.addEventListener('keydown', (e) => {
+	if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+		tabs[tabFocus].setAttribute('tabindex', -1);
+		if (e.key === 'ArrowRight') {
+			tabFocus++;
+			if (tabFocus >= tabs.length) {
+				tabFocus = 0;
+			}
+		} else if (e.key === 'ArrowLeft') {
+			tabFocus--;
+			if (tabFocus < 0) {
+				tabFocus = tabs.length - 1;
+			}
+		}
+
+		tabs[tabFocus].setAttribute('tabindex', 0);
+		tabs[tabFocus].focus();
+	}
+});
