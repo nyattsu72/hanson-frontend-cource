@@ -1,185 +1,108 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>TerraceTechフロントエンドエンジニア養成所</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/styles.css" />
-	</head>
 
-	<body>
-		<section class="news tabs">
-			<h1>もりけん塾<span>news</span></h1>
-			<div class="news-category">
-				<ul class="tab-list" role="tablist">
-					<li class="tab-list-item" role="presentation">
-						<button
-							id="tab-1"
-							class="tab-button js-tabButton"
-							aria-selected="true"
-							aria-controls="panel-1"
-							role="tab"
-							tabindex="0">
-							ニュース
-						</button>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>TerraceTechフロントエンドエンジニア養成所</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+	<section class="news tabs">
+		<h1>もりけん塾<span>news</span></h1>
+		<div class="news-category">
+			<ul id="js-tab" class="tab-list" role="tablist">
+			</ul>
+		</div>
+		<div class="news-contents">
+			<div id="panel-1" class="news-area category_illust" aria-hidden="false" aria-labelledby="tab-1" role="tabpanel">
+				<ul class="news-list">
+					<!-- <li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="icon-new">new</span><span
+							class="comment-count">300</span>
 					</li>
-					<li class="tab-list-item" role="presentation">
-						<button
-							id="tab-2"
-							class="tab-button js-tabButton"
-							aria-selected="false"
-							aria-controls="panel-2"
-							role="tab"
-							tabindex="-1">
-							経済
-						</button>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
 					</li>
-					<li class="tab-list-item" role="presentation">
-						<button
-							id="tab-3"
-							class="tab-button js-tabButton"
-							aria-selected="false"
-							aria-controls="panel-3"
-							role="tab"
-							tabindex="-1">
-							エンタメ
-						</button>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
 					</li>
-					<li class="tab-list-item" role="presentation">
-						<button
-							id="tab-4"
-							class="tab-button js-tabButton"
-							aria-selected="false"
-							aria-controls="panel-4"
-							role="tab"
-							tabindex="-1">
-							スポーツ
-						</button>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li> -->
+				</ul>
+			</div>
+			<!-- <div id="panel-2" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-2" role="tabpanel">
+				<ul class="news-list">
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
 					</li>
-					<li class="tab-list-item" role="presentation">
-						<button
-							id="tab-5"
-							class="tab-button js-tabButton"
-							aria-selected="false"
-							aria-controls="panel-5"
-							role="tab"
-							tabindex="-1">
-							国内
-						</button>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
 					</li>
 				</ul>
 			</div>
-			<div class="news-contents">
-				<div
-					id="panel-1"
-					class="news-area category_illust"
-					aria-hidden="false"
-					aria-labelledby="tab-1"
-					role="tabpanel">
-					<ul class="news-list">
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="icon-new">new</span><span class="comment-count">300</span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-					</ul>
-				</div>
-				<div
-					id="panel-2"
-					class="news-area category_illust"
-					aria-hidden="true"
-					aria-labelledby="tab-2"
-					role="tabpanel">
-					<ul class="news-list">
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-					</ul>
-				</div>
-				<div
-					id="panel-3"
-					class="news-area category_illust"
-					aria-hidden="true"
-					aria-labelledby="tab-3"
-					role="tabpanel">
-					<ul class="news-list">
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-					</ul>
-				</div>
-				<div
-					id="panel-4"
-					class="news-area category_illust"
-					aria-hidden="true"
-					aria-labelledby="tab-4"
-					role="tabpanel">
-					<ul class="news-list">
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-					</ul>
-				</div>
-				<div
-					id="panel-5"
-					class="news-area category_illust"
-					aria-hidden="true"
-					aria-labelledby="tab-5"
-					role="tabpanel">
-					<ul class="news-list">
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-						<li class="news-item">
-							<a href="" class="news-link">総合ニュース Topic01</a>
-						</li>
-					</ul>
-				</div>
+			<div id="panel-3" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-3" role="tabpanel">
+				<ul class="news-list">
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+				</ul>
 			</div>
-		</section>
+			<div id="panel-4" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-4" role="tabpanel">
+				<ul class="news-list">
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+				</ul>
+			</div>
+			<div id="panel-5" class="news-area category_illust" aria-hidden="true" aria-labelledby="tab-5" role="tabpanel">
+				<ul class="news-list">
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a><span class="comment-count"></span>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+					<li class="news-item">
+						<a href="" class="news-link">総合ニュース Topic01</a>
+					</li>
+				</ul>
+			</div>
+		</div> -->
+	</section>
 
-		<script src="js/main.js"></script>
-	</body>
+	<script src="js/main.js"></script>
+</body>
+
 </html>
