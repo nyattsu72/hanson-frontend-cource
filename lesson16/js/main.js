@@ -91,11 +91,11 @@ async function fetchNewsData() {
 	const NEWS_DATA_URL = 'https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl';
 	try {
 		const response = await fetch(NEWS_DATA_URL);
-		if(!response.ok){
-			throw new Error('Network Error');
-		} else{
+		if(response.ok){
 			const json = await response.json();
 			return json;
+		} else{
+			throw new Error('Network Error');
 		}
 	}
 	catch (error){
@@ -137,7 +137,7 @@ async function callSerectArticle(e){
 		return filterData.category === selectedTab;
 	});
 	renderNewsArticle(sortData);
-	}catch{
+	}catch (error){
 		displayErrorMassage(error);
 	}finally{
 		hideLoadingImg();
