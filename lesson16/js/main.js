@@ -2,6 +2,22 @@
 
 const categoryTab = document.getElementById('js-tab');
 
+function showLoadingImg() {
+	const newsContentArea = document.querySelector('.news-area');
+	const createLoadingBox = document.createElement('div');
+	createLoadingBox.classList.add('ly_loading');
+	createLoadingBox.id = 'js-loading';
+	const loadingImg = document.createElement('img');
+	loadingImg.src = 'images/loading-circle.gif';
+	loadingImg.classList.add('el_loadingImg');
+	newsContentArea.appendChild(createLoadingBox).appendChild(loadingImg);
+}
+
+function hideLoadingImg() {
+	const loading = document.getElementById('js-loading');
+	loading.remove();
+}
+
 function createTabContent(){
 	const newsContentArea = document.createElement('div');
 	newsContentArea.classList.add('news-area');
@@ -99,26 +115,35 @@ async function callCategry(){
 }
 
 async function callAllArticle(){
-	const data = await fetchNewsData();
-	const articleData = data.article;
-
+	showLoadingImg();
 	try{
+		const data = await fetchNewsData();
+		const articleData = data.article;
 		renderNewsArticle(articleData);
 	} catch (error) {
 		displayErrorMassage(error);
+	}finally{
+		hideLoadingImg();
 	}
 }
 
 async function callSerectArticle(e){
-	const data = await fetchNewsData();
-	const articleData = data.article;
-
-	const selectedTab = e.target.textContent;
-
-	const sortData = articleData.filter((filterData) => {
+	showLoadingImg();
+	try{
+		const data = await fetchNewsData();
+		const articleData = data.article;
+		const selectedTab = e.target.textContent;
+		const sortData = articleData.filter((filterData) => {
 		return filterData.category === selectedTab;
 	});
 	renderNewsArticle(sortData);
+	}catch{
+		displayErrorMassage(error);
+	}finally{
+		hideLoadingImg();
+	}
+
+
 }
 
 
