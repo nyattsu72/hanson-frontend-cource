@@ -1,6 +1,7 @@
 'use strict';
 
 const categoryTab = document.getElementById('js-tab');
+const neswArticle = [];
 
 function showLoadingImg() {
 	const newsContentArea = document.querySelector('.news-area');
@@ -19,16 +20,16 @@ function hideLoadingImg() {
 }
 
 function createTabContent(){
-	const newsContentArea = document.createElement('div');
-	newsContentArea.classList.add('news-area');
-	newsContentArea.setAttribute('role','tabpanel');
-	categoryTab.parentNode.insertBefore(newsContentArea,categoryTab.nextSibling);
+		const newsContentArea = document.createElement('div');
+		newsContentArea.classList.add('news-area');
+		newsContentArea.setAttribute('role','tabpanel');
+		categoryTab.parentNode.insertBefore(newsContentArea,categoryTab.nextSibling);
 }
 
 function renderCategoryTab(data){
 	const fragment = document.createDocumentFragment();
 
-	data.forEach((category) => {
+	data.forEach((category,i) => {
 		const categoryTab = document.createElement('li');
 		categoryTab.classList.add('tab_list_item');
 		categoryTab.setAttribute('role','presentation');
@@ -119,6 +120,7 @@ async function callAllArticle(){
 	try{
 		const data = await fetchNewsData();
 		const articleData = data.article;
+		Object.assign(neswArticle,articleData);
 		renderNewsArticle(articleData);
 	} catch (error) {
 		displayErrorMassage(error);
@@ -127,25 +129,13 @@ async function callAllArticle(){
 	}
 }
 
-async function callSerectArticle(e){
-	showLoadingImg();
-	try{
-		const data = await fetchNewsData();
-		const articleData = data.article;
-		const selectedTab = e.target.textContent;
-		const sortData = articleData.filter((filterData) => {
+function callSerectArticle(e){
+	const selectedTab = e.target.textContent;
+	const sortData = neswArticle.filter((filterData) => {
 		return filterData.category === selectedTab;
 	});
 	renderNewsArticle(sortData);
-	}catch (error){
-		displayErrorMassage(error);
-	}finally{
-		hideLoadingImg();
-	}
-
-
 }
-
 
 function init(){
 	createTabContent()
@@ -165,20 +155,11 @@ function changeTabs(e) {
 
 	if(selectCategory === 'ニュース'){
 		resetArticle()
-		callAllArticle()
+		renderNewsArticle(neswArticle);
 	}else{
 		resetArticle()
 		callSerectArticle(e);
 	}
-};
-
-const categorySortArticle = (data) => {
-	const categoryTab = document.getElementById('js-tab');
-	const selectCategoryTab = categoryTab.querySelector('.tab-button[aria-selected="true"]').textContent;
-
-	return data.filter((filterData) => {
-		return filterData.category === selectCategoryTab;
-	});
 };
 
 categoryTab.addEventListener('click', (e) => {
