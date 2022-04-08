@@ -84,6 +84,7 @@ function removeInnerHTML(element) {
 
 const menuLists = document.createElement('ul');
 function createMenuList(data) {
+	console.log(data);
 	const menuContainer = document.getElementById('js-menu_container');
 	const fragment = document.createDocumentFragment();
 	removeInnerHTML(menuLists);
