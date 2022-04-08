@@ -1,17 +1,16 @@
 'use strict';
 
 const categoryTab = document.getElementById('js-tab');
-const neswArticle = [];
 
 function showLoadingImg() {
-	const newsContentArea = document.querySelector('.news-area');
+	const tabContentsArea = document.getElementById('js-newsContents');
 	const createLoadingBox = document.createElement('div');
 	createLoadingBox.classList.add('ly_loading');
 	createLoadingBox.id = 'js-loading';
 	const loadingImg = document.createElement('img');
 	loadingImg.src = 'images/loading-circle.gif';
 	loadingImg.classList.add('el_loadingImg');
-	newsContentArea.appendChild(createLoadingBox).appendChild(loadingImg);
+	tabContentsArea.appendChild(createLoadingBox).appendChild(loadingImg);
 }
 
 function hideLoadingImg() {
@@ -19,42 +18,52 @@ function hideLoadingImg() {
 	loading.remove();
 }
 
-function createTabContent(){
+function createTabContentsArea(){
+	const tabContentsArea = document.createElement('div');
+	tabContentsArea.id = 'js-newsContents';
+	tabContentsArea.classList.add('news-contents');
+	categoryTab.parentNode.insertBefore(tabContentsArea,categoryTab.nextSibling);
+}
+
+function createTabContent(data){
+	const tabContentsArea = document.getElementById('js-newsContents');
+
+	data.forEach((category,i) => {
 		const newsContentArea = document.createElement('div');
 		newsContentArea.classList.add('news-area');
 		newsContentArea.setAttribute('role','tabpanel');
-		categoryTab.parentNode.insertBefore(newsContentArea,categoryTab.nextSibling);
+		newsContentArea.setAttribute('id','panel-'+ (i+1));
+		newsContentArea.setAttribute('aria-labelledby','tab-'+ (i+1));
+		newsContentArea.setAttribute('aria-hidden','true');
+		const articleData = category.article;
+		console.log(articleData);
+		tabContentsArea.appendChild(newsContentArea).appendChild(renderNewsArticle(articleData));
+	})
 }
 
 function renderCategoryTab(data){
 	const fragment = document.createDocumentFragment();
 
-	data.forEach((category,i) => {
+	data.forEach((target,i) => {
 		const categoryTab = document.createElement('li');
 		categoryTab.classList.add('tab_list_item');
 		categoryTab.setAttribute('role','presentation');
 
 		const categoryButton = document.createElement('button');
-		categoryButton.textContent = category.name;
+		categoryButton.textContent = target.category;
+		categoryButton.setAttribute('id','tab-' + (i+1));
 		categoryButton.setAttribute('class', 'tab-button js-tabButton');
-		categoryButton.setAttribute('aria-selected', 'false');
+		categoryButton.setAttribute('aria-controls','panel-' + (i+1));
 		categoryButton.setAttribute('role', 'tab');
+		categoryButton.setAttribute('aria-selected', 'false');
 		categoryButton.setAttribute('tabindex', '-1');
 		fragment.appendChild(categoryTab).appendChild(categoryButton);
 	});
-
 	const categoryTabLists = document.querySelector('.tab-list');
 	categoryTabLists.appendChild(fragment);
 }
 
-function categoryTabInitial(){
-	const firstTab = document.querySelectorAll('.tab-button')[0];
-	firstTab.setAttribute('aria-selected','true');
-	firstTab.setAttribute('tabindex','0');
-}
-
-function renderNewsArticle(data){
-	const newsContentArea = document.querySelector('.news-area');
+const renderNewsArticle = (data) => {
 	const newsLists = document.createElement('ul');
 	newsLists.classList.add('news-list');
 	const fragment = document.createDocumentFragment();
@@ -70,23 +79,34 @@ function renderNewsArticle(data){
 		anchor.textContent = data[i].title;
 		fragment.appendChild(li).appendChild(anchor);
 	}
-
-	newsContentArea.appendChild(newsLists).appendChild(fragment);
+	newsLists.appendChild(fragment);
+	return newsLists;
 };
 
-function resetArticle(){
-	const newsLists= document.querySelector('.news-list');
-	newsLists.remove();
+function tabContentsInitialDisplay(data){
+	data.forEach((target) =>{
+		console.log(target);
+		const activeCategory = target.isActive;
+
+		if(activeCategory){
+			const categoryButton = categoryTab.querySelector('.js-tabButton');
+			categoryButton.setAttribute('tabindex', '0');
+			categoryButton.setAttribute('aria-selected','true');
+
+			const getSelectedTadID = categoryButton.getAttribute('aria-controls');
+			const selectedPanel = document.getElementById(getSelectedTadID);
+			selectedPanel.setAttribute('aria-hidden', false);
+		}
+	})
 }
 
 function displayErrorMassage(error){
-	const getNewsArea = document.querySelectorAll('.news-area');
-	for(let i = 0; i < getNewsArea.length; i++){
-		const createTextBox = document.createElement('p');
-		createTextBox.textContent = error;
-		getNewsArea[i].appendChild(createTextBox);
+	const getNewsArea = document.getElementById('js-newsContents');
+	const createTextBox = document.createElement('p');
+	createTextBox.classList.add('error-message');
+	createTextBox.textContent = error;
+	getNewsArea.appendChild(createTextBox);
 	}
-}
 
 async function fetchNewsData() {
 	const NEWS_DATA_URL = 'https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl';
@@ -105,23 +125,15 @@ async function fetchNewsData() {
 	}
 }
 
-async function callCategry(){
-	const data = await fetchNewsData();
-	const categoryData = data.category;
-
-	if(categoryData){
-		renderCategoryTab(categoryData);
-		categoryTabInitial()
-	}
-}
-
-async function callAllArticle(){
+async function callnewsContents(){
 	showLoadingImg();
 	try{
-		const data = await fetchNewsData();
-		const articleData = data.article;
-		Object.assign(neswArticle,articleData);
-		renderNewsArticle(articleData);
+		const json = await fetchNewsData();
+		const newsArticleData = json.data;
+		renderCategoryTab(newsArticleData);
+		createTabContent(newsArticleData);
+		tabContentsInitialDisplay(newsArticleData);
+
 	} catch (error) {
 		displayErrorMassage(error);
 	}finally{
@@ -129,21 +141,10 @@ async function callAllArticle(){
 	}
 }
 
-function callSerectArticle(e){
-	const selectedTab = e.target.textContent;
-	const sortData = neswArticle.filter((filterData) => {
-		return filterData.category === selectedTab;
-	});
-	renderNewsArticle(sortData);
-}
-
 function init(){
-	createTabContent()
-	callCategry();
-	callAllArticle()
+	createTabContentsArea()
+	callnewsContents()
 }
-
-init();
 
 function changeTabs(e) {
 	const tabs = document.querySelectorAll('[role="tab"]');
@@ -151,16 +152,14 @@ function changeTabs(e) {
 	tabs.forEach((target) => target.setAttribute('aria-selected', false));
 	selectedTab.setAttribute('aria-selected', true);
 
-	const selectCategory = selectedTab.textContent;
-
-	if(selectCategory === 'ニュース'){
-		resetArticle()
-		renderNewsArticle(neswArticle);
-	}else{
-		resetArticle()
-		callSerectArticle(e);
-	}
+	const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+	tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
+	const getSelectedTadID = selectedTab.getAttribute('aria-controls');
+	const selectedPanel = document.getElementById(getSelectedTadID);
+	selectedPanel.setAttribute('aria-hidden', false);
 };
+
+init();
 
 categoryTab.addEventListener('click', (e) => {
 	changeTabs(e)
