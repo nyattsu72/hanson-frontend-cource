@@ -5,10 +5,12 @@ const categoryTab = document.getElementById('js-tab');
 function showLoadingImg() {
 	const tabContentsArea = document.getElementById('js-newsContents');
 	const createLoadingBox = document.createElement('div');
-	createLoadingBox.classList.add('ly_loading');
+	createLoadingBox.classList.add('loading');
 	createLoadingBox.id = 'js-loading';
 	const loadingImg = document.createElement('img');
 	loadingImg.src = 'images/loading-circle.gif';
+	loadingImg.width = 100;
+	loadingImg.height = 100;
 	loadingImg.classList.add('el_loadingImg');
 	tabContentsArea.appendChild(createLoadingBox).appendChild(loadingImg);
 }
@@ -21,7 +23,6 @@ function hideLoadingImg() {
 function createTabContentsArea(){
 	const tabContentsArea = document.createElement('div');
 	tabContentsArea.id = 'js-newsContents';
-	tabContentsArea.classList.add('news-contents');
 	categoryTab.parentNode.insertBefore(tabContentsArea,categoryTab.nextSibling);
 }
 
@@ -110,19 +111,13 @@ function displayErrorMassage(error){
 
 async function fetchNewsData() {
 	const NEWS_DATA_URL = 'https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl';
-	try {
 		const response = await fetch(NEWS_DATA_URL);
-		if(response.ok){
-			const json = await response.json();
-			return json;
-		} else{
+		const json = await response.json();
+		if(!response.ok){
+			console.error(`${response.status}:${response.statusText}`);
 			throw new Error('Network Error');
 		}
-	}
-	catch (error){
-		console.error('Failed to get the data. error:',error);
-		displayErrorMassage(error);
-	}
+		return json
 }
 
 async function callnewsContents(){
@@ -130,10 +125,11 @@ async function callnewsContents(){
 	try{
 		const json = await fetchNewsData();
 		const newsArticleData = json.data;
-		renderCategoryTab(newsArticleData);
-		createTabContent(newsArticleData);
-		tabContentsInitialDisplay(newsArticleData);
-
+		if(newsArticleData){
+			renderCategoryTab(newsArticleData);
+			createTabContent(newsArticleData);
+			tabContentsInitialDisplay(newsArticleData);
+		}
 	} catch (error) {
 		displayErrorMassage(error);
 	}finally{
