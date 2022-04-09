@@ -99,7 +99,7 @@ function tabContentsInitialDisplay(data){
 	})
 }
 
-function displayErrorMassage(error){
+function displayErrorMassage(error='ニュース記事を表示することができませんでした'){
 	const getNewsArea = document.getElementById('js-newsContents');
 	const createTextBox = document.createElement('p');
 	createTextBox.classList.add('error-message');
@@ -147,16 +147,19 @@ function changeTabs(e) {
 	selectedTab.setAttribute('aria-selected', true);
 
 	const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-	tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
-	const getSelectedTadID = selectedTab.getAttribute('aria-controls');
-	const selectedPanel = document.getElementById(getSelectedTadID);
-	selectedPanel.setAttribute('aria-hidden', false);
+	if(tabPanels.length){
+		tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
+		const getSelectedTadID = selectedTab.getAttribute('aria-controls');
+		const selectedPanel = document.getElementById(getSelectedTadID);
+		selectedPanel.setAttribute('aria-hidden', false);
+	}
+
 };
 
 init();
 
 categoryTab.addEventListener('click', (e) => {
-	changeTabs(e)
+	changeTabs(e);
 })
 
 
