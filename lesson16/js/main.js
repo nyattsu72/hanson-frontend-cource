@@ -16,8 +16,7 @@ function showLoadingImg() {
 }
 
 function hideLoadingImg() {
-	const loading = document.getElementById('js-loading');
-	loading.remove();
+	document.getElementById('js-loading').remove();
 }
 
 function createTabContentsArea(){
