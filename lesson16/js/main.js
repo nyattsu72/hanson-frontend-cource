@@ -37,7 +37,6 @@ function createTabContent(data){
 		newsContentArea.setAttribute('aria-labelledby','tab-'+ (i+1));
 		newsContentArea.setAttribute('aria-hidden','true');
 		const articleData = category.article;
-		console.log(articleData);
 		tabContentsArea.appendChild(newsContentArea).appendChild(renderNewsArticle(articleData));
 	})
 }
@@ -86,7 +85,6 @@ const renderNewsArticle = (data) => {
 
 function tabContentsInitialDisplay(data){
 	data.forEach((target) =>{
-		console.log(target);
 		const activeCategory = target.isActive;
 
 		if(activeCategory){
