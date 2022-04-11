@@ -98,6 +98,20 @@ function tabContentsInitialDisplay(data){
 	})
 }
 
+function addNewsImage(data){
+	const getNewsArea = document.querySelectorAll('.news-area');
+
+	data.forEach((category,i) => {
+		const imageArea = document.createElement('div');
+		const img = document.createElement('img');
+		img.src = category.image;
+		img.width = 200;
+		img.height = 200;
+		getNewsArea[i].appendChild(imageArea).appendChild(img);
+	})
+
+}
+
 function displayErrorMassage(error){
 	const getNewsArea = document.getElementById('js-newsContents');
 	const createTextBox = document.createElement('p');
@@ -126,6 +140,7 @@ async function callnewsContents(){
 			renderCategoryTab(newsArticleData);
 			createTabContent(newsArticleData);
 			tabContentsInitialDisplay(newsArticleData);
+			addNewsImage(newsArticleData);
 		}}
 		catch{
 			displayErrorMassage('ニュースを表示することができませんでした');
