@@ -25,6 +25,7 @@ function removeInnerHTML(element) {
 function createMenuList(data) {
 	const fragment = document.createDocumentFragment();
 	removeInnerHTML(menuLists);
+	console.log(data);
 
 	data.forEach((value) => {
 		const listItem = document.createElement('li');

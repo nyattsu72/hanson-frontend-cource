@@ -147,19 +147,19 @@ function changeTabs(e) {
 	selectedTab.setAttribute('aria-selected', true);
 
 	const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-	if(tabPanels.length){
-		tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
-		const getSelectedTadID = selectedTab.getAttribute('aria-controls');
-		const selectedPanel = document.getElementById(getSelectedTadID);
-		selectedPanel.setAttribute('aria-hidden', false);
-	}
-
+	tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
+	const getSelectedTadID = selectedTab.getAttribute('aria-controls');
+	const selectedPanel = document.getElementById(getSelectedTadID);
+	selectedPanel.setAttribute('aria-hidden', false);
 };
 
 init();
 
 categoryTab.addEventListener('click', (e) => {
-	changeTabs(e);
+	const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+	if(tabPanels.length && e.currentTarget){
+		changeTabs(e);
+	}
 })
 
 
