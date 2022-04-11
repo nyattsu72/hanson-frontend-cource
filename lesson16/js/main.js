@@ -98,7 +98,7 @@ function tabContentsInitialDisplay(data){
 	})
 }
 
-function displayErrorMassage(error='ニュース記事を表示することができませんでした'){
+function displayErrorMassage(error){
 	const getNewsArea = document.getElementById('js-newsContents');
 	const createTextBox = document.createElement('p');
 	createTextBox.classList.add('error-message');
@@ -108,13 +108,13 @@ function displayErrorMassage(error='ニュース記事を表示することが�
 
 async function fetchNewsData() {
 	const NEWS_DATA_URL = 'https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl';
-		const response = await fetch(NEWS_DATA_URL);
+	const response = await fetch(NEWS_DATA_URL);
+	if(response.ok){
 		const json = await response.json();
-		if(!response.ok){
-			console.error(`${response.status}:${response.statusText}`);
-			throw new Error('Network Error');
-		}
 		return json
+	} else{
+		console.error(`${response.status}:${response.statusText}`);
+	}
 }
 
 async function callnewsContents(){
@@ -126,10 +126,11 @@ async function callnewsContents(){
 			renderCategoryTab(newsArticleData);
 			createTabContent(newsArticleData);
 			tabContentsInitialDisplay(newsArticleData);
+		}}
+		catch{
+			displayErrorMassage('ニュースを表示することができませんでした');
 		}
-	} catch (error) {
-		displayErrorMassage(error);
-	}finally{
+		finally{
 		hideLoadingImg();
 	}
 }
