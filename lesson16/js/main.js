@@ -99,6 +99,7 @@ function tabContentsInitialDisplay(data){
 }
 
 function addNewsImage(data){
+
 	const getNewsArea = document.querySelectorAll('.news-area');
 
 	data.forEach((category,i) => {
@@ -172,7 +173,7 @@ init();
 
 categoryTab.addEventListener('click', (e) => {
 	const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-	if(tabPanels.length && e.currentTarget){
+	if(tabPanels.length > 0 && e.target.hasAttribute('aria-selected')){
 		changeTabs(e);
 	}
 })
