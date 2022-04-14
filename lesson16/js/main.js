@@ -27,7 +27,6 @@ function createTabContentsArea(){
 
 function createTabContent(data){
 	const tabContentsArea = document.getElementById('js-newsContents');
-
 	data.forEach((category,i) => {
 		const newsContentArea = document.createElement('div');
 		newsContentArea.classList.add('news-area');
@@ -66,7 +65,6 @@ const renderNewsArticle = (data) => {
 	const newsLists = document.createElement('ul');
 	newsLists.classList.add('news-list');
 	const fragment = document.createDocumentFragment();
-
 	const displayedResults = 5;
 	for (let i = 0; i < displayedResults; ++i){
 		const li = document.createElement('li');
@@ -76,7 +74,14 @@ const renderNewsArticle = (data) => {
 		anchor.classList.add('news-link');
 		anchor.href = data[i].link;
 		anchor.textContent = data[i].title;
-		fragment.appendChild(li).appendChild(anchor);
+		console.log(addComment(data[i]));
+
+		const commentResult = data[i].comment;
+		if(commentResult.length){
+			fragment.appendChild(li).appendChild(anchor).appendChild(addComment(data[i]));
+		}else{
+			fragment.appendChild(li).appendChild(anchor);
+		}
 	}
 	newsLists.appendChild(fragment);
 	return newsLists;
@@ -99,7 +104,6 @@ function tabContentsInitialDisplay(data){
 }
 
 function addNewsImage(data){
-
 	const getNewsArea = document.querySelectorAll('.news-area');
 
 	data.forEach((category,i) => {
@@ -112,6 +116,18 @@ function addNewsImage(data){
 	})
 
 }
+
+function addComment(data){
+	const commentResult = data.comment;
+	if(commentResult.length){
+		const commentBox = document.createElement('span');
+		const anchor = document.createElement('a');
+		anchor.classList.add('comment-count');
+		anchor.textContent = commentResult.length;
+		commentBox.appendChild(anchor);
+		return commentBox;
+	}
+	}
 
 function displayErrorMassage(error){
 	const getNewsArea = document.getElementById('js-newsContents');

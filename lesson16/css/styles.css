@@ -14,6 +14,13 @@ h1 {
 	margin-bottom: 30px;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+	border: none;
+	vertical-align: top;
+}
+
 a {
 	color: rgb(45, 112, 189);
 	font-size: 1.8rem;
@@ -64,6 +71,8 @@ a {
 	background-color: #fff;
 	border: 2px solid #f4f4f4;
 	padding: 2rem;
+	display: flex;
+  justify-content: space-between;
 }
 
 .news-area[aria-hidden='true'] {
@@ -92,7 +101,7 @@ a {
 }
 
 .comment-count {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	position: relative;
 	padding-left: 2rem;
 	margin-left: 1rem;
@@ -109,23 +118,6 @@ a {
 	left: 2px;
 	transform: translateY(-50%);
 	background-image: url(../images/chat_bubble_outline_black_24dp.svg);
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-
-.category_illust {
-	position: relative;
-}
-.category_illust::after {
-	content: '';
-	width: 160px;
-	height: 160px;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	display: block;
-	background-color: #fff;
-	background-image: url(../images/bg-news.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
