@@ -118,15 +118,14 @@ function addNewsImage(data){
 
 function addComment(data){
 	const commentResult = data.comment;
-	if(commentResult.length){
 		const commentBox = document.createElement('span');
 		const anchor = document.createElement('a');
 		anchor.classList.add('comment-count');
 		anchor.textContent = commentResult.length;
 		commentBox.appendChild(anchor);
 		return commentBox;
-	}
-	}
+}
+
 
 function displayErrorMassage(error){
 	const getNewsArea = document.getElementById('js-newsContents');
