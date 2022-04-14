@@ -74,7 +74,6 @@ const renderNewsArticle = (data) => {
 		anchor.classList.add('news-link');
 		anchor.href = data[i].link;
 		anchor.textContent = data[i].title;
-		console.log(addComment(data[i]));
 
 		const commentResult = data[i].comment;
 		if(commentResult.length){
