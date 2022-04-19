@@ -16,7 +16,7 @@ function showLoadingImg() {
 }
 
 function hideLoadingImg() {
-  ocument.getElementById('js-loading').remove();
+  document.getElementById('js-loading').remove();
 }
 
 function createTabContentsArea(){
@@ -127,12 +127,16 @@ function addNewIcon(date,item) {
   const articleDateToToday = differenceInDays(new Date(),parseISO(articleDate));
   const judgmenDays = 60;
   if(articleDateToToday <= judgmenDays){
-    const newIcon = document.createElement('span');
-    newIcon.textContent = 'new';
-    newIcon.classList.add('icon-new');
-    const newsArticleLink = item.querySelector('.news-link');
-    newsArticleLink.insertAdjacentElement('afterend',newIcon);
+    createNewIcon(item)
   }
+}
+
+function createNewIcon(item){
+  const newIcon = document.createElement('span');
+  newIcon.textContent = 'new';
+  newIcon.classList.add('icon-new');
+  const newsArticleLink = item.querySelector('.news-link');
+  newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
 
 
