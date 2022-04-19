@@ -1,4 +1,4 @@
-'use strict';
+import { parseISO, differenceInDays } from 'date-fns';
 
 const categoryTab = document.getElementById('js-tab');
 
@@ -76,7 +76,7 @@ const renderNewsArticle = (data) => {
 		anchor.textContent = data[i].title;
 		fragment.appendChild(li).appendChild(anchor);
 		addComment(data[i], li);
-		addNewIcon(li);
+		addNewIcon(data[i],li);
 	}
 	newsLists.appendChild(fragment);
 	return newsLists;
@@ -123,13 +123,17 @@ function addComment(data, item) {
 	}
 }
 
-function addNewIcon(item) {
-	const judgmenDays = 14;
-	const newIcon = document.createElement('span');
-	newIcon.textContent = 'new';
-	newIcon.classList.add('icon-new');
-	const newsArticleLink = item.querySelector('.news-link');
-	newsArticleLink.insertAdjacentElement('afterend',newIcon);
+function addNewIcon(date,item) {
+	const articleDate = date.date;
+	const articleDateToToday = differenceInDays(new Date(),parseISO(articleDate));
+	const judgmenDays = 60;
+	if(articleDateToToday <= judgmenDays){
+		const newIcon = document.createElement('span');
+		newIcon.textContent = 'new';
+		newIcon.classList.add('icon-new');
+		const newsArticleLink = item.querySelector('.news-link');
+		newsArticleLink.insertAdjacentElement('afterend',newIcon);
+	}
 }
 
 
