@@ -74,13 +74,8 @@ const renderNewsArticle = (data) => {
 		anchor.classList.add('news-link');
 		anchor.href = data[i].link;
 		anchor.textContent = data[i].title;
-
-		const commentResult = data[i].comment;
-		if(commentResult.length){
-			fragment.appendChild(li).appendChild(anchor).appendChild(addComment(data[i]));
-		}else{
-			fragment.appendChild(li).appendChild(anchor);
-		}
+		fragment.appendChild(li).appendChild(anchor);
+		addComment(data[i], li);
 	}
 	newsLists.appendChild(fragment);
 	return newsLists;
@@ -116,14 +111,15 @@ function addNewsImage(data){
 
 }
 
-function addComment(data){
+function addComment(data, item) {
 	const commentResult = data.comment;
+	if (commentResult.length) {
 		const commentBox = document.createElement('span');
 		const anchor = document.createElement('a');
 		anchor.classList.add('comment-count');
 		anchor.textContent = commentResult.length;
-		commentBox.appendChild(anchor);
-		return commentBox;
+		item.appendChild(commentBox).appendChild(anchor);
+	}
 }
 
 
