@@ -76,6 +76,7 @@ const renderNewsArticle = (data) => {
 		anchor.textContent = data[i].title;
 		fragment.appendChild(li).appendChild(anchor);
 		addComment(data[i], li);
+		addNewIcon(li);
 	}
 	newsLists.appendChild(fragment);
 	return newsLists;
@@ -120,6 +121,15 @@ function addComment(data, item) {
 		anchor.textContent = commentResult.length;
 		item.appendChild(commentBox).appendChild(anchor);
 	}
+}
+
+function addNewIcon(item) {
+	const judgmenDays = 14;
+	const newIcon = document.createElement('span');
+	newIcon.textContent = 'new';
+	newIcon.classList.add('icon-new');
+	const newsArticleLink = item.querySelector('.news-link');
+	newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
 
 
