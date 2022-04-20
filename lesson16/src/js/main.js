@@ -122,9 +122,8 @@ function addComment({comment}, item) {
   }
 }
 
-function addNewIcon(date,item) {
-  const articleDate = date.date;
-  const articleDateToToday = differenceInDays(new Date(),parseISO(articleDate));
+function addNewIcon({date},item) {
+  const articleDateToToday = differenceInDays(new Date(),parseISO(date));
   const judgmenDays = 60;
   if(articleDateToToday <= judgmenDays){
     createNewIcon(item)
