@@ -19,13 +19,13 @@ function hideLoadingImg() {
   document.getElementById('js-loading').remove();
 }
 
-function createTabContentsArea(){
+function renderTabContentsArea(){
   const tabContentsArea = document.createElement('div');
   tabContentsArea.id = 'js-newsContents';
   categoryTab.parentNode.insertBefore(tabContentsArea,categoryTab.nextSibling);
 }
 
-function createTabContent(data){
+function renderTabContent(data){
   const tabContentsArea = document.getElementById('js-newsContents');
   data.forEach((category,i) => {
     const newsContentArea = document.createElement('div');
@@ -126,11 +126,11 @@ function addNewIcon({date},item) {
   const articleDateToToday = differenceInDays(new Date(),parseISO(date));
   const judgmenDays = 60;
   if(articleDateToToday <= judgmenDays){
-    createNewIcon(item)
+    renderNewIcon(item)
   }
 }
 
-function createNewIcon(item){
+function renderNewIcon(item){
   const newIcon = document.createElement('span');
   newIcon.textContent = 'new';
   newIcon.classList.add('icon-new');
@@ -165,7 +165,7 @@ async function callnewsContents(){
     const newsArticleData = json.data;
     if(newsArticleData){
       renderCategoryTab(newsArticleData);
-      createTabContent(newsArticleData);
+      renderTabContent(newsArticleData);
       tabContentsInitialDisplay(newsArticleData);
       addNewsImage(newsArticleData);
     }else{
@@ -180,7 +180,7 @@ async function callnewsContents(){
 }
 
 function init(){
-  createTabContentsArea()
+  renderTabContentsArea()
   callnewsContents()
 }
 
