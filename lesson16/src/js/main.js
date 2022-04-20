@@ -111,13 +111,13 @@ function addNewsImage(data){
   })
 }
 
-function addComment(data, item) {
-  const commentResult = data.comment;
-  if (commentResult.length) {
+function addComment({comment}, item) {
+  const commentResult = comment.length;
+  if (commentResult) {
     const commentBox = document.createElement('span');
     const anchor = document.createElement('a');
     anchor.classList.add('comment-count');
-    anchor.textContent = commentResult.length;
+    anchor.textContent = commentResult;
     item.appendChild(commentBox).appendChild(anchor);
   }
 }
