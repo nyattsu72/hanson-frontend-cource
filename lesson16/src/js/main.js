@@ -169,6 +169,8 @@ async function callnewsContents(){
       createTabContent(newsArticleData);
       tabContentsInitialDisplay(newsArticleData);
       addNewsImage(newsArticleData);
+    }else{
+      displayErrorMassage('表示するニュースがありませんでした')
     }}
   catch{
     displayErrorMassage('ニュースを表示することができませんでした');
