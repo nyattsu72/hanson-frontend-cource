@@ -46,7 +46,6 @@ function renderCategoryTab(data){
     const categoryTab = document.createElement('li');
     categoryTab.classList.add('tab_list_item');
     categoryTab.setAttribute('role','presentation');
-
     const categoryButton = document.createElement('button');
     categoryButton.textContent = target.category;
     categoryButton.setAttribute('id','tab-' + (i+1));
@@ -56,6 +55,11 @@ function renderCategoryTab(data){
     categoryButton.setAttribute('aria-selected', 'false');
     categoryButton.setAttribute('tabindex', '-1');
     fragment.appendChild(categoryTab).appendChild(categoryButton);
+
+    const activeCategory = target.isActive;
+    if(activeCategory){
+      tabContentsInitialDisplay(categoryButton);
+    }
   });
   const categoryTabLists = document.querySelector('.tab-list');
   categoryTabLists.appendChild(fragment);
@@ -82,20 +86,13 @@ const getNewsArticle = (data) => {
   return newsLists;
 };
 
-function tabContentsInitialDisplay(data){
-  data.forEach((target) =>{
-    const activeCategory = target.isActive;
+function tabContentsInitialDisplay(target){
+  target.setAttribute('tabindex', '0');
+  target.setAttribute('aria-selected','true');
 
-    if(activeCategory){
-      const categoryButton = categoryTab.querySelector('.js-tabButton');
-      categoryButton.setAttribute('tabindex', '0');
-      categoryButton.setAttribute('aria-selected','true');
-
-      const getSelectedTadID = categoryButton.getAttribute('aria-controls');
-      const selectedPanel = document.getElementById(getSelectedTadID);
-      selectedPanel.setAttribute('aria-hidden', false);
-    }
-  })
+  const getSelectedTadID = target.getAttribute('aria-controls');
+  const selectedPanel = document.getElementById(getSelectedTadID);
+  selectedPanel.setAttribute('aria-hidden', false);
 }
 
 function addNewsImage(data){
@@ -164,9 +161,8 @@ async function callnewsContents(){
     const json = await fetchNewsData();
     const newsArticleData = json.data;
     if(newsArticleData){
-      renderCategoryTab(newsArticleData);
       renderTabContent(newsArticleData);
-      tabContentsInitialDisplay(newsArticleData);
+      renderCategoryTab(newsArticleData);
       addNewsImage(newsArticleData);
     }else{
       displayErrorMassage('表示するニュースがありませんでした')
