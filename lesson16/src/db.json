@@ -1,0 +1,72 @@
+{
+  "data":[
+    {
+      "id":"ca7d1264-4c2d-4686-b272-04a075d2842a",
+      "category": "ニュース",
+      "isActive":true,
+      "image":"./images/bg-news.png",
+      "article":[
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "もりけん塾ニュースだよ", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16",  "comment": [{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"4c711eef-058f-43d9-b172-454907e2c505","value":"コメントメッセージ02","user":{"id":"25c0df58-09e3-4eb1-a4b7-d9c711a7c52a","name":""}},{"id":"50474e01-7e19-41ce-bc8f-58dc234e16ce","value":"コメントメッセージ03","user":{"id":"d6ab0f76-082f-4e4a-b6ce-6ff86c9d18ad","name":""}},{"id":"123d66ee-aa79-4d0f-aedc-63e2a92a5935","value":"コメントメッセージ04","user":{"id":"16ee74a0-a0f1-43cc-ae95-e999fc790484","name":""}}], "date":"2022-04-01"},
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "Gatherの宇宙船内で勉強できるようになったよ！", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16",  "comment": [{"id":"ed7f75f0-e4cd-4d30-b84b-62068bdb4c20","value":"コメントメッセージ01","user":{"id":"65e22e76-7215-424e-9443-90b1d10238e5","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"8271f81c-a027-43a4-85db-58364cf9d64d","value":"コメントメッセージ02","user":{"id":"4cac42df-2969-4330-a26e-4b50504d3b07","name":""}}], "date":"2022-03-20"},
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "課題37まで増えたよ！頑張ってやりきろう！", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md",  "comment": [{"id":"04592749-32bf-4e1e-8b2d-d38ba4e90bb7","value":"コメントメッセージ01","user":{"id":"14840063-20a8-449b-8839-e16befa9c8cd","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ02","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ03","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}}], "date":"2022-03-15"},
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "言語チャレンジで配列の勉強もできるよ", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16",  "comment": [{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}}], "date":"2021-12-01"},
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "言語チャレンジも30課題あるよ！", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/basic/Work.md",  "comment": [{"id":"","value":"","user":{"id":"","name":""}}], "date":"2022-02-10"},
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "最新の技術トレンドも知ることができるよ", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16",  "comment": [{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}},{"id":"5cfdf0e0-b49f-4907-9c01-b9cc233cd35b","value":"コメントメッセージ01","user":{"id":"76ea6553-f9b2-4494-bd30-5290d257b228","name":""}}], "date":"2021-12-01"}
+      ]
+    },
+    {
+      "id":"ca7d1264-4c2d-4686-b272-04a075d2842a",
+      "category": "経済",
+      "isActive":false,
+      "image":"./images/bg-economy.png",
+      "article":[
+        { "id": "0ac298fc-fb16-4fbc-adca-a2691a359b8d", "title": "消費税10％→5％に！", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2021-12-23" },
+        { "id": "ba591fdd-1bd8-43eb-87e0-4024b4b9e95b", "title": "原油の価格が高騰", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-01-03" },
+        { "id": "d304bbee-118b-4b50-8438-42ffea89d0dd", "title": "新しく5万円札発行を決定", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "category": "経済", "comment": [{ "id": "9becaadd-9ddf-44be-bc2b-e71422d10b17", "value": "コメントメッセージ01", "user": { "id": "1f5f4c52-eccb-45ee-b416-60f4b6b3093c", "name": "" } },{ "id": "ff273ee0-cd9c-445a-a616-faa421026398", "value": "コメントメッセージ02", "user": { "id": "414c3a71-4f2022-4627-a6fa-254fd8eace8a", "name": "" } }], "date": "2022-01-03" },
+        { "id": "5c72ad5d-d6c5-4759-a601-f23e264f208b", "title": "全国的に賃金上昇", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "19667938-29fb-458b-afef-9accc1086c75", "value": "コメントメッセージ01", "user": { "id": "d0d53184-f617-4afc-904c-360ba4b59715", "name": "" } },{ "id": "b4676ee9-7945-4fe0-a34a-7575a9336e44", "value": "コメントメッセージ02", "user": { "id": "d85d6def-811b-4d98-b52d-a3153e1c1456", "name": "" } },{ "id": "555c3529-955e-4cc1-b03b-97175bf7a54e", "value": "コメントメッセージ03", "user": { "id": "3d32f140-a0e1-4eb3-b220-16de62c005c4", "name": "" } }], "date": "2022-01-06" },
+        { "id": "bef17dfa-52a4-42c5-92a9-7840be8a65ae", "title": "円高？円安？？", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment":[], "date": "2022-01-06" }
+      ]
+    },
+    {
+      "id":"ca7d1264-4c2d-4686-b272-04a075d2842a",
+      "category": "エンタメ",
+      "isActive":true,
+      "image":"./images/bg-entertaiment.png",
+      "article":[
+        { "id": "9d061710-5dbb-4731-88a8-213f1f486ced", "title": "M1開催迫る", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date":"2021-12-01"},
+        { "id": "32c520d5-e46a-453f-9640-cd3c7cf60016", "title": "８時だよ全員集合が復活！", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2021-12-30" },
+        { "id": "594b4d1e-014e-4df3-9687-19ced275d00b", "title": "スターウォーズの映画館で一挙公開", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "a4e130ba-1b11-40a7-8783-e1c7e357d00d", "value": "コメントメッセージ01", "user": { "id": "1effc12022-ff9a-44f6-986c-7d3bdb4f0a99", "name": "" } }], "date": "2022-01-05" },
+        { "id": "a78b7c79-a49b-442c-ac82-5aaeb89b3390", "title": "今話題のアニメ、漫画、映画は？", "link": "", "comment": [{ "id": "6d3ed8dd-0a18-4e8e-8603-d8d089c0b1b5", "value": "コメントメッセージ01", "user": { "id": "bcdb3053-e2f4-4273-9136-f78e806fbdb4", "name": "" } }], "date": "2021-01-05" },
+        { "id": "2354548f-8cae-4e42-a44c-6adecceedaf8", "title": "アカデミー賞にノミネート", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "002d0234-a21c-42bf-96b9-0d6e4f9a8d2c", "value": "コメントメッセージ01", "user": { "id": "55c856cd-d12e-4070-b25a-39a0c1e203c7", "name": "" } }], "date": "2022-01-06" },
+        { "id": "6469dbc2-6792-400e-8454-ba61620cf6f2", "title": "視聴率の高かったドラマは？", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "1460de34-061a-46bf-aab3-47cbd06d0651", "value": "コメントメッセージ01", "user": { "id": "7c1f02c1-7223-4b41-84c2-40a2948303be", "name": "" } }], "date": "2022-01-25" }
+      ]
+    },
+    {
+      "id":"ca7d1264-4c2d-4686-b272-04a075d2842a",
+      "category": "スポーツ",
+      "isActive":true,
+      "image":"./images/bg-news.png",
+      "article":[
+        { "id": "d76c292022-33a2-4c84-ba05-a68de26c89c1", "title": "甲子園の予選開始", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-04-15" },
+        { "id": "01ea32e3-3c7b-45c9-bfa6-dd5c03c26687", "title": "W杯まもなく", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2021-12-30" },
+        { "id": "a33ba75e-9257-43d5-8336-8d27b170e614", "title": "新しく球団を設立", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-01-05" },
+        { "id": "669fdb7c-89b5-4700-b55a-2d9521d5b5ff", "title": "スノーボードの大会が長野で開催", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-01-06" },
+        { "id": "440aad82-9688-44c9-b236-b729aab4d17a", "title": "雪合戦大会が開催", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-01-06" }
+      ]
+    },
+    {
+      "id":"ca7d1264-4c2d-4686-b272-04a075d2842a",
+      "category": "国内",
+      "isActive":true,
+      "image":"./images/bg-home.png",
+      "article":[
+        { "id": "3507e9fb-8dd9-41d2-9a2a-f8eb980fd19f", "title": "2021年の世相を一字で表す「今年の漢字」は「金」", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "10b2c884-c682-4fda-883d-2e4bc55516ae", "value": "コメントメッセージ01", "user": { "id": "10765567-1cb4-48a3-96a5-5bdfb39603e5", "name": "" } }], "date": "2021-12-13" },
+        { "id": "a7ff0f58-347e-4ecb-8a15-5f51f88f1642", "title": "関東で年内初の積雪", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "4343a27c-9bfe-4ba0-8cc4-ac605522f1d8", "value": "コメントメッセージ01", "user": { "id": "1e3bdd6c-8c1f-4dd8-95c3-d3bf4529f522", "name": "" } }], "date": "2022-01-01" },
+        { "id": "a7ade8bd-721a-4128-9be2-f30fa2214b62", "title": "明日は仕事初め", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "3bed2ad3-7d16-47a0-a33f-083ef0b6a677", "value": "コメントメッセージ01", "user": { "id": "9d459637-00d3-4c63-9308-da28e73f4e9d", "name": "" } }], "date": "2022-01-02" },
+        { "id": "b6b3feb0-d77b-4a49-bd7c-8659ba6c1fa8", "title": "動物園に白いトラが誕生", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [], "date": "2022-01-04" },
+        { "id": "1aaf5fed-13a8-489a-882b-45965994ee39", "title": "人気の旅行先", "link": "https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md#16", "comment": [{ "id": "f8719adb-ce1f-4063-8e8e-23b54842310e", "value": "コメントメッセージ01", "user": { "id": "811fd89d-7820-4d2c-8123-90c7e5047e47", "name": "" } },{ "id": "dd279e64-18dd-418c-a066-d12a73ea79da", "value": "コメントメッセージ02", "user": { "id": "3c884267-0c0a-4ecc-a94a-dc03019a762b", "name": "" } },{ "id": "faf51fc0-cc27-43a1-82f2-940c28a36868", "value": "コメントメッセージ03", "user": { "id": "d3797613-201a-47ea-90da-8926665063ac", "name": "" } }], "date": "2022-01-06" }
+      ]
+    }
+
+  ]
+}
