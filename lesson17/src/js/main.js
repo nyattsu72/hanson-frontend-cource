@@ -206,6 +206,8 @@ function init(){
   renderSlideArea();
   renderSlideButton()
   callSlideContents();
+  const prevButton = document.querySelector('[aria-label="previous"]');
+  prevButton.disabled = true;
 }
 
 init();
