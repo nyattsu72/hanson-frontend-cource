@@ -157,10 +157,10 @@ a {
 
 .slider__button{
   position: absolute;
-    display: flex;
-    justify-content: space-between;
-    z-index: 1;
-    width: 80%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  width: 80%;
 }
 
 .arrow{
@@ -175,6 +175,7 @@ a {
   transition: all .3s ease-in-out;
   text-decoration: none;
   color: transparent;
+  cursor: pointer;
 }
 
 .arrow::before{
