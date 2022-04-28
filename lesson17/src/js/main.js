@@ -138,36 +138,33 @@ function pagenationCountUp(){
 
 function ImageNextSlide(e){
   const slideImage = document.querySelectorAll('.slider__item');
-
   const activeSlide = document.querySelector('.is-active');
-  const activeSlideIndex = activeSlide. getAttribute('data-slide-index');
   const nextSlide = activeSlide.nextElementSibling;
-
-  if(activeSlideIndex == slideImage.length){
+  const nextSlideIndex = nextSlide.getAttribute('data-slide-index');
+  if(nextSlideIndex == slideImage.length){
+    nextSlide.classList.add('is-active');
+    activeSlide.classList.remove('is-active');
     e.disabled = true;
-    console.log(e);
   }else{
-    console.log(e.previousElementSibling);
     e.previousElementSibling.disabled = false;
     nextSlide.classList.add('is-active');
     activeSlide.classList.remove('is-active');
-    console.log(activeSlideIndex);
   }
 }
 
 function ImagePrevSlide(e) {
   const activeSlide = document.querySelector('.is-active');
-  const activeSlideIndex = activeSlide. getAttribute('data-slide-index');
-
   const prevSlide = activeSlide.previousElementSibling;
+  const prevSlideIndex = prevSlide.getAttribute('data-slide-index');
 
-  if(activeSlideIndex == 1){
+  if(prevSlideIndex == 1){
+    prevSlide.classList.add('is-active');
+    activeSlide.classList.remove('is-active');
     e.disabled = true;
   }else{
     e.nextElementSibling.disabled = false;
     prevSlide.classList.add('is-active');
     activeSlide.classList.remove('is-active');
-    console.log(activeSlideIndex);
   }
 }
 
