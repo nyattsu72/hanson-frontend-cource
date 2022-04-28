@@ -44,6 +44,7 @@ function renderSlideImage(item){
   item.forEach((image,i) => {
     const sliderItem = document.createElement('li');
     sliderItem.classList.add('slider__item');
+    sliderItem.setAttribute('data-slide-index', i+1);
 
     const sliderImage = document.createElement('img');
     sliderImage.classList.add('slider__image');
@@ -70,6 +71,7 @@ function renderSlideButton(){
   const prevButton = document.createElement('button');
   prevButton.setAttribute('class', 'arrow prev');
   prevButton.id = 'js-button_prev';
+  prevButton.setAttribute('aria-label','previous');
   prevButton.textContent = 'previous';
 
   fragment.appendChild(prevButton);
@@ -78,6 +80,7 @@ function renderSlideButton(){
   nextButton.setAttribute('class','arrow next');
   nextButton.id = 'js-button_next';
   nextButton.textContent = 'next';
+  nextButton.setAttribute('aria-label','next');
 
 
   fragment.appendChild(nextButton);
@@ -128,19 +131,44 @@ function pagenationCountUp(){
   const pagenationTotal = Number(document.querySelector('.total').textContent);
   let currentNum = Number(pagenationCurrent.textContent);
 
-
   if(currentNum <= pagenationTotal && currentNum !== 5){
     pagenationCurrent.textContent = currentNum += 1;
   }
 }
 
-function ImageNextSlide(){
+function ImageNextSlide(e){
   const slideImage = document.querySelectorAll('.slider__item');
-  console.log(slideImage);
+
+  const activeSlide = document.querySelector('.is-active');
+  const activeSlideIndex = activeSlide. getAttribute('data-slide-index');
+  const nextSlide = activeSlide.nextElementSibling;
+
+  if(activeSlideIndex == slideImage.length){
+    e.disabled = true;
+    console.log(e);
+  }else{
+    console.log(e.previousElementSibling);
+    e.previousElementSibling.disabled = false;
+    nextSlide.classList.add('is-active');
+    activeSlide.classList.remove('is-active');
+    console.log(activeSlideIndex);
+  }
 }
 
-function addDisable(target) {
-  target.setAttribute('disabled',true);
+function ImagePrevSlide(e) {
+  const activeSlide = document.querySelector('.is-active');
+  const activeSlideIndex = activeSlide. getAttribute('data-slide-index');
+
+  const prevSlide = activeSlide.previousElementSibling;
+
+  if(activeSlideIndex == 1){
+    e.disabled = true;
+  }else{
+    e.nextElementSibling.disabled = false;
+    prevSlide.classList.add('is-active');
+    activeSlide.classList.remove('is-active');
+    console.log(activeSlideIndex);
+  }
 }
 
 function callImageData(){
@@ -181,21 +209,24 @@ function init(){
   renderSlideArea();
   renderSlideButton()
   callSlideContents();
-
 }
 
 init();
+
 
 const prevButton = document.getElementById('js-button_prev');
 prevButton.addEventListener('click', (e) => {
   if(!e.currentTarget.hasAttribute('disable')){
     pagenationCountDown();
+    ImagePrevSlide(e.currentTarget);
+
   }
 })
 
 const nextButton = document.getElementById('js-button_next');
 nextButton.addEventListener('click', (e) => {
-  pagenationCountUp(e.currentTarget);
+  pagenationCountUp();
+  ImageNextSlide(e.currentTarget);
 })
 
 
