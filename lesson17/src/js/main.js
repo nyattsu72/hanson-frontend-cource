@@ -69,7 +69,7 @@ function renderSlideButton() {
   buttonArea.classList.add("slider__button");
 
   const prevButton = document.createElement("button");
-  prevButton.setAttribute("class", "arrow prev");
+  prevButton.classList.add("arrow", "prev");
   prevButton.id = "js-button_prev";
   prevButton.setAttribute("aria-label", "previous");
   prevButton.textContent = "previous";
@@ -77,7 +77,7 @@ function renderSlideButton() {
   fragment.appendChild(prevButton);
 
   const nextButton = document.createElement("button");
-  nextButton.setAttribute("class", "arrow next");
+  nextButton.classList.add("arrow", "next");
   nextButton.id = "js-button_next";
   nextButton.textContent = "next";
   nextButton.setAttribute("aria-label", "next");
