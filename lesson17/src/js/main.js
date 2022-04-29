@@ -29,9 +29,7 @@ function renderSlideArea() {
   const slideImageArea = document.createElement("div");
   slideImageArea.classList.add("mainvisual__images__inner");
 
-  const sliderArea = document.querySelector(".mainvisual__images");
-
-  sliderArea.appendChild(slideImageArea);
+  document.querySelector(".mainvisual__images").appendChild(slideImageArea);
 }
 
 function renderSlideImage(item) {
@@ -113,15 +111,18 @@ function renderPagenation(item) {
   textArea.appendChild(pagenation).appendChild(fragment);
 }
 
-function manipulatePagination() {
+function manipulatePagination(target) {
   const pagenationCurrent = document.querySelector(".current");
   const pagenationTotal = Number(document.querySelector(".total").textContent);
   let currentNum = Number(pagenationCurrent.textContent);
 
-  if (currentNum <= pagenationTotal && currentNum !== 1) {
+  const buttonPrev = target.getAttribute("aria-label") == 'previous';
+  const buttonNext = target.getAttribute("aria-label") == 'next';
+
+  if (currentNum < pagenationTotal && buttonNext) {
+    pagenationCurrent.textContent = currentNum +=1;
+  }else if(currentNum <= pagenationTotal && buttonPrev){
     pagenationCurrent.textContent = currentNum -= 1;
-  }else if(currentNum <= pagenationTotal && currentNum !== 5){
-    pagenationCurrent.textContent = currentNum += 1;
   }
 }
 
@@ -204,13 +205,13 @@ init();
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
   if (!e.currentTarget.hasAttribute("disable")) {
-    manipulatePagination()
+    manipulatePagination(e.currentTarget);
     ImagePrevSlide(e.currentTarget);
   }
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
-  manipulatePagination()
+  manipulatePagination(e.currentTarget);
   ImageNextSlide(e.currentTarget);
 });
