@@ -113,22 +113,14 @@ function renderPagenation(item) {
   textArea.appendChild(pagenation).appendChild(fragment);
 }
 
-function pagenationCountDown() {
+function manipulatePagination() {
   const pagenationCurrent = document.querySelector(".current");
   const pagenationTotal = Number(document.querySelector(".total").textContent);
   let currentNum = Number(pagenationCurrent.textContent);
 
   if (currentNum <= pagenationTotal && currentNum !== 1) {
     pagenationCurrent.textContent = currentNum -= 1;
-  }
-}
-
-function pagenationCountUp() {
-  const pagenationCurrent = document.querySelector(".current");
-  const pagenationTotal = Number(document.querySelector(".total").textContent);
-  let currentNum = Number(pagenationCurrent.textContent);
-
-  if (currentNum <= pagenationTotal && currentNum !== 5) {
+  }else if(currentNum <= pagenationTotal && currentNum !== 5){
     pagenationCurrent.textContent = currentNum += 1;
   }
 }
@@ -212,13 +204,13 @@ init();
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
   if (!e.currentTarget.hasAttribute("disable")) {
-    pagenationCountDown();
+    manipulatePagination()
     ImagePrevSlide(e.currentTarget);
   }
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
-  pagenationCountUp();
+  manipulatePagination()
   ImageNextSlide(e.currentTarget);
 });
