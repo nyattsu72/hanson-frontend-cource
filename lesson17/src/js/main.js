@@ -19,10 +19,10 @@ function removeLoading() {
 
 function displayErrorMassage(error) {
   const slideImageArea = document.querySelector(".mainvisual__images__inner");
-  const createTextBox = document.createElement("p");
-  createTextBox.classList.add("");
-  createTextBox.textContent = error;
-  slideImageArea.appendChild(createTextBox);
+  const textBox = document.createElement("p");
+  textBox.classList.add("");
+  textBox.textContent = error;
+  slideImageArea.appendChild(textBox);
 }
 
 function renderSlideArea() {
@@ -84,9 +84,8 @@ function renderSlideButton() {
 
   fragment.appendChild(nextButton);
 
-  const getSlideArea = document.querySelector(".mainvisual__images");
-
-  getSlideArea.appendChild(buttonArea).appendChild(fragment);
+  const slideArea = document.querySelector(".mainvisual__images");
+  slideArea.appendChild(buttonArea).appendChild(fragment);
 }
 
 function renderPagenation(item) {
@@ -110,8 +109,8 @@ function renderPagenation(item) {
   total.textContent = item.length;
   fragment.appendChild(total);
 
-  const getTextArea = document.querySelector(".mainvisual__textarea");
-  getTextArea.appendChild(pagenation).appendChild(fragment);
+  const textArea = document.querySelector(".mainvisual__textarea");
+  textArea.appendChild(pagenation).appendChild(fragment);
 }
 
 function pagenationCountDown() {
