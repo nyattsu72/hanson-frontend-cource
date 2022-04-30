@@ -125,11 +125,12 @@ function manipulatePagination(target) {
 }
 
 function ImageNextSlide(e) {
-  const slideImage = document.querySelectorAll(".slider__item");
+  const slideImages = [...document.getElementsByClassName("slider__item")];
+
   const activeSlide = document.querySelector(".is-active");
   const nextSlide = activeSlide.nextElementSibling;
   const nextSlideIndex = Number(nextSlide.getAttribute("data-slide-index"));
-  if (nextSlideIndex === slideImage.length) {
+  if (nextSlideIndex === slideImages.length) {
     nextSlide.classList.add("is-active");
     activeSlide.classList.remove("is-active");
     e.disabled = true;
