@@ -200,10 +200,8 @@ init();
 
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
-  if (!e.currentTarget.hasAttribute("disable")) {
     manipulatePagination(e.currentTarget);
     ImagePrevSlide(e.currentTarget);
-  }
 });
 
 const nextButton = document.getElementById("js-button_next");
