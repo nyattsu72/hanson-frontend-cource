@@ -124,7 +124,7 @@ function manipulatePagination(target) {
   }
 }
 
-function ImageNextSlide(e) {
+function slideImageNext(e) {
   const slideImages = [...document.getElementsByClassName("slider__item")];
 
   const activeSlide = document.querySelector(".is-active");
@@ -141,7 +141,7 @@ function ImageNextSlide(e) {
   }
 }
 
-function ImagePrevSlide(e) {
+function slideImagePrev(e) {
   const activeSlide = document.querySelector(".is-active");
   const prevSlide = activeSlide.previousElementSibling;
   const prevSlideIndex = Number(prevSlide.getAttribute("data-slide-index"));
@@ -202,11 +202,11 @@ init();
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
     manipulatePagination(e.currentTarget);
-    ImagePrevSlide(e.currentTarget);
+    slideImagePrev(e.currentTarget);
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
   manipulatePagination(e.currentTarget);
-  ImageNextSlide(e.currentTarget);
+  slideImageNext(e.currentTarget);
 });
