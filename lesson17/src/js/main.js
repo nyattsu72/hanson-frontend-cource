@@ -91,7 +91,7 @@ function renderPagenation(item) {
   let fragment = document.createDocumentFragment();
 
   const current = document.createElement("span");
-  current.classList.add("current");
+  current.id = 'js-current';
   current.textContent = 1;
   fragment.appendChild(current);
 
@@ -101,7 +101,7 @@ function renderPagenation(item) {
   fragment.appendChild(separation);
 
   const total = document.createElement("span");
-  total.classList.add("total");
+  total.id = 'js-total';
   total.textContent = item.length;
   fragment.appendChild(total);
 
@@ -110,8 +110,8 @@ function renderPagenation(item) {
 }
 
 function manipulatePagination(target) {
-  const pagenationCurrent = document.querySelector(".current");
-  const pagenationTotal = Number(document.querySelector(".total").textContent);
+  const pagenationCurrent = document.getElementById("js-current");
+  const pagenationTotal = Number(document.getElementById("js-total").textContent);
   let currentNum = Number(pagenationCurrent.textContent);
 
   const buttonPrev = target.getAttribute("aria-label") == 'previous';
