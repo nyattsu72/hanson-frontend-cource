@@ -88,7 +88,7 @@ function renderPagenation(item) {
   const pagenation = document.createElement("div");
   pagenation.classList.add("slider__pagination");
 
-  let fragment = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment();
 
   const current = document.createElement("span");
   current.id = 'js-current';
