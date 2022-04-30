@@ -50,9 +50,7 @@ function renderSlideImage(item) {
     sliderImage.width = image.width;
     sliderImage.height = image.height;
 
-    if (i === 0) {
-      sliderItem.classList.add("is-active");
-    }
+    if (i === 0) sliderItem.classList.add("is-active");
 
     fragment.appendChild(sliderItem).appendChild(sliderImage);
   });
