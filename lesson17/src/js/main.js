@@ -159,15 +159,13 @@ function ImagePrevSlide(e) {
 function callImageData() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(fetchImageData());
+      resolve(fetchImageData("https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&delay=1000"));
     }, 3000);
   });
 }
 
-async function fetchImageData() {
-  const SLIDE_DATE_URL =
-    "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&delay=1000";
-  const response = await fetch(SLIDE_DATE_URL);
+async function fetchImageData(URL) {
+  const response = await fetch(URL);
   if (response.ok) {
     const json = await response.json();
     return json;
