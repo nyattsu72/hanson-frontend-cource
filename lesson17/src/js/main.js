@@ -114,8 +114,8 @@ function manipulatePagination(target) {
   const pagenationTotal = Number(document.getElementById("js-total").textContent);
   let currentNum = Number(pagenationCurrent.textContent);
 
-  const buttonPrev = target.getAttribute("aria-label") == 'previous';
-  const buttonNext = target.getAttribute("aria-label") == 'next';
+  const buttonPrev = target.getAttribute("aria-label") === 'previous';
+  const buttonNext = target.getAttribute("aria-label") === 'next';
 
   if (currentNum < pagenationTotal && buttonNext) {
     pagenationCurrent.textContent = currentNum +=1;
