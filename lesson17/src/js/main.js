@@ -102,7 +102,7 @@ function renderPagenation(item) {
 
   const total = document.createElement("span");
   total.id = 'js-total';
-  total.textContent = item.length;
+  total.textContent = item;
   fragment.appendChild(total);
 
   const textArea = document.querySelector(".mainvisual__textarea");
@@ -166,7 +166,7 @@ async function callSlideContents() {
     const slideImageData = json.slide;
 
     renderSlideImage(slideImageData);
-    renderPagenation(slideImageData);
+    renderPagenation(slideImageData.length);
     toggleButtonDisabled()
   } finally {
     removeLoading();
