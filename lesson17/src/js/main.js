@@ -124,37 +124,20 @@ function manipulatePagination(target) {
   }
 }
 
-function slideImageNext(e) {
-  const slideImages = [...document.getElementsByClassName("slider__item")];
-
-  const activeSlide = document.querySelector(".is-active");
-  const nextSlide = activeSlide.nextElementSibling;
-  const nextSlideIndex = Number(nextSlide.getAttribute("data-slide-index"));
-  if (nextSlideIndex === slideImages.length) {
-    nextSlide.classList.add("is-active");
-    activeSlide.classList.remove("is-active");
-    e.disabled = true;
-  } else {
-    e.previousElementSibling.disabled = false;
-    nextSlide.classList.add("is-active");
-    activeSlide.classList.remove("is-active");
-  }
+function switcImg(target) {
+  const active = document.querySelector(".is-active");
+  active.classList.remove("is-active");
+  active[target].classList.add("is-active");
 }
 
-function slideImagePrev(e) {
-  const activeSlide = document.querySelector(".is-active");
-  const prevSlide = activeSlide.previousElementSibling;
-  const prevSlideIndex = Number(prevSlide.getAttribute("data-slide-index"));
-
-  if (prevSlideIndex === 1) {
-    prevSlide.classList.add("is-active");
-    activeSlide.classList.remove("is-active");
-    e.disabled = true;
-  } else {
-    e.nextElementSibling.disabled = false;
-    prevSlide.classList.add("is-active");
-    activeSlide.classList.remove("is-active");
-  }
+function toggleButtonDisabled(){
+  const slideImages = [...document.getElementsByClassName("slider__item")];
+  const activeImage = document.querySelector(".is-active");
+  const currentIndex = Number(activeImage.dataset.slideIndex);
+  const firstIndex = 1;
+  const lastIndex = slideImages.length;
+  prevButton.disabled = currentIndex === firstIndex;
+  nextButton.disabled = currentIndex === lastIndex;
 }
 
 function callImageData() {
@@ -184,6 +167,7 @@ async function callSlideContents() {
 
     renderSlideImage(slideImageData);
     renderPagenation(slideImageData);
+    toggleButtonDisabled()
   } finally {
     removeLoading();
   }
@@ -193,8 +177,6 @@ function init() {
   renderSlideArea();
   renderSlideButton();
   callSlideContents();
-  const prevButton = document.querySelector('[aria-label="previous"]');
-  prevButton.disabled = true;
 }
 
 init();
@@ -202,11 +184,13 @@ init();
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
     manipulatePagination(e.currentTarget);
-    slideImagePrev(e.currentTarget);
+    switcImg("previousElementSibling");
+    toggleButtonDisabled()
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
   manipulatePagination(e.currentTarget);
-  slideImageNext(e.currentTarget);
+  switcImg("nextElementSibling");
+  toggleButtonDisabled()
 });
