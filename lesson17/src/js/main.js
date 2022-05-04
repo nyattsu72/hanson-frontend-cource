@@ -42,7 +42,7 @@ function renderSlideImage(item) {
   item.forEach((image, i) => {
     const sliderItem = document.createElement("li");
     sliderItem.classList.add("slider__item");
-    sliderItem.setAttribute("data-slide-index", i + 1);
+    sliderItem.dataset.slideIndex = i + 1;
 
     const sliderImage = document.createElement("img");
     sliderImage.classList.add("slider__image");
