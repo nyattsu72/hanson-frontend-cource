@@ -2,43 +2,43 @@ html {
 	font-size: 62.5%;
 }
 body {
-	font-family: 'Yomogi', cursive;
-	color: #666;
-	position: relative;
-	width: 100%;
-	font-size: 1.6rem;
+  font-family: 'Yomogi', cursive;
+  color: #666;
+  position: relative;
+  width: 100%;
+  font-size: 1.6rem;
 }
 
 h1 {
-	text-align: center;
-	margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	border: none;
-	vertical-align: top;
+  max-width: 100%;
+  height: auto;
+  border: none;
+  vertical-align: top;
 }
 
 a {
-	color: rgb(45, 112, 189);
-	font-size: 1.8rem;
+  color: rgb(45, 112, 189);
+  font-size: 1.8rem;
 }
 
 .loading {
-	width: 100%;
-	height: 100vh;
-	background-color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   z-index: 100;
 }
 
 .error-message{
-	background-color: #ffd6d6;
+  background-color: #ffd6d6;
   padding: 2rem;
   border-radius: 4px;
   color: #ba2a2a;
@@ -60,7 +60,7 @@ a {
   width: 30%;
 }
 
- .mainvisual__images{
+.mainvisual__images{
   width: 70%;
   height: 100%;
   display: flex;
@@ -79,18 +79,17 @@ a {
 
 .slider{
   position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  overflow: hidden;
 }
 
 .slider__item{
   width: 100%;
   height: 100%;
   position: absolute;
-  /* opacity: 0; */
   overflow: hidden;
 }
 
