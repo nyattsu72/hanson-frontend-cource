@@ -1,6 +1,5 @@
 function showLoadingImage() {
   const main = document.getElementById("main");
-  const fragment = document.createDocumentFragment();
   const renderLoadingBox = document.createElement("div");
   renderLoadingBox.classList.add("loading");
   renderLoadingBox.id = "js-loading";
@@ -9,8 +8,8 @@ function showLoadingImage() {
   loadingImage.width = 80;
   loadingImage.height = 80;
   loadingImage.classList.add("loading__image");
-  fragment.appendChild(renderLoadingBox).appendChild(loadingImage);
-  document.body.insertBefore(fragment, main);
+  renderLoadingBox.appendChild(loadingImage);
+  document.body.insertBefore(renderLoadingBox, main);
 }
 
 function removeLoading() {
