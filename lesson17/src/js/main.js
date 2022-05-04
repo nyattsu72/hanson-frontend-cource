@@ -109,7 +109,7 @@ function renderPagenation(item) {
   textArea.appendChild(pagenation).appendChild(fragment);
 }
 
-function manipulatePagination(target) {
+function switchPagination(target) {
   const pagenationCurrent = document.getElementById("js-current");
   const pagenationTotal = Number(document.getElementById("js-total").textContent);
   let currentNum = Number(pagenationCurrent.textContent);
