@@ -183,14 +183,14 @@ init();
 
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
-    manipulatePagination(e.currentTarget);
-    switcImg("previousElementSibling");
-    toggleButtonDisabled()
+  switchPagination(e.currentTarget);
+  switcImg("previousElementSibling");
+  toggleButtonDisabled()
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
-  manipulatePagination(e.currentTarget);
+  switchPagination(e.currentTarget);
   switcImg("nextElementSibling");
   toggleButtonDisabled()
 });
