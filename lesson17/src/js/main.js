@@ -1,13 +1,17 @@
+function createElementWithClassName (element, names) {
+  const createElement = document.createElement(element);
+  createElement.classList.add(names);
+  return createElement;
+}
+
 function showLoadingImage() {
   const main = document.getElementById("main");
-  const renderLoadingBox = document.createElement("div");
-  renderLoadingBox.classList.add("loading");
+  const renderLoadingBox = createElementWithClassName("div", "loading");
   renderLoadingBox.id = "js-loading";
-  const loadingImage = document.createElement("img");
+  const loadingImage = createElementWithClassName("img", "loading__image");
   loadingImage.src = "images/loading.gif";
   loadingImage.width = 80;
   loadingImage.height = 80;
-  loadingImage.classList.add("loading__image");
   renderLoadingBox.appendChild(loadingImage);
   document.body.insertBefore(renderLoadingBox, main);
 }
@@ -18,33 +22,27 @@ function removeLoading() {
 
 function displayErrorMassage(error) {
   const slideImageArea = document.querySelector(".mainvisual__images__inner");
-  const textBox = document.createElement("p");
-  textBox.classList.add("");
+  const textBox = createElementWithClassName("p", "error-message");
   textBox.textContent = error;
   slideImageArea.appendChild(textBox);
 }
 
 function renderSlideArea() {
-  const slideImageArea = document.createElement("div");
-  slideImageArea.classList.add("mainvisual__images__inner");
-
+  const slideImageArea = createElementWithClassName("div", "mainvisual__images__inner");
   document.querySelector(".mainvisual__images").appendChild(slideImageArea);
 }
 
 function renderSlideImage(item) {
   const slideImageArea = document.querySelector(".mainvisual__images__inner");
 
-  const slider = document.createElement("ul");
-  slider.classList.add("slider");
+  const slider = createElementWithClassName("ul", "slider");
 
   const fragment = document.createDocumentFragment();
   item.forEach((image, i) => {
-    const sliderItem = document.createElement("li");
-    sliderItem.classList.add("slider__item");
+    const sliderItem = createElementWithClassName("li", "slider__item");
     sliderItem.dataset.slideIndex = i + 1;
 
-    const sliderImage = document.createElement("img");
-    sliderImage.classList.add("slider__image");
+    const sliderImage = createElementWithClassName("img", "slider__image");
     sliderImage.src = image.image;
     sliderImage.width = image.width;
     sliderImage.height = image.height;
@@ -60,8 +58,7 @@ function renderSlideImage(item) {
 function renderSlideButton() {
   let fragment = document.createDocumentFragment();
 
-  const buttonArea = document.createElement("div");
-  buttonArea.classList.add("slider__button");
+  const buttonArea = createElementWithClassName("div", "slider__button");
 
   const prevButton = document.createElement("button");
   prevButton.classList.add("arrow", "prev");
