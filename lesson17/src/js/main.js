@@ -1,6 +1,6 @@
-function createElementWithClassName (element, names) {
+function createElementWithClassName (element, name) {
   const createElement = document.createElement(element);
-  createElement.classList.add(names);
+  createElement.classList.add(name);
   return createElement;
 }
 
@@ -57,32 +57,24 @@ function renderSlideImage(item) {
 
 function renderSlideButton() {
   let fragment = document.createDocumentFragment();
-
   const buttonArea = createElementWithClassName("div", "slider__button");
 
-  const prevButton = document.createElement("button");
-  prevButton.classList.add("arrow", "prev");
-  prevButton.id = "js-button_prev";
-  prevButton.setAttribute("aria-label", "previous");
-  prevButton.textContent = "previous";
-
-  fragment.appendChild(prevButton);
-
-  const nextButton = document.createElement("button");
-  nextButton.classList.add("arrow", "next");
-  nextButton.id = "js-button_next";
-  nextButton.textContent = "next";
-  nextButton.setAttribute("aria-label", "next");
-
-  fragment.appendChild(nextButton);
+  const direction = ["prev", "next"];
+  direction.forEach((element) => {
+    const button = document.createElement("button");
+    button.classList.add("arrow", `${element}`);
+    button.id = `js-button_${element}`;
+    button.textContent = `${element}`;
+    button.setAttribute("aria-label", `${element}`);
+    fragment.appendChild(button);
+  })
 
   const slideArea = document.querySelector(".mainvisual__images");
   slideArea.appendChild(buttonArea).appendChild(fragment);
 }
 
 function renderPagenation(item) {
-  const pagenation = document.createElement("div");
-  pagenation.classList.add("slider__pagination");
+  const pagenation = createElementWithClassName("div", "slider__pagination");
 
   const fragment = document.createDocumentFragment();
 
@@ -91,9 +83,8 @@ function renderPagenation(item) {
   current.textContent = 1;
   fragment.appendChild(current);
 
-  const separation = document.createElement("span");
+  const separation = createElementWithClassName("span", "separation");
   separation.textContent = "/";
-  separation.classList.add("separation");
   fragment.appendChild(separation);
 
   const total = document.createElement("span");
