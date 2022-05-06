@@ -111,7 +111,7 @@ function switchPagination(target) {
   }
 }
 
-function switcImg(target) {
+function switchImg(target) {
   const active = document.querySelector(".is-active");
   active.classList.remove("is-active");
   active[target].classList.add("is-active");
@@ -171,13 +171,13 @@ init();
 const prevButton = document.getElementById("js-button_prev");
 prevButton.addEventListener("click", (e) => {
   switchPagination(e.currentTarget);
-  switcImg("previousElementSibling");
+  switchImg("previousElementSibling");
   toggleButtonDisabled()
 });
 
 const nextButton = document.getElementById("js-button_next");
 nextButton.addEventListener("click", (e) => {
   switchPagination(e.currentTarget);
-  switcImg("nextElementSibling");
+  switchImg("nextElementSibling");
   toggleButtonDisabled()
 });
