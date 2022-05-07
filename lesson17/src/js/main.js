@@ -146,24 +146,28 @@ async function fetchImageData(URL) {
   }
 }
 
-async function callSlideContents() {
+async function getSlideImage() {
   showLoadingImage();
   try {
     const json = await callImageData();
-    const slideImageData = json.slide;
+    return json.slide;
 
-    renderSlideImage(slideImageData);
-    renderPagenation(slideImageData.length);
-    toggleButtonDisabled()
   } finally {
     removeLoading();
   }
 }
 
+async function addSlideImage(){
+  const slideImageData = await getSlideImage();
+  renderSlideImage(slideImageData);
+  renderPagenation(slideImageData.length);
+  toggleButtonDisabled()
+}
+
 function init() {
   renderSlideArea();
+  addSlideImage();
   renderSlideButton();
-  callSlideContents();
 }
 
 init();
