@@ -186,7 +186,7 @@ a {
   transform: rotate(45deg);
 }
 
-.arrow.prev{
+.arrow.previous{
   transform: rotate(-45deg);
   left: 0;
 }

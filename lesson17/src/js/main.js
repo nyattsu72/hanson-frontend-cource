@@ -59,7 +59,7 @@ function renderSlideButton() {
   let fragment = document.createDocumentFragment();
   const buttonArea = createElementWithClassName("div", "slider__button");
 
-  const direction = ["prev", "next"];
+  const direction = ["previous", "next"];
   direction.forEach((element) => {
     const button = document.createElement("button");
     button.classList.add("arrow", `${element}`);
@@ -172,7 +172,7 @@ function init() {
 
 init();
 
-const prevButton = document.getElementById("js-button_prev");
+const prevButton = document.getElementById("js-button_previous");
 prevButton.addEventListener("click", (e) => {
   switchPagination(e.currentTarget);
   switchImg("previousElementSibling");
