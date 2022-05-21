@@ -174,7 +174,10 @@ async function init() {
   try {
     const json = await callImageData();
     slideImageData = json.slide;
-    if(slideImageData.length > 0){
+  } finally {
+    removeLoading();
+  }
+  if(slideImageData.length > 0){
       renderSlideImage(slideImageData);
       renderPagenation(slideImageData.length);
       renderSlideButton();
@@ -183,9 +186,6 @@ async function init() {
     }else{
       addNoimage();
     }
-  } finally {
-    removeLoading();
-  }
 }
 
 init();
