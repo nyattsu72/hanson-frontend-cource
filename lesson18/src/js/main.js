@@ -104,14 +104,13 @@ function renderPagenationBullet(item){
     const pagenationBullet = createElementWithClassName("span", "bar");
     pagenationBullet.style.width = "calc(width / item)";
     pagenationBullet.setAttribute ("role", "button");
-    pagenationBullet.setAttribute ("data-pagenation-index",`${i}`);
+    pagenationBullet.dataset.pagenationIndex = i + 1;
     fragment.appendChild(pagenationBullet);
 
     i === 0 && pagenationBullet.setAttribute("aria-current","true");
 
   }
   const slideArea = document.querySelector('.mainvisual__images__inner');
-  console.log(slideArea);
   slideArea.appendChild(pagenationArea).appendChild(fragment);
 }
 
@@ -146,6 +145,20 @@ function switchImg(target) {
   const active = document.querySelector(".is-active");
   active.classList.remove("is-active");
   active[target].classList.add("is-active");
+}
+
+function switcPagenationBullet(target){
+  const pagenationBullet = document.querySelector('[aria-current="true"');
+  pagenationBullet.setAttribute('aria-current', false);
+  pagenationBullet[target].setAttribute('aria-current',true)
+}
+
+function clickPagenationBullet(){
+  const pagenationBullet = [...document.getElementsByClassName("bar")];
+  console.log(pagenationBullet);
+  pagenationBullet.addEventListener('click', (e) =>{
+    console.log(e);
+  })
 }
 
 function toggleButtonDisabled() {
@@ -202,6 +215,8 @@ async function init() {
       renderSlideButton();
       toggleButtonDisabled();
       addSwitchButtonEvent();
+      clickPagenationBullet()
+      setInterval(timerChange, 3000);
     }else{
       addNoimage();
     }
@@ -216,11 +231,28 @@ function addSwitchButtonEvent(){
   prevButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
     switchImg("previousElementSibling");
+    switcPagenationBullet("previousElementSibling");
     toggleButtonDisabled();
   });
   nextButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
     switchImg("nextElementSibling");
+    switcPagenationBullet("nextElementSibling");
     toggleButtonDisabled();
   });
 }
+
+const timerChange = () => {
+  const nextButton = document.getElementById("js-button_next");
+  switchImg("nextElementSibling");
+  switcPagenationBullet("nextElementSibling");
+  switchPagination(nextButton)
+  toggleButtonDisabled();
+
+
+  const activeImage = document.querySelector(".is-active");
+    console.log(activeImage);
+
+}
+
+
