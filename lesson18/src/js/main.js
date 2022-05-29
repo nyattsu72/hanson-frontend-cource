@@ -134,6 +134,8 @@ function switchPagination(target) {
   const buttonPrev = target.getAttribute("aria-label") === "previous";
   const buttonNext = target.getAttribute("aria-label") === "next";
 
+  console.log(target);
+
   if (currentNum < pagenationTotal && buttonNext) {
     pagenationCurrent.textContent = currentNum += 1;
   } else if (currentNum <= pagenationTotal && buttonPrev) {
@@ -144,21 +146,24 @@ function switchPagination(target) {
 function switchImg(target) {
   const active = document.querySelector(".is-active");
   active.classList.remove("is-active");
-  active[target].classList.add("is-active");
+  const firstSlide = document.querySelector('[data-slide-index="1"]');
+  if(active[target]){
+    active[target].classList.add("is-active");
+  }else{
+    firstSlide.classList.add("is-active");
+  }
 }
 
 function switcPagenationBullet(target){
   const pagenationBullet = document.querySelector('[aria-current="true"');
   pagenationBullet.setAttribute('aria-current', false);
-  pagenationBullet[target].setAttribute('aria-current',true)
-}
+  const firstPagenationBullet = document.querySelector('[data-pagenation-index="1"]');
 
-function clickPagenationBullet(){
-  const pagenationBullet = [...document.getElementsByClassName("bar")];
-  console.log(pagenationBullet);
-  pagenationBullet.addEventListener('click', (e) =>{
-    console.log(e);
-  })
+  if(pagenationBullet[target]){
+    pagenationBullet[target].setAttribute('aria-current',true);
+  }else{
+    firstPagenationBullet.setAttribute('aria-current',true);
+  }
 }
 
 function toggleButtonDisabled() {
@@ -215,7 +220,6 @@ async function init() {
       renderSlideButton();
       toggleButtonDisabled();
       addSwitchButtonEvent();
-      clickPagenationBullet()
       setInterval(timerChange, 3000);
     }else{
       addNoimage();
@@ -248,11 +252,6 @@ const timerChange = () => {
   switcPagenationBullet("nextElementSibling");
   switchPagination(nextButton)
   toggleButtonDisabled();
-
-
-  const activeImage = document.querySelector(".is-active");
-    console.log(activeImage);
-
 }
 
 
