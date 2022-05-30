@@ -134,8 +134,6 @@ function switchPagination(target) {
   const buttonPrev = target.getAttribute("aria-label") === "previous";
   const buttonNext = target.getAttribute("aria-label") === "next";
 
-  console.log(target);
-
   if (currentNum < pagenationTotal && buttonNext) {
     pagenationCurrent.textContent = currentNum += 1;
   } else if (currentNum <= pagenationTotal && buttonPrev) {
@@ -164,6 +162,29 @@ function switcPagenationBullet(target){
   }else{
     firstPagenationBullet.setAttribute('aria-current',true);
   }
+}
+
+function clickPagenationBullet(){
+  const pagenationBullet = [...document.getElementsByClassName("bar")];
+  pagenationBullet.forEach((targetButton) => {
+    targetButton.addEventListener('click',(e) => {
+      const activePagenationBullet = document.querySelector('[aria-current="true"]');
+      const clickedPagenationBulletNo = e.currentTarget.getAttribute('data-pagenation-index');
+      activePagenationBullet.setAttribute('aria-current','false');
+      e.currentTarget.setAttribute('aria-current','true');
+      console.log(clickedPagenationBulletNo);
+      document.getElementById('js-current').textContent = clickedPagenationBulletNo;
+
+      const activeSlide = document.getElementsByClassName('slider__item is-active');
+      activeSlide[0].classList.remove('is-active');
+      document.querySelector(`[data-slide-index="${clickedPagenationBulletNo}"]`).classList.add('is-active');
+      setInterval(timerChange, 3000);
+
+      const pagenationCurrent = document.getElementById("js-current");
+      pagenationCurrent.textContent = clickedPagenationBulletNo;
+
+    })
+  })
 }
 
 function toggleButtonDisabled() {
@@ -220,6 +241,7 @@ async function init() {
       renderSlideButton();
       toggleButtonDisabled();
       addSwitchButtonEvent();
+      clickPagenationBullet();
       setInterval(timerChange, 3000);
     }else{
       addNoimage();
