@@ -126,10 +126,11 @@ function addNoimage(){
 
 function switchPagination(target) {
   const pagenationCurrent = document.getElementById("js-current");
-  const pagenationTotal = Number(
-    document.getElementById("js-total").textContent
-  );
+
+  const pagenationTotal = Number(document.getElementById("js-total").textContent);
+  console.log(pagenationTotal);
   let currentNum = Number(pagenationCurrent.textContent);
+  console.log(currentNum);
 
   const buttonPrev = target.getAttribute("aria-label") === "previous";
   const buttonNext = target.getAttribute("aria-label") === "next";
@@ -172,19 +173,19 @@ function clickPagenationBullet(){
       const clickedPagenationBulletNo = e.currentTarget.getAttribute('data-pagenation-index');
       activePagenationBullet.setAttribute('aria-current','false');
       e.currentTarget.setAttribute('aria-current','true');
-      console.log(clickedPagenationBulletNo);
       document.getElementById('js-current').textContent = clickedPagenationBulletNo;
 
       const activeSlide = document.getElementsByClassName('slider__item is-active');
       activeSlide[0].classList.remove('is-active');
       document.querySelector(`[data-slide-index="${clickedPagenationBulletNo}"]`).classList.add('is-active');
-      setInterval(timerChange, 3000);
 
       const pagenationCurrent = document.getElementById("js-current");
       pagenationCurrent.textContent = clickedPagenationBulletNo;
-
+      toggleButtonDisabled();
+      resetAutoPlaySlide();
     })
   })
+
 }
 
 function toggleButtonDisabled() {
@@ -197,6 +198,18 @@ function toggleButtonDisabled() {
   const nextButton = document.getElementById("js-button_next");
   prevButton.disabled = currentIndex === firstIndex;
   nextButton.disabled = currentIndex === lastIndex;
+}
+
+function renderSlidContents(slideImageData){
+  renderSlideArea();
+  renderSlideImage(slideImageData);
+  renderPagenation(slideImageData.length);
+  renderPagenationBullet(slideImageData.length);
+  renderSlideButton();
+  addSwitchButtonEvent();
+  clickPagenationBullet();
+  toggleButtonDisabled();
+  autoPlayslide();
 }
 
 function callImageData() {
@@ -224,31 +237,29 @@ async function fetchImageData(URL) {
   }
 }
 
-async function init() {
+async function getSlideImage(){
   showLoadingImage();
-  renderSlideArea();
-  let slideImageData;
-  try {
-    const json = await callImageData();
-    slideImageData = json.slide;
-  } finally {
+  try{
+     const json = await callImageData();
+     const slideData = json.slide;
+    if(slideData.length > 0){
+      renderSlidContents(slideData);
+    }
+  }catch{
+    addNoimage();
+    console.log('表示する画像がありませんでした');
+  }finally{
     removeLoading();
   }
-  if(slideImageData.length > 0){
-      renderSlideImage(slideImageData);
-      renderPagenation(slideImageData.length);
-      renderPagenationBullet(slideImageData.length);
-      renderSlideButton();
-      toggleButtonDisabled();
-      addSwitchButtonEvent();
-      clickPagenationBullet();
-      setInterval(timerChange, 3000);
-    }else{
-      addNoimage();
-    }
+}
+
+async function init() {
+  const slideContents = await getSlideImage();
+  slideContents && autoPlayslide();
 }
 
 init();
+
 
 
 function addSwitchButtonEvent(){
@@ -256,24 +267,35 @@ function addSwitchButtonEvent(){
   const nextButton = document.getElementById("js-button_next");
   prevButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
-    switchImg("previousElementSibling");
-    switcPagenationBullet("previousElementSibling");
-    toggleButtonDisabled();
+    switchSlider("previousElementSibling");
   });
   nextButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
-    switchImg("nextElementSibling");
-    switcPagenationBullet("nextElementSibling");
-    toggleButtonDisabled();
+    switchSlider("nextElementSibling");
   });
 }
 
-const timerChange = () => {
-  const nextButton = document.getElementById("js-button_next");
-  switchImg("nextElementSibling");
-  switcPagenationBullet("nextElementSibling");
-  switchPagination(nextButton)
+function switchSlider(slideTarget) {
+  switchImg(slideTarget);
+  switcPagenationBullet(slideTarget);
   toggleButtonDisabled();
 }
 
+let autoPlayID;
+function autoPlayslide() {
+  autoPlayID = setInterval(() => {
+    const pagenationCurrent = document.getElementById("js-current");
+    let currentNum = Number(pagenationCurrent.textContent);
+    if(currentNum === 5){
+      pagenationCurrent.textContent = '1'
+    }else{
+      pagenationCurrent.textContent = currentNum += 1;
+    }
+    switchSlider("nextElementSibling")
+  },3000)
+}
 
+function resetAutoPlaySlide(){
+  clearInterval(autoPlayID);
+  autoPlayslide();
+}
