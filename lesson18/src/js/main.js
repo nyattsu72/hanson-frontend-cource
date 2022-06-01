@@ -1,5 +1,3 @@
-import { id } from "date-fns/locale";
-
 function createElementWithClassName(element, name) {
   const createElement = document.createElement(element);
   createElement.classList.add(name);
