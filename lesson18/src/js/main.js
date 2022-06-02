@@ -199,7 +199,6 @@ function toggleButtonDisabled() {
 }
 
 function renderSlidContents(slideImageData){
-  renderSlideArea();
   renderSlideImage(slideImageData);
   renderPagenation(slideImageData.length);
   renderPagenationBullet(slideImageData.length);
@@ -215,9 +214,11 @@ function callImageData() {
     setTimeout(() => {
       resolve(
         fetchImageData(
-          //https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl : image = 0
-          //https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503 : 503
-          "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
+          //0 image
+          // "https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
+           // 503
+          "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503"
+          // "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
         )
       );
     }, 3000);
@@ -237,14 +238,16 @@ async function fetchImageData(URL) {
 
 async function getSlideImage(){
   showLoadingImage();
+  renderSlideArea();
   try{
      const json = await callImageData();
      const slideData = json.slide;
     if(slideData.length > 0){
       renderSlidContents(slideData);
+    }else{
+      addNoimage();
     }
   }catch{
-    addNoimage();
     console.log('表示する画像がありませんでした');
   }finally{
     removeLoading();
