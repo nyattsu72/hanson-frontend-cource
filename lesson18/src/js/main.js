@@ -288,8 +288,9 @@ let autoPlayID;
 function autoPlayslide() {
   autoPlayID = setInterval(() => {
     const pagenationCurrent = document.getElementById("js-current");
+    const pagenationTotal = Number(document.getElementById("js-total").textContent);
     let currentNum = Number(pagenationCurrent.textContent);
-    if(currentNum === 5){
+    if(currentNum === pagenationTotal){
       pagenationCurrent.textContent = '1'
     }else{
       pagenationCurrent.textContent = currentNum += 1;
