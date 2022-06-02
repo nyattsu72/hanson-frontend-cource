@@ -203,6 +203,9 @@ function renderSlidContents(slideImageData){
   renderPagenation(slideImageData.length);
   renderPagenationBullet(slideImageData.length);
   renderSlideButton();
+}
+
+function addSlideAction(){
   addSwitchButtonEvent();
   clickPagenationBullet();
   toggleButtonDisabled();
@@ -217,8 +220,8 @@ function callImageData() {
           //0 image
           // "https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
            // 503
-          "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503"
-          // "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
+          // "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503"
+          "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
         )
       );
     }, 3000);
@@ -244,6 +247,7 @@ async function getSlideImage(){
      const slideData = json.slide;
     if(slideData.length > 0){
       renderSlidContents(slideData);
+      addSlideAction()
     }else{
       addNoimage();
     }
