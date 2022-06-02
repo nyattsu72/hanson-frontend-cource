@@ -271,10 +271,12 @@ function addSwitchButtonEvent(){
   prevButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
     switchSlider("previousElementSibling");
+    resetAutoPlaySlide()
   });
   nextButton.addEventListener("click", (e) => {
     switchPagination(e.currentTarget);
     switchSlider("nextElementSibling");
+    resetAutoPlaySlide()
   });
 }
 
