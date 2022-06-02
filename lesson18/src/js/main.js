@@ -57,7 +57,7 @@ function renderSlideImage(item) {
 }
 
 function renderSlideButton() {
-  let fragment = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment();
   const buttonArea = createElementWithClassName("div", "slider__button");
 
   const direction = ["previous", "next"];
@@ -128,7 +128,6 @@ function switchPagination(target) {
   const pagenationTotal = Number(document.getElementById("js-total").textContent);
   console.log(pagenationTotal);
   let currentNum = Number(pagenationCurrent.textContent);
-  console.log(currentNum);
 
   const buttonPrev = target.getAttribute("aria-label") === "previous";
   const buttonNext = target.getAttribute("aria-label") === "next";
