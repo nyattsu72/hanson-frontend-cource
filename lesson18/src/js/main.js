@@ -126,7 +126,6 @@ function switchPagination(target) {
   const pagenationCurrent = document.getElementById("js-current");
 
   const pagenationTotal = Number(document.getElementById("js-total").textContent);
-  console.log(pagenationTotal);
   let currentNum = Number(pagenationCurrent.textContent);
 
   const buttonPrev = target.getAttribute("aria-label") === "previous";
@@ -251,7 +250,7 @@ async function getSlideImage(){
       addNoimage();
     }
   }catch{
-    console.log('表示する画像がありませんでした');
+    console.error('表示する画像がありませんでした');
   }finally{
     removeLoading();
   }
