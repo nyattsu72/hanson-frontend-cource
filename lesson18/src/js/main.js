@@ -32,7 +32,7 @@ function renderSlideArea() {
     "div",
     "mainvisual__images__inner"
   );
-  document.querySelector(".mainvisual__images").appendChild(slideImageArea);
+  document.getElementById('js-mainvisual-images').appendChild(slideImageArea);
 }
 
 function renderSlideImage(item) {
