@@ -67,6 +67,7 @@ function renderSlideButton() {
     button.id = `js-button_${element}`;
     button.textContent = `${element}`;
     button.setAttribute("aria-label", `${element}`);
+    element === 'previous' && (button.disabled = 'true');
     fragment.appendChild(button);
   });
 
@@ -151,8 +152,6 @@ function clickPagenationBullet(){
       const clickedPagenationBulletNo = e.currentTarget.getAttribute('data-pagenation-index');
       activePagenationBullet.setAttribute('aria-current','false');
       e.currentTarget.setAttribute('aria-current','true');
-      document.getElementById('js-current').textContent = clickedPagenationBulletNo;
-
       switchSlider(clickedPagenationBulletNo);
       switchPagination(clickedPagenationBulletNo);
       resetAutoPlaySlide();
@@ -161,14 +160,15 @@ function clickPagenationBullet(){
 
 }
 
-function toggleButtonDisabled(currentIndex) {
+function toggleButtonDisabled(index) {
   const slideImages = [...document.getElementsByClassName("slider__item")];
   const firstIndex = 1;
   const lastIndex = slideImages.length;
   const prevButton = document.getElementById("js-button_previous");
   const nextButton = document.getElementById("js-button_next");
-  prevButton.disabled = Number(currentIndex) === firstIndex;
-  nextButton.disabled = Number(currentIndex) === lastIndex;
+
+  prevButton.disabled = Number(index) === firstIndex;
+  nextButton.disabled = Number(index) === lastIndex;
 }
 
 function renderSlidContents(slideImageData){
@@ -181,7 +181,6 @@ function renderSlidContents(slideImageData){
 function addSlideAction(){
   addSwitchButtonEvent();
   clickPagenationBullet();
-  toggleButtonDisabled();
   autoPlayslide();
 }
 
@@ -248,13 +247,14 @@ function addSwitchButtonEvent() {
       event.target.id === "js-button_next" ? ++currentIndex : --currentIndex;
     switchPagination(currentIndex);
     switchSlider(currentIndex);
+    resetAutoPlaySlide()
   });
 }
 
 function switchSlider(slideTarget) {
+  toggleButtonDisabled(slideTarget);
   switchImg(slideTarget);
   switcPagenationBullet(slideTarget);
-  toggleButtonDisabled();
 }
 
 let autoPlayID;
@@ -265,6 +265,7 @@ function autoPlayslide() {
     let currentIndex = Number(activeImage.dataset.slideIndex);
     currentIndex = currentIndex === slideImages ? 1 : currentIndex + 1;
     switchSlider(currentIndex);
+    switchPagination(currentIndex);
   },3000)
 }
 
