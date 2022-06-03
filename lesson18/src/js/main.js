@@ -122,43 +122,25 @@ function addNoimage(){
   slideImageArea.appendChild(sliderImage);
 }
 
-function switchPagination(target) {
+function switchPagination(currentIndex) {
   const pagenationCurrent = document.getElementById("js-current");
+  pagenationCurrent.textContent = currentIndex;
 
-  const pagenationTotal = Number(document.getElementById("js-total").textContent);
-  let currentNum = Number(pagenationCurrent.textContent);
-
-  const buttonPrev = target.getAttribute("aria-label") === "previous";
-  const buttonNext = target.getAttribute("aria-label") === "next";
-
-  if (currentNum < pagenationTotal && buttonNext) {
-    pagenationCurrent.textContent = currentNum += 1;
-  } else if (currentNum <= pagenationTotal && buttonPrev) {
-    pagenationCurrent.textContent = currentNum -= 1;
-  }
 }
 
 function switchImg(target) {
   const active = document.querySelector(".is-active");
   active.classList.remove("is-active");
-  const firstSlide = document.querySelector('[data-slide-index="1"]');
-  if(active[target]){
-    active[target].classList.add("is-active");
-  }else{
-    firstSlide.classList.add("is-active");
-  }
+  const changeSlide = document.querySelector(`[data-slide-index="${target}"]`);
+  changeSlide.classList.add("is-active");
 }
 
 function switcPagenationBullet(target){
   const pagenationBullet = document.querySelector('[aria-current="true"');
   pagenationBullet.setAttribute('aria-current', false);
-  const firstPagenationBullet = document.querySelector('[data-pagenation-index="1"]');
+  const pageNations = document.querySelector(`[data-pagenation-index="${target}"]`);
+  pageNations.setAttribute("aria-current", true);
 
-  if(pagenationBullet[target]){
-    pagenationBullet[target].setAttribute('aria-current',true);
-  }else{
-    firstPagenationBullet.setAttribute('aria-current',true);
-  }
 }
 
 function clickPagenationBullet(){
@@ -171,29 +153,22 @@ function clickPagenationBullet(){
       e.currentTarget.setAttribute('aria-current','true');
       document.getElementById('js-current').textContent = clickedPagenationBulletNo;
 
-      const activeSlide = document.getElementsByClassName('slider__item is-active');
-      activeSlide[0].classList.remove('is-active');
-      document.querySelector(`[data-slide-index="${clickedPagenationBulletNo}"]`).classList.add('is-active');
-
-      const pagenationCurrent = document.getElementById("js-current");
-      pagenationCurrent.textContent = clickedPagenationBulletNo;
-      toggleButtonDisabled();
+      switchSlider(clickedPagenationBulletNo);
+      switchPagination(clickedPagenationBulletNo);
       resetAutoPlaySlide();
     })
   })
 
 }
 
-function toggleButtonDisabled() {
+function toggleButtonDisabled(currentIndex) {
   const slideImages = [...document.getElementsByClassName("slider__item")];
-  const activeImage = document.querySelector(".is-active");
-  const currentIndex = Number(activeImage.dataset.slideIndex);
   const firstIndex = 1;
   const lastIndex = slideImages.length;
   const prevButton = document.getElementById("js-button_previous");
   const nextButton = document.getElementById("js-button_next");
-  prevButton.disabled = currentIndex === firstIndex;
-  nextButton.disabled = currentIndex === lastIndex;
+  prevButton.disabled = Number(currentIndex) === firstIndex;
+  nextButton.disabled = Number(currentIndex) === lastIndex;
 }
 
 function renderSlidContents(slideImageData){
@@ -215,10 +190,8 @@ function callImageData() {
     setTimeout(() => {
       resolve(
         fetchImageData(
-          //0 image
-          // "https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
-           // 503
-          // "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503"
+//https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl : image = 0
+          //https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503 : 503
           "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
         )
       );
@@ -265,18 +238,16 @@ init();
 
 
 
-function addSwitchButtonEvent(){
-  const prevButton = document.getElementById("js-button_previous");
-  const nextButton = document.getElementById("js-button_next");
-  prevButton.addEventListener("click", (e) => {
-    switchPagination(e.currentTarget);
-    switchSlider("previousElementSibling");
-    resetAutoPlaySlide()
-  });
-  nextButton.addEventListener("click", (e) => {
-    switchPagination(e.currentTarget);
-    switchSlider("nextElementSibling");
-    resetAutoPlaySlide()
+function addSwitchButtonEvent() {
+  const arrowButtons = document.querySelector(".slider__button");
+
+  arrowButtons.addEventListener("click", (event) => {
+    const activeImage = document.querySelector(".is-active");
+    let currentIndex = Number(activeImage.dataset.slideIndex);
+    currentIndex =
+      event.target.id === "js-button_next" ? ++currentIndex : --currentIndex;
+    switchPagination(currentIndex);
+    switchSlider(currentIndex);
   });
 }
 
@@ -289,15 +260,11 @@ function switchSlider(slideTarget) {
 let autoPlayID;
 function autoPlayslide() {
   autoPlayID = setInterval(() => {
-    const pagenationCurrent = document.getElementById("js-current");
-    const pagenationTotal = Number(document.getElementById("js-total").textContent);
-    let currentNum = Number(pagenationCurrent.textContent);
-    if(currentNum === pagenationTotal){
-      pagenationCurrent.textContent = '1'
-    }else{
-      pagenationCurrent.textContent = currentNum += 1;
-    }
-    switchSlider("nextElementSibling")
+    const slideImages = document.querySelectorAll('.slider__item').length;
+    const activeImage = document.querySelector('.is-active');
+    let currentIndex = Number(activeImage.dataset.slideIndex);
+    currentIndex = currentIndex === slideImages ? 1 : currentIndex + 1;
+    switchSlider(currentIndex);
   },3000)
 }
 
