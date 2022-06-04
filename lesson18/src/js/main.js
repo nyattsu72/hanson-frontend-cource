@@ -76,8 +76,8 @@ function renderSlideButton() {
   slideArea.appendChild(buttonArea).appendChild(fragment);
 }
 
-function renderPagenation(item) {
-  const pagenation = createElementWithClassName("div", "slider__pagination");
+function renderPagination(item) {
+  const pagination = createElementWithClassName("div", "slider__pagination");
   const fragment = document.createDocumentFragment();
   const current = document.createElement("span");
   current.id = "js-current";
@@ -94,24 +94,24 @@ function renderPagenation(item) {
   fragment.appendChild(total);
 
   const textArea = document.getElementById("js-mainvisual-textarea");
-  textArea.appendChild(pagenation).appendChild(fragment);
+  textArea.appendChild(pagination).appendChild(fragment);
 }
 
-function renderPagenationBullet(item){
-  const pagenationArea = createElementWithClassName("div","mainvisual__pagenation__bullet");
+function renderPaginationBullet(item){
+  const paginationArea = createElementWithClassName("div","mainvisual__pagination__bullet");
   const fragment = document.createDocumentFragment();
   for(let i = 0; i < item; i++){
-    const pagenationBullet = createElementWithClassName("span", "bar");
-    pagenationBullet.style.width = "calc(width / item)";
-    pagenationBullet.setAttribute ("role", "button");
-    pagenationBullet.dataset.pagenationIndex = i + 1;
-    fragment.appendChild(pagenationBullet);
+    const paginationBullet = createElementWithClassName("span", "bar");
+    paginationBullet.style.width = "calc(width / item)";
+    paginationBullet.setAttribute ("role", "button");
+    paginationBullet.dataset.paginationIndex = i + 1;
+    fragment.appendChild(paginationBullet);
 
-    i === 0 && pagenationBullet.setAttribute("aria-current","true");
+    i === 0 && paginationBullet.setAttribute("aria-current","true");
 
   }
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  slideImageArea.appendChild(pagenationArea).appendChild(fragment);
+  slideImageArea.appendChild(paginationArea).appendChild(fragment);
 }
 
 function addNoimage(){
@@ -124,37 +124,37 @@ function addNoimage(){
   slideImageArea.appendChild(sliderImage);
 }
 
-function switchPagination(currentIndex) {
-  const pagenationCurrent = document.getElementById("js-current");
-  pagenationCurrent.textContent = currentIndex;
+function changeActivePagination(currentIndex) {
+  const paginationCurrent = document.getElementById("js-current");
+  paginationCurrent.textContent = currentIndex;
 
 }
 
-function switchImg(target) {
+function changeActiveImage(target) {
   const active = document.querySelector(".is-active");
   active.classList.remove("is-active");
   const changeSlide = document.querySelector(`[data-slide-index="${target}"]`);
   changeSlide.classList.add("is-active");
 }
 
-function switcPagenationBullet(target){
-  const pagenationBullet = document.querySelector('[aria-current="true"');
-  pagenationBullet.setAttribute('aria-current', false);
-  const pageNations = document.querySelector(`[data-pagenation-index="${target}"]`);
-  pageNations.setAttribute("aria-current", true);
+function changeActivePaginationBullet(target){
+  const paginationBullet = document.querySelector('[aria-current="true"');
+  paginationBullet.setAttribute('aria-current', false);
+  const pagiNations = document.querySelector(`[data-pagination-index="${target}"]`);
+  pagiNations.setAttribute("aria-current", true);
 
 }
 
-function clickPagenationBullet(){
-  const pagenationBullet = [...document.getElementsByClassName("bar")];
-  pagenationBullet.forEach((targetButton) => {
+function clickPaginationBullet(){
+  const paginationBullet = [...document.getElementsByClassName("bar")];
+  paginationBullet.forEach((targetButton) => {
     targetButton.addEventListener('click',(e) => {
-      const activePagenationBullet = document.querySelector('[aria-current="true"]');
-      const clickedPagenationBulletNo = e.currentTarget.getAttribute('data-pagenation-index');
-      activePagenationBullet.setAttribute('aria-current','false');
+      const activePaginationBullet = document.querySelector('[aria-current="true"]');
+      const clickedPaginationBulletNo = e.currentTarget.getAttribute('data-pagination-index');
+      activePaginationBullet.setAttribute('aria-current','false');
       e.currentTarget.setAttribute('aria-current','true');
-      switchSlider(clickedPagenationBulletNo);
-      switchPagination(clickedPagenationBulletNo);
+      changeActiveSlider(clickedPaginationBulletNo);
+      changeActivePagination(clickedPaginationBulletNo);
       resetAutoPlaySlide();
     })
   })
@@ -174,14 +174,14 @@ function toggleButtonDisabled(index) {
 
 function renderSlidContents(slideImageData){
   renderSlideImage(slideImageData);
-  renderPagenation(slideImageData.length);
-  renderPagenationBullet(slideImageData.length);
+  renderPagination(slideImageData.length);
+  renderPaginationBullet(slideImageData.length);
   renderSlideButton();
 }
 
 function addSlideAction(){
-  addSwitchButtonEvent();
-  clickPagenationBullet();
+  addChangeButtonEvent();
+  clickPaginationBullet();
   autoPlayslide();
 }
 
@@ -238,7 +238,7 @@ init();
 
 
 
-function addSwitchButtonEvent() {
+function addChangeButtonEvent() {
   const arrowButtons = document.querySelector(".slider__button");
 
   arrowButtons.addEventListener("click", (event) => {
@@ -246,16 +246,16 @@ function addSwitchButtonEvent() {
     let currentIndex = Number(activeImage.dataset.slideIndex);
     currentIndex =
       event.target.id === "js-button_next" ? ++currentIndex : --currentIndex;
-    switchPagination(currentIndex);
-    switchSlider(currentIndex);
+    changeActivePagination(currentIndex);
+    changeActiveSlider(currentIndex);
     resetAutoPlaySlide()
   });
 }
 
-function switchSlider(slideTarget) {
+function changeActiveSlider(slideTarget) {
   toggleButtonDisabled(slideTarget);
-  switchImg(slideTarget);
-  switcPagenationBullet(slideTarget);
+  changeActiveImage(slideTarget);
+  changeActivePaginationBullet(slideTarget);
 }
 
 let autoPlayID;
@@ -265,8 +265,8 @@ function autoPlayslide() {
     const activeImage = document.querySelector('.is-active');
     let currentIndex = Number(activeImage.dataset.slideIndex);
     currentIndex = currentIndex === slideImages ? 1 : currentIndex + 1;
-    switchSlider(currentIndex);
-    switchPagination(currentIndex);
+    changeActiveSlider(currentIndex);
+    changeActivePagination(currentIndex);
   },3000)
 }
 
