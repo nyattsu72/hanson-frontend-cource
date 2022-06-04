@@ -21,7 +21,7 @@ function removeLoading() {
 }
 
 function displayErrorMassage(error) {
-  const slideImageArea = document.querySelector(".mainvisual__images__inner");
+  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
   const textBox = createElementWithClassName("p", "error-message");
   textBox.textContent = error;
   slideImageArea.appendChild(textBox);
@@ -32,11 +32,12 @@ function renderSlideArea() {
     "div",
     "mainvisual__images__inner"
   );
+  slideImageArea.id = "js-mainvisual-images-inner";
   document.getElementById('js-mainvisual-images').appendChild(slideImageArea);
 }
 
 function renderSlideImage(item) {
-  const slideImageArea = document.querySelector(".mainvisual__images__inner");
+  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
   const slider = createElementWithClassName("ul", "slider");
   const fragment = document.createDocumentFragment();
   item.forEach((image, i) => {
@@ -71,7 +72,7 @@ function renderSlideButton() {
     fragment.appendChild(button);
   });
 
-  const slideArea = document.querySelector(".mainvisual__images");
+  const slideArea = document.getElementById('js-mainvisual-images');
   slideArea.appendChild(buttonArea).appendChild(fragment);
 }
 
@@ -92,7 +93,7 @@ function renderPagenation(item) {
   total.textContent = item;
   fragment.appendChild(total);
 
-  const textArea = document.querySelector(".mainvisual__textarea");
+  const textArea = document.getElementById("js-mainvisual-textarea");
   textArea.appendChild(pagenation).appendChild(fragment);
 }
 
@@ -109,12 +110,12 @@ function renderPagenationBullet(item){
     i === 0 && pagenationBullet.setAttribute("aria-current","true");
 
   }
-  const slideArea = document.querySelector('.mainvisual__images__inner');
-  slideArea.appendChild(pagenationArea).appendChild(fragment);
+  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
+  slideImageArea.appendChild(pagenationArea).appendChild(fragment);
 }
 
 function addNoimage(){
-  const slideImageArea = document.querySelector(".mainvisual__images__inner");
+  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
   const sliderImage = createElementWithClassName("img", "slider__image");
   sliderImage.src = './images/slide-image01.png'
   sliderImage.width = 800;
