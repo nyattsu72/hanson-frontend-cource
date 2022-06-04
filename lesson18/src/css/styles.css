@@ -144,7 +144,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.mainvisual__pagenation__bullet{
+.mainvisual__pagination__bullet{
   display: flex;
   margin: 20px 0 0 -10px;
 }
