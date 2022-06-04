@@ -232,15 +232,6 @@ async function getSlideImage(){
   }
 }
 
-async function init() {
-  const slideContents = await getSlideImage();
-  slideContents && autoPlayslide();
-}
-
-init();
-
-
-
 function addChangeButtonEvent() {
   const arrowButtons = document.querySelector(".slider__button");
 
@@ -277,3 +268,10 @@ function resetAutoPlaySlide(){
   clearInterval(autoPlayID);
   autoPlayslide();
 }
+
+async function init() {
+  const slideContents = await getSlideImage();
+  slideContents && autoPlayslide();
+}
+
+init();
