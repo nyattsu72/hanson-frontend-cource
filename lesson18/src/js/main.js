@@ -172,10 +172,10 @@ function toggleButtonDisabled(index) {
   nextButton.disabled = Number(index) === lastIndex;
 }
 
-function renderSlidContents(slideImageData){
-  renderSlideImage(slideImageData);
-  renderPagination(slideImageData.length);
-  renderPaginationBullet(slideImageData.length);
+function renderSlidContents(slideImage){
+  renderSlideImage(slideImage);
+  renderPagination(slideImage.length);
+  renderPaginationBullet(slideImage.length);
   renderSlideButton();
 }
 
@@ -185,11 +185,11 @@ function addSlideAction(){
   autoPlayslide();
 }
 
-function callImageData() {
+function accessSlideImage() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
-        fetchImageData(
+        fetchSlideImages(
           // Comment out and leave the API URL of 503 and 0 images as the URL for checking error handling.
           //image = 0
           //"https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
@@ -202,34 +202,35 @@ function callImageData() {
   });
 }
 
-async function fetchImageData(URL) {
+async function fetchSlideImages(URL) {
   const response = await fetch(URL);
   if (response.ok) {
     const json = await response.json();
     return json;
   } else {
     console.error(`${response.status}:${response.statusText}`);
-    displayErrorMassage("サーバの通信に失敗しました");
+    displayErrorMassage("Internet Server Error");
   }
 }
 
 async function getSlideImage(){
   showLoadingImage();
   renderSlideArea();
+  let slideImages;
   try{
-     const json = await callImageData();
-     const slideData = json.slide;
-    if(slideData.length > 0){
-      renderSlidContents(slideData);
+     const json = await accessSlideImage();
+     slideImages = json.slide;
+  }catch{
+    console.error('There was no image');
+  }finally{
+    removeLoading();
+  }
+  if(slideImages.length > 0){
+      renderSlidContents(slideImages);
       addSlideAction()
     }else{
       addNoimage();
     }
-  }catch{
-    console.error('表示する画像がありませんでした');
-  }finally{
-    removeLoading();
-  }
 }
 
 function addChangeButtonEvent() {
