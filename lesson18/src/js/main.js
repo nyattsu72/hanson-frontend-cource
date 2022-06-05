@@ -213,26 +213,6 @@ async function fetchSlideImages(URL) {
   }
 }
 
-async function getSlideImage(){
-  showLoadingImage();
-  renderSlideArea();
-  let slideImages;
-  try{
-     const json = await accessSlideImage();
-     slideImages = json.slide;
-  }catch{
-    console.error('There was no image');
-  }finally{
-    removeLoading();
-  }
-  if(slideImages.length > 0){
-      renderSlidContents(slideImages);
-      addSlideAction()
-    }else{
-      addNoimage();
-    }
-}
-
 function addChangeButtonEvent() {
   const arrowButtons = document.querySelector(".slider__button");
 
@@ -271,8 +251,23 @@ function resetAutoPlaySlide(){
 }
 
 async function init() {
-  const slideContents = await getSlideImage();
-  slideContents && autoPlayslide();
+  showLoadingImage();
+  renderSlideArea();
+  let slideImages;
+  try{
+     const json = await accessSlideImage();
+     slideImages = json.slide;
+  }catch{
+    console.error('There was no image');
+  }finally{
+    removeLoading();
+  }
+  if(slideImages.length > 0){
+      renderSlidContents(slideImages);
+      addSlideAction()
+  }else{
+    addNoimage();
+  }
 }
 
 init();
