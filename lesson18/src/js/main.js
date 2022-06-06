@@ -257,8 +257,8 @@ async function init() {
   try{
      const json = await accessSlideImage();
      slideImages = json.slide;
-  }catch{
-    console.error('There was no image');
+  }catch(error){
+    console.error(error);
   }finally{
     removeLoading();
   }
