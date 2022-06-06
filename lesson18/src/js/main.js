@@ -146,8 +146,8 @@ function changeActivePaginationBullet(target){
 }
 
 function clickPaginationBullet(){
-  const paginationBullet = [...document.getElementsByClassName("bar")];
-  paginationBullet.forEach((targetButton) => {
+  const paginationBullets = [...document.getElementsByClassName("bar")];
+  paginationBullets.forEach((targetButton) => {
     targetButton.addEventListener('click',(e) => {
       const activePaginationBullet = document.querySelector('[aria-current="true"]');
       const clickedPaginationBulletNo = e.currentTarget.getAttribute('data-pagination-index');
@@ -255,8 +255,8 @@ async function init() {
   renderSlideArea();
   let slideImages;
   try{
-     const json = await accessSlideImage();
-     slideImages = json.slide;
+    const json = await accessSlideImage();
+    slideImages = json.slide;
   }catch(error){
     console.error(error);
   }finally{
