@@ -150,11 +150,11 @@ function clickPaginationBullet(){
   paginationBullets.forEach((targetButton) => {
     targetButton.addEventListener('click',(e) => {
       const activePaginationBullet = document.querySelector('[aria-current="true"]');
-      const clickedPaginationBulletNo = e.currentTarget.getAttribute('data-pagination-index');
+      const clickedPaginationBulletIndex = e.currentTarget.getAttribute('data-pagination-index');
       activePaginationBullet.setAttribute('aria-current','false');
       e.currentTarget.setAttribute('aria-current','true');
-      changeActiveSlider(clickedPaginationBulletNo);
-      changeActivePagination(clickedPaginationBulletNo);
+      changeActiveSlider(clickedPaginationBulletIndex);
+      changeActivePagination(clickedPaginationBulletIndex);
       resetAutoPlaySlide();
     })
   })
