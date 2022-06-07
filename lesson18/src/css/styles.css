@@ -49,18 +49,18 @@ a {
   height: 80vh;
 }
 
-.mainvisual__inner {
+.mainvisual-inner {
   width: 100%;
   height: 100%;
   display: flex;
   align-items:center ;
 }
 
-.mainvisual__textarea{
+.mainvisual-textarea{
   width: 30%;
 }
 
-.mainvisual__images{
+.mainvisual-images{
   width: 70%;
   height: 100%;
   display: flex;
@@ -71,7 +71,7 @@ a {
   position: relative;
 }
 
-.mainvisual__images__inner{
+.mainvisual-images__inner{
   width: 60%;
   height: 80%;
 }
@@ -123,20 +123,20 @@ a {
   height: 100%;
 }
 
-.mainvisual__textarea{
+.mainvisual-textarea{
   width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.mainvisual__textarea__catch{
+.mainvisual-textarea__catch{
   font-size: 4rem;
   letter-spacing: 0.1em;
   text-align: center;
 }
 
-.mainvisual__textarea__sub{
+.mainvisual-textarea__sub{
   background: -webkit-linear-gradient(top, #8360c3, #2ebf91);
   background: linear-gradient(to top, #8360c3, #2ebf91);
   background-clip: text;
@@ -144,12 +144,12 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-.mainvisual__pagination__bullet{
+.mainvisual-paginationbullet{
   display: flex;
   margin: 20px 0 0 -10px;
 }
 
-.bar{
+.paginationbullet__bar{
   width: calc(100% / 5);
   height: 6px;
   background-color: #fff;
@@ -161,7 +161,7 @@ a {
   cursor: pointer;
 }
 
-.bar[aria-current="true"]::before{
+.paginationbullet__bar[aria-current="true"]::before{
   content: '';
   width: 100%;
   height: 100%;
@@ -171,7 +171,7 @@ a {
   animation: bar 3s linear;
 }
 
-.slider__pagination{
+.slider-pagination{
   margin-top: 10rem;
   font-size: 2rem;
 }
@@ -180,7 +180,7 @@ a {
   margin: 0 2rem;
 }
 
-.slider__button{
+.slider-button{
   position: absolute;
   display: flex;
   justify-content: space-between;

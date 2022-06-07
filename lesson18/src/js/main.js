@@ -30,7 +30,7 @@ function displayErrorMassage(error) {
 function renderSlideArea() {
   const slideImageArea = createElementWithClassName(
     "div",
-    "mainvisual__images__inner"
+    "mainvisual-images__inner"
   );
   slideImageArea.id = "js-mainvisual-images-inner";
   document.getElementById('js-mainvisual-images').appendChild(slideImageArea);
@@ -59,7 +59,7 @@ function renderSlideImage(item) {
 
 function renderSlideButton() {
   const fragment = document.createDocumentFragment();
-  const buttonArea = createElementWithClassName("div", "slider__button");
+  const buttonArea = createElementWithClassName("div", "slider-button");
 
   const direction = ["previous", "next"];
   direction.forEach((element) => {
@@ -77,7 +77,7 @@ function renderSlideButton() {
 }
 
 function renderPagination(item) {
-  const pagination = createElementWithClassName("div", "slider__pagination");
+  const pagination = createElementWithClassName("div", "slider-pagination");
   const fragment = document.createDocumentFragment();
   const current = document.createElement("span");
   current.id = "js-current";
@@ -98,11 +98,11 @@ function renderPagination(item) {
 }
 
 function renderPaginationBullet(item){
-  const paginationArea = createElementWithClassName("div","mainvisual__pagination__bullet");
+  const paginationArea = createElementWithClassName("div","mainvisual-paginationbullet");
   paginationArea.id = 'js-pagination';
   const fragment = document.createDocumentFragment();
   for(let i = 0; i < item; i++){
-    const paginationBullet = createElementWithClassName("span", "bar");
+    const paginationBullet = createElementWithClassName("span", "paginationbullet__bar");
     paginationBullet.style.width = "calc(width / item)";
     paginationBullet.setAttribute ("role", "button");
     paginationBullet.dataset.paginationIndex = i + 1;
@@ -148,10 +148,9 @@ function changeActivePaginationBullet(target){
 
 function clickPaginationBullet(){
   const paginationBullets = document.getElementById('js-pagination');
-  // const paginationBullets = [...document.getElementsByClassName("bar")];
 
   paginationBullets.addEventListener('click', (e) => {
-    const targetElement = e.target.classList.contains('bar');
+    const targetElement = e.target.classList.contains('paginationbullet__bar');
 
     if(targetElement){
       const activePaginationBullet = document.querySelector('[aria-current="true"]');
@@ -218,7 +217,7 @@ async function fetchSlideImages(URL) {
 }
 
 function addChangeButtonEvent() {
-  const arrowButtons = document.querySelector(".slider__button");
+  const arrowButtons = document.querySelector(".slider-button");
 
   arrowButtons.addEventListener("click", (event) => {
     const activeImage = document.querySelector(".is-active");
