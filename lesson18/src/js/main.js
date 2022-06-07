@@ -99,6 +99,7 @@ function renderPagination(item) {
 
 function renderPaginationBullet(item){
   const paginationArea = createElementWithClassName("div","mainvisual__pagination__bullet");
+  paginationArea.id = 'js-pagination';
   const fragment = document.createDocumentFragment();
   for(let i = 0; i < item; i++){
     const paginationBullet = createElementWithClassName("span", "bar");
@@ -146,20 +147,23 @@ function changeActivePaginationBullet(target){
 }
 
 function clickPaginationBullet(){
-  const paginationBullets = [...document.getElementsByClassName("bar")];
-  paginationBullets.forEach((targetButton) => {
-    targetButton.addEventListener('click',(e) => {
+  const paginationBullets = document.getElementById('js-pagination');
+  // const paginationBullets = [...document.getElementsByClassName("bar")];
+
+  paginationBullets.addEventListener('click', (e) => {
+    const targetElement = e.target.classList.contains('bar');
+
+    if(targetElement){
       const activePaginationBullet = document.querySelector('[aria-current="true"]');
-      const clickedPaginationBulletIndex = e.currentTarget.getAttribute('data-pagination-index');
+      const clickedPaginationBulletIndex = e.target.getAttribute('data-pagination-index');
       activePaginationBullet.setAttribute('aria-current','false');
-      e.currentTarget.setAttribute('aria-current','true');
+      e.target.setAttribute('aria-current','true');
       changeActiveSlider(clickedPaginationBulletIndex);
       changeActivePagination(clickedPaginationBulletIndex);
       resetAutoPlaySlide();
-    })
-  })
-
-}
+    }
+  },true);
+};
 
 function toggleButtonDisabled(index) {
   const slideImages = [...document.getElementsByClassName("slider__item")];
