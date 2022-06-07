@@ -164,7 +164,7 @@ function clickPaginationBullet(){
   },true);
 };
 
-function toggleButtonDisabled(index) {
+function arrowButtonIsDisabled(index) {
   const slideImages = [...document.getElementsByClassName("slider__item")];
   const firstIndex = 1;
   const lastIndex = slideImages.length;
@@ -231,7 +231,7 @@ function addChangeButtonEvent() {
 }
 
 function changeActiveSlider(slideTarget) {
-  toggleButtonDisabled(slideTarget);
+  arrowButtonIsDisabled(slideTarget);
   changeActiveImage(slideTarget);
   changeActivePaginationBullet(slideTarget);
 }
