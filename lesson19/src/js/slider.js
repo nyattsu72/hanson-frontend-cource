@@ -1,9 +1,3 @@
-function createElementWithClassName(element, name) {
-  const createElement = document.createElement(element);
-  createElement.classList.add(name);
-  return createElement;
-}
-
 function showLoadingImage() {
   const main = document.getElementById("main");
   const renderLoadingBox = createElementWithClassName("div", "loading");

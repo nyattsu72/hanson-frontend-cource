@@ -1,5 +1,3 @@
-import { parseISO, differenceInDays } from 'date-fns';
-
 const categoryTab = document.getElementById('js-tab');
 
 function showLoadingImg() {
