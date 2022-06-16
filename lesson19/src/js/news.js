@@ -1,69 +1,69 @@
+import { parseISO, differenceInDays } from 'date-fns';
+import { createAttributedElements } from './utiles/createAttributeWithEllement'
+import { showLoadingImage, removeLoading } from './modules/loading'
+
 const categoryTab = document.getElementById('js-tab');
 
-function showLoadingImg() {
-  const tabContentsArea = document.getElementById('js-newsContents');
-  const createLoadingBox = document.createElement('div');
-  createLoadingBox.classList.add('loading');
-  createLoadingBox.id = 'js-loading';
-  const loadingImg = document.createElement('img');
-  loadingImg.src = 'images/loading-circle.gif';
-  loadingImg.width = 100;
-  loadingImg.height = 100;
-  loadingImg.classList.add('el_loadingImg');
-  tabContentsArea.appendChild(createLoadingBox).appendChild(loadingImg);
+export function addTabContents(addTargetElement,tabContents){
+  renderTabContentsArea(addTargetElement);
+  renderTabContent(tabContents);
+  renderCategoryTab(tabContents);
+  addNewsImage(tabContents);
+
 }
 
-function hideLoadingImg() {
-  document.getElementById('js-loading').remove();
-}
-
-function renderTabContentsArea(){
+function renderTabContentsArea(addTargetElement){
   const tabContentsArea = document.createElement('div');
   tabContentsArea.id = 'js-newsContents';
-  categoryTab.parentNode.insertBefore(tabContentsArea,categoryTab.nextSibling);
+  addTargetElement.parentNode.insertBefore(tabContentsArea,addTargetElement.nextSibling);
 }
 
-function renderTabContent(data){
+function renderTabContent(categoryNews){
   const tabContentsArea = document.getElementById('js-newsContents');
-  data.forEach((category,i) => {
-    const newsContentArea = document.createElement('div');
-    newsContentArea.classList.add('news-area');
-    newsContentArea.setAttribute('role','tabpanel');
-    newsContentArea.setAttribute('id','panel-'+ (i+1));
-    newsContentArea.setAttribute('aria-labelledby','tab-'+ (i+1));
-    newsContentArea.setAttribute('aria-hidden','true');
-    const articleData = category.article;
-    tabContentsArea.appendChild(newsContentArea).appendChild(getNewsArticle(articleData));
+  categoryNews.forEach((category,i) => {
+    const newsContentAreaAttributes = {
+      id:"panel-" + (i+1),
+      class:"news-area",
+      role:"tabpanel",
+      "aria-labelledby":"tab-"+ (i+1),
+      "aria-hidden":"true",
+    }
+    const newsContentArea = createAttributedElements('div',newsContentAreaAttributes);
+    const newsArticles = category.article;
+    tabContentsArea.appendChild(newsContentArea).appendChild(getNewsArticle(newsArticles));
   })
 }
 
-function renderCategoryTab(data){
+function renderCategoryTab(tabCategories){
   const fragment = document.createDocumentFragment();
 
-  data.forEach((target,i) => {
-    const categoryTab = document.createElement('li');
-    categoryTab.classList.add('tab_list_item');
-    categoryTab.setAttribute('role','presentation');
-    const categoryButton = document.createElement('button');
-    categoryButton.textContent = target.category;
-    categoryButton.setAttribute('id','tab-' + (i+1));
-    categoryButton.setAttribute('class', 'tab-button js-tabButton');
-    categoryButton.setAttribute('aria-controls','panel-' + (i+1));
-    categoryButton.setAttribute('role', 'tab');
-    categoryButton.setAttribute('aria-selected', 'false');
-    categoryButton.setAttribute('tabindex', '-1');
+  tabCategories.forEach((category,i) => {
+    const categoryTabAttributes = {
+      class:"tab_list_item",
+      role:"presentation"
+    };
+    const categoryTab = createAttributedElements('li',categoryTabAttributes);
+
+    const categoryButtonAttributes = {
+      id:"tab-" + (i+1),
+      class:"tab-button js-tabButton",
+      "aria-controls":"panel-" + (i+1),
+      role:"tab",
+      "aria-selected":"false",
+      "tabindex":"-1",
+    }
+    const categoryButton = createAttributedElements('button',categoryButtonAttributes,category.category);
+
     fragment.appendChild(categoryTab).appendChild(categoryButton);
 
-    const activeCategory = target.isActive;
-    if(activeCategory){
-      tabContentsInitialDisplay(categoryButton);
-    }
+    const activeCategory = category.isActive;
+    activeCategory && tabContentsInitialDisplay(categoryButton);
   });
   const categoryTabLists = document.querySelector('.tab-list');
   categoryTabLists.appendChild(fragment);
 }
 
-const getNewsArticle = (data) => {
+const getNewsArticle = (articleValue) => {
   const newsLists = document.createElement('ul');
   newsLists.classList.add('news-list');
   const fragment = document.createDocumentFragment();
@@ -74,11 +74,11 @@ const getNewsArticle = (data) => {
 
     const anchor = document.createElement('a');
     anchor.classList.add('news-link');
-    anchor.href = data[i].link;
-    anchor.textContent = data[i].title;
+    anchor.href = articleValue[i].link;
+    anchor.textContent = articleValue[i].title;
     fragment.appendChild(li).appendChild(anchor);
-    addComment(data[i], li);
-    addNewIcon(data[i],li);
+    addComment(articleValue[i], li);
+    addNewIcon(articleValue[i],li);
   }
   newsLists.appendChild(fragment);
   return newsLists;
@@ -93,10 +93,10 @@ function tabContentsInitialDisplay(target){
   selectedPanel.setAttribute('aria-hidden', false);
 }
 
-function addNewsImage(data){
+function addNewsImage(articles){
   const getNewsArea = document.querySelectorAll('.news-area');
 
-  data.forEach((category,i) => {
+  articles.forEach((category,i) => {
     const imageArea = document.createElement('div');
     const img = document.createElement('img');
     img.src = category.image;
@@ -120,15 +120,11 @@ function addComment({comment}, item) {
 function addNewIcon({date},item) {
   const articleDateToToday = differenceInDays(new Date(),parseISO(date));
   const judgmenDays = 60;
-  if(articleDateToToday <= judgmenDays){
-    renderNewIcon(item)
-  }
+  articleDateToToday <= judgmenDays && renderNewIcon(item);
 }
 
 function renderNewIcon(item){
-  const newIcon = document.createElement('span');
-  newIcon.textContent = 'new';
-  newIcon.classList.add('icon-new');
+  const newIcon = createAttributedElements('span',{class:"icon-new"},"new");
   const newsArticleLink = item.querySelector('.news-link');
   newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
@@ -136,9 +132,7 @@ function renderNewIcon(item){
 
 function displayErrorMassage(error){
   const getNewsArea = document.getElementById('js-newsContents');
-  const createTextBox = document.createElement('p');
-  createTextBox.classList.add('error-message');
-  createTextBox.textContent = error;
+  const createTextBox = createAttributedElements('p',{class:"error-message"},error);
   getNewsArea.appendChild(createTextBox);
 }
 
@@ -154,22 +148,24 @@ async function fetchNewsData() {
 }
 
 async function callnewsContents(){
-  showLoadingImg();
+  showLoadingImage();
+  let newsArticleContents;
   try{
     const json = await fetchNewsData();
-    const newsArticleData = json.data;
-    if(newsArticleData){
-      renderTabContent(newsArticleData);
-      renderCategoryTab(newsArticleData);
-      addNewsImage(newsArticleData);
-    }else{
-      displayErrorMassage('表示するニュースがありませんでした')
-    }}
+    newsArticleContents = json.data;
+    }
   catch{
     displayErrorMassage('ニュースを表示することができませんでした');
   }
   finally{
-    hideLoadingImg();
+    removeLoading();
+  }
+  if(newsArticleContents){
+      renderTabContent(newsArticleContents);
+      renderCategoryTab(newsArticleContents);
+      addNewsImage(newsArticleContents);
+  }else{
+    displayErrorMassage('表示するニュースがありませんでした')
   }
 }
 
@@ -199,4 +195,3 @@ categoryTab.addEventListener('click', (e) => {
     changeTabs(e);
   }
 })
-
