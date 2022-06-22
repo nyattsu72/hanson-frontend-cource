@@ -1,44 +1,42 @@
-function showLoadingImage() {
-  const main = document.getElementById("main");
-  const renderLoadingBox = createElementWithClassName("div", "loading");
-  renderLoadingBox.id = "js-loading";
-  const loadingImage = createElementWithClassName("img", "loading__image");
-  loadingImage.src = "images/loading.gif";
-  loadingImage.width = 80;
-  loadingImage.height = 80;
-  renderLoadingBox.appendChild(loadingImage);
-  document.body.insertBefore(renderLoadingBox, main);
-}
-
-function removeLoading() {
-  document.getElementById("js-loading").remove();
-}
+import { createAttributedElements } from './utiles/createAttributeWithEllement'
 
 function displayErrorMassage(error) {
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const textBox = createElementWithClassName("p", "error-message");
+  const textBox = createAttributedElements("p", "error-message");
   textBox.textContent = error;
   slideImageArea.appendChild(textBox);
 }
 
-function renderSlideArea() {
-  const slideImageArea = createElementWithClassName(
+export function addSliderContents(addTargetElement,slideContents){
+  console.log(addTargetElement);
+  console.log(slideContents);
+  renderSlideArea(addTargetElement);
+  if(slideContents.length > 0){
+    renderSlidContents(slideContents);
+    addSlideAction()
+  }else{
+    addNoimage();
+  }
+}
+
+function renderSlideArea(addTargetElement) {
+  const slideImageArea = createAttributedElements(
     "div",
-    "mainvisual-images__inner"
+    {class:"mainvisual-images__inner"}
   );
   slideImageArea.id = "js-mainvisual-images-inner";
-  document.getElementById('js-mainvisual-images').appendChild(slideImageArea);
+  addTargetElement.appendChild(slideImageArea);
 }
 
 function renderSlideImage(item) {
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const slider = createElementWithClassName("ul", "slider");
+  const slider = createAttributedElements("ul", {class:"slider"});
   const fragment = document.createDocumentFragment();
   item.forEach((image, i) => {
-    const sliderItem = createElementWithClassName("li", "slider__item");
+    const sliderItem = createAttributedElements("li", {class:"slider__item"});
     sliderItem.dataset.slideIndex = i + 1;
 
-    const sliderImage = createElementWithClassName("img", "slider__image");
+    const sliderImage = createAttributedElements("img", {class:"slider__image"});
     sliderImage.src = image.image;
     sliderImage.width = image.width;
     sliderImage.height = image.height;
@@ -53,7 +51,7 @@ function renderSlideImage(item) {
 
 function renderSlideButton() {
   const fragment = document.createDocumentFragment();
-  const buttonArea = createElementWithClassName("div", "slider-button");
+  const buttonArea = createAttributedElements("div", {class:"slider-button"});
 
   const direction = ["previous", "next"];
   direction.forEach((element) => {
@@ -71,14 +69,14 @@ function renderSlideButton() {
 }
 
 function renderPagination(item) {
-  const pagination = createElementWithClassName("div", "slider-pagination");
+  const pagination = createAttributedElements("div", {class:"slider-pagination"});
   const fragment = document.createDocumentFragment();
   const current = document.createElement("span");
   current.id = "js-current";
   current.textContent = 1;
   fragment.appendChild(current);
 
-  const separation = createElementWithClassName("span", "separation");
+  const separation = createAttributedElements("span", {class:"separation"});
   separation.textContent = "/";
   fragment.appendChild(separation);
 
@@ -92,11 +90,11 @@ function renderPagination(item) {
 }
 
 function renderPaginationBullet(item){
-  const paginationArea = createElementWithClassName("div","mainvisual-paginationbullet");
+  const paginationArea = createAttributedElements("div",{class:"mainvisual-paginationbullet"});
   paginationArea.id = 'js-pagination';
   const fragment = document.createDocumentFragment();
   for(let i = 0; i < item; i++){
-    const paginationBullet = createElementWithClassName("span", "paginationbullet__bar");
+    const paginationBullet = createAttributedElements("span", {class:"paginationbullet__bar"});
     paginationBullet.style.width = "calc(width / item)";
     paginationBullet.setAttribute ("role", "button");
     paginationBullet.dataset.paginationIndex = i + 1;
@@ -111,7 +109,7 @@ function renderPaginationBullet(item){
 
 function addNoimage(){
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const sliderImage = createElementWithClassName("img", "slider__image");
+  const sliderImage = createAttributedElements("img", {class:"slider__image"});
   sliderImage.src = './images/slide-image01.png'
   sliderImage.width = 800;
   sliderImage.height = 800;
@@ -247,24 +245,24 @@ function resetAutoPlaySlide(){
   autoPlayslide();
 }
 
-async function init() {
-  showLoadingImage();
-  renderSlideArea();
-  let slideImages;
-  try{
-    const json = await accessSlideImage();
-    slideImages = json.slide;
-  }catch(error){
-    console.error(error);
-  }finally{
-    removeLoading();
-  }
-  if(slideImages.length > 0){
-      renderSlidContents(slideImages);
-      addSlideAction()
-  }else{
-    addNoimage();
-  }
-}
+// async function init() {
+//   showLoadingImage();
+//   renderSlideArea();
+//   let slideImages;
+//   try{
+//     const json = await accessSlideImage();
+//     slideImages = json.slide;
+//   }catch(error){
+//     console.error(error);
+//   }finally{
+//     removeLoading();
+//   }
+//   if(slideImages.length > 0){
+//       renderSlidContents(slideImages);
+//       addSlideAction()
+//   }else{
+//     addNoimage();
+//   }
+// }
 
-init();
+// init();
