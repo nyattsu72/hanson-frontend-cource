@@ -1,12 +1,5 @@
 import { createAttributedElements } from './utiles/createAttributeWithEllement'
 
-function displayErrorMassage(error) {
-  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const textBox = createAttributedElements("p", "error-message");
-  textBox.textContent = error;
-  slideImageArea.appendChild(textBox);
-}
-
 export function addSliderContents(addTargetElement,slideContents){
   console.log(addTargetElement);
   console.log(slideContents);
@@ -180,34 +173,6 @@ function addSlideAction(){
   autoPlayslide();
 }
 
-function accessSlideImage() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(
-        fetchSlideImages(
-          // Comment out and leave the API URL of 503 and 0 images as the URL for checking error handling.
-          //image = 0
-          //"https://api.json-generator.com/templates/IZjWl012CAMD/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
-          //503 error
-          //"https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503"
-          "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl"
-        )
-      );
-    }, 3000);
-  });
-}
-
-async function fetchSlideImages(URL) {
-  const response = await fetch(URL);
-  if (response.ok) {
-    const json = await response.json();
-    return json;
-  } else {
-    console.error(`${response.status}:${response.statusText}`);
-    displayErrorMassage("Internet Server Error");
-  }
-}
-
 function addChangeButtonEvent() {
   const arrowButtons = document.querySelector(".slider-button");
 
@@ -245,24 +210,3 @@ function resetAutoPlaySlide(){
   autoPlayslide();
 }
 
-// async function init() {
-//   showLoadingImage();
-//   renderSlideArea();
-//   let slideImages;
-//   try{
-//     const json = await accessSlideImage();
-//     slideImages = json.slide;
-//   }catch(error){
-//     console.error(error);
-//   }finally{
-//     removeLoading();
-//   }
-//   if(slideImages.length > 0){
-//       renderSlidContents(slideImages);
-//       addSlideAction()
-//   }else{
-//     addNoimage();
-//   }
-// }
-
-// init();

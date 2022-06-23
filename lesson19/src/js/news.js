@@ -1,6 +1,5 @@
 import { parseISO, differenceInDays } from 'date-fns';
 import { createAttributedElements } from './utiles/createAttributeWithEllement'
-import { showLoadingImage, removeLoading } from './modules/loading'
 
 const categoryTab = document.getElementById('js-tab');
 
@@ -9,7 +8,6 @@ export function addTabContents(addTargetElement,tabContents){
   renderTabContent(tabContents);
   renderCategoryTab(tabContents);
   addNewsImage(tabContents);
-
 }
 
 function renderTabContentsArea(addTargetElement){
@@ -129,51 +127,6 @@ function renderNewIcon(item){
   newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
 
-
-function displayErrorMassage(error){
-  const getNewsArea = document.getElementById('js-newsContents');
-  const createTextBox = createAttributedElements('p',{class:"error-message"},error);
-  getNewsArea.appendChild(createTextBox);
-}
-
-async function fetchNewsData() {
-  const NEWS_DATA_URL = 'https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl';
-  const response = await fetch(NEWS_DATA_URL);
-  if(response.ok){
-    const json = await response.json();
-    return json
-  } else{
-    console.error(`${response.status}:${response.statusText}`);
-  }
-}
-
-async function callnewsContents(){
-  showLoadingImage();
-  let newsArticleContents;
-  try{
-    const json = await fetchNewsData();
-    newsArticleContents = json.data;
-    }
-  catch{
-    displayErrorMassage('ニュースを表示することができませんでした');
-  }
-  finally{
-    removeLoading();
-  }
-  if(newsArticleContents){
-      renderTabContent(newsArticleContents);
-      renderCategoryTab(newsArticleContents);
-      addNewsImage(newsArticleContents);
-  }else{
-    displayErrorMassage('表示するニュースがありませんでした')
-  }
-}
-
-function init(){
-  renderTabContentsArea()
-  callnewsContents()
-}
-
 function changeTabs(e) {
   const tabs = document.querySelectorAll('[role="tab"]');
   const selectedTab = e.target;
@@ -187,7 +140,6 @@ function changeTabs(e) {
   selectedPanel.setAttribute('aria-hidden', false);
 };
 
-init();
 
 categoryTab.addEventListener('click', (e) => {
   const tabPanels = document.querySelectorAll('[role="tabpanel"]');
