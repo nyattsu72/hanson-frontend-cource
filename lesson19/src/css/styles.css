@@ -287,6 +287,7 @@ a {
 	flex-direction: row;
 	cursor: pointer;
 	align-items: flex-end;
+  margin-top: 36px;
 }
 
 .tab_list_item {
