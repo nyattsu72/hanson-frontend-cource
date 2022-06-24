@@ -1,4 +1,3 @@
-import { parseISO, differenceInDays } from 'date-fns';
 import { createAttributedElements } from './utiles/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
 import { addSliderContents } from './slider';
