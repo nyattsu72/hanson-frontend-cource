@@ -1,8 +1,6 @@
 import { createAttributedElements } from './utiles/createAttributeWithEllement'
 
 export function addSliderContents(addTargetElement,slideContents){
-  console.log(addTargetElement);
-  console.log(slideContents);
   renderSlideArea(addTargetElement);
   if(slideContents.length > 0){
     renderSlidContents(slideContents);
