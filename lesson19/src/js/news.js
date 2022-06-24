@@ -1,8 +1,6 @@
 import { parseISO, differenceInDays } from 'date-fns';
 import { createAttributedElements } from './utiles/createAttributeWithEllement'
 
-const categoryTab = document.getElementById('js-tab');
-
 export function addTabContents(addTargetElement,tabContents){
   renderTabContentsArea(addTargetElement);
   renderTabContent(tabContents);
@@ -127,7 +125,7 @@ function renderNewIcon(item){
   newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
 
-function changeTabs(e) {
+export function changeTabs(e) {
   const tabs = document.querySelectorAll('[role="tab"]');
   const selectedTab = e.target;
   tabs.forEach((target) => target.setAttribute('aria-selected', false));
@@ -141,9 +139,4 @@ function changeTabs(e) {
 };
 
 
-categoryTab.addEventListener('click', (e) => {
-  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-  if(tabPanels.length > 0 && e.target.hasAttribute('aria-selected')){
-    changeTabs(e);
-  }
-})
+

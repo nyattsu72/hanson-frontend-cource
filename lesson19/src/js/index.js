@@ -2,7 +2,7 @@ import { parseISO, differenceInDays } from 'date-fns';
 import { createAttributedElements } from './utiles/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
 import { addSliderContents } from './slider';
-import { addTabContents } from './news';
+import { addTabContents, changeTabs} from './news';
 
 function displayErrorMassage(error) {
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
@@ -10,7 +10,6 @@ function displayErrorMassage(error) {
   textBox.textContent = error;
   slideImageArea.appendChild(textBox);
 }
-
 
 const SLIDE_CONTENTS_URL = "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
 const NEWS_CONETNTS_URL = "https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
@@ -63,6 +62,14 @@ async function init() {
   addSliderContents(sliderArea,slideImages);
   addTabContents(categoryTab,newsArticle)
 }
+
+const categoryTab = document.getElementById('js-tab');
+categoryTab.addEventListener('click', (e) => {
+  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+  if(tabPanels.length > 0 && e.target.hasAttribute('aria-selected')){
+    changeTabs(e);
+  }
+})
 
 init();
 
