@@ -84,8 +84,8 @@ function tabContentsInitialDisplay(target){
   target.setAttribute('tabindex', '0');
   target.setAttribute('aria-selected','true');
 
-  const getSelectedTadID = target.getAttribute('aria-controls');
-  const selectedPanel = document.getElementById(getSelectedTadID);
+  const getSelectedTabID = target.getAttribute('aria-controls');
+  const selectedPanel = document.getElementById(getSelectedTabID);
   selectedPanel.setAttribute('aria-hidden', false);
 }
 
@@ -133,8 +133,8 @@ export function changeTabs(e) {
 
   const tabPanels = document.querySelectorAll('[role="tabpanel"]');
   tabPanels.forEach((tabpanel) => tabpanel.setAttribute('aria-hidden', true));
-  const getSelectedTadID = selectedTab.getAttribute('aria-controls');
-  const selectedPanel = document.getElementById(getSelectedTadID);
+  const getSelectedTabID = selectedTab.getAttribute('aria-controls');
+  const selectedPanel = document.getElementById(getSelectedTabID);
   selectedPanel.setAttribute('aria-hidden', false);
 };
 

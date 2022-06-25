@@ -6,7 +6,7 @@ export function addSliderContents(addTargetElement,slideContents){
     renderSlidContents(slideContents);
     addSlideAction()
   }else{
-    addNoimage();
+    addNoImage();
   }
 }
 
@@ -98,7 +98,7 @@ function renderPaginationBullet(item){
   slideImageArea.appendChild(paginationArea).appendChild(fragment);
 }
 
-function addNoimage(){
+function addNoImage(){
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
   const sliderImage = createAttributedElements("img", {class:"slider__image"});
   sliderImage.src = './images/slide-image01.png'
@@ -124,8 +124,8 @@ function changeActiveImage(target) {
 function changeActivePaginationBullet(target){
   const paginationBullet = document.querySelector('[aria-current="true"');
   paginationBullet.setAttribute('aria-current', false);
-  const pagiNations = document.querySelector(`[data-pagination-index="${target}"]`);
-  pagiNations.setAttribute("aria-current", true);
+  const paginations = document.querySelector(`[data-pagination-index="${target}"]`);
+  paginations.setAttribute("aria-current", true);
 
 }
 
@@ -168,7 +168,7 @@ function renderSlidContents(slideImage){
 function addSlideAction(){
   addChangeButtonEvent();
   clickPaginationBullet();
-  autoPlayslide();
+  autoPlaySlide();
 }
 
 function addChangeButtonEvent() {
@@ -192,7 +192,7 @@ function changeActiveSlider(slideTarget) {
 }
 
 let autoPlayID;
-function autoPlayslide() {
+function autoPlaySlide() {
   autoPlayID = setInterval(() => {
     const slideImages = document.querySelectorAll('.slider__item').length;
     const activeImage = document.querySelector('.is-active');
@@ -205,6 +205,6 @@ function autoPlayslide() {
 
 function resetAutoPlaySlide(){
   clearInterval(autoPlayID);
-  autoPlayslide();
+  autoPlaySlide();
 }
 
