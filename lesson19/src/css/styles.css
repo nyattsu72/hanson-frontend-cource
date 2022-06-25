@@ -299,11 +299,13 @@ a {
 	padding: 0.8rem 2rem;
 	border-radius: 0.6rem 0.6rem 0 0;
 	border: #fff;
+  cursor: pointer;
 }
 
 .tab-button[aria-selected='true'] {
 	background-color: aquamarine;
 	padding: 1.2rem 2rem;
+  cursor: auto;
 }
 
 .news-area {
