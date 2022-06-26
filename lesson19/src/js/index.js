@@ -1,7 +1,7 @@
 import { createAttributedElements } from './utiles/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
 import { addSliderContents } from './slider';
-import { addTabContents, changeTabs} from './news';
+import { addTabContents,} from './news';
 
 function displayErrorMassage(error) {
   const slideImageArea = document.getElementById("js-mainvisual-images-inner");
@@ -61,14 +61,6 @@ async function init() {
   addSliderContents(sliderArea,slideImages);
   addTabContents(categoryTab,newsArticle)
 }
-
-const categoryTab = document.getElementById('js-tab');
-categoryTab.addEventListener('click', (e) => {
-  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-  if(tabPanels.length > 0 && e.target.hasAttribute('aria-selected')){
-    changeTabs(e);
-  }
-})
 
 init();
 

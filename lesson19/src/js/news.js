@@ -6,6 +6,7 @@ export function addTabContents(addTargetElement,tabContents){
   renderTabContent(tabContents);
   renderCategoryTab(tabContents);
   addNewsImage(tabContents);
+  addChangeTabAction();
 }
 
 function renderTabContentsArea(addTargetElement){
@@ -125,7 +126,7 @@ function renderNewIcon(item){
   newsArticleLink.insertAdjacentElement('afterend',newIcon);
 }
 
-export function changeTabs(e) {
+function changeTabs(e) {
   const tabs = document.querySelectorAll('[role="tab"]');
   const selectedTab = e.target;
   tabs.forEach((target) => target.setAttribute('aria-selected', false));
@@ -139,4 +140,12 @@ export function changeTabs(e) {
 };
 
 
-
+function addChangeTabAction(){
+  const categoryTab = document.getElementById('js-tab');
+  categoryTab.addEventListener('click', (e) => {
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+    if(tabPanels.length > 0 && e.target.hasAttribute('aria-selected')){
+      changeTabs(e);
+    }
+  })
+}
