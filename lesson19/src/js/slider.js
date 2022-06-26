@@ -191,9 +191,12 @@ function changeActiveSlider(slideTarget) {
   changeActivePaginationBullet(slideTarget);
 }
 
-let autoPlayID;
+const autoPlayID = {
+  interval : null,
+}
+
 function autoPlaySlide() {
-  autoPlayID = setInterval(() => {
+  autoPlayID.interval = setInterval(() => {
     const slideImages = document.querySelectorAll('.slider__item').length;
     const activeImage = document.querySelector('.is-active');
     let currentIndex = Number(activeImage.dataset.slideIndex);
@@ -204,7 +207,7 @@ function autoPlaySlide() {
 }
 
 function resetAutoPlaySlide(){
-  clearInterval(autoPlayID);
+  clearInterval(autoPlayID.interval);
   autoPlaySlide();
 }
 
