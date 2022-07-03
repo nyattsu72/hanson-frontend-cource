@@ -1,66 +1,29 @@
 import { createAttributedElements } from './utiles/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
-import { addSliderContents } from './slider';
-import { addTabContents,} from './news';
 
-function displayErrorMassage(error) {
-  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const textBox = createAttributedElements("p", "error-message");
-  textBox.textContent = error;
-  slideImageArea.appendChild(textBox);
+const userItemName = {
+  userID : "ID",
+  userName : "名前",
+  userGender : "性別",
+  userAge : "年齢"
 }
 
-const SLIDE_CONTENTS_URL = "https://api.json-generator.com/templates/9tm12BO1y5Xx/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
-const NEWS_CONETNTS_URL = "https://api.json-generator.com/templates/2PqhEvPcqUZW/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
+console.log(Object.keys(userItemName).length);
 
-async function fetchContents(endpoint){
-    const response = await fetch(endpoint);
-    if (response.ok) {
-      const json = await response.json();
-      return json;
-    } else {
-      console.error(`${response.status}:${response.statusText}`);
-      displayErrorMassage("Internet Server Error");
-    }
+function renderTable() {
+  const userTable = createAttributedElements("table",{id:"js-user-table",class:"user-table"});
+  const tbody = document.createElement("tbody")
+  userTable.appendChild(tbody);
 }
 
-const getSliderContents = () => {
-  return new Promise((resolve) =>{
-    setTimeout(()=>{
-      resolve(
-          fetchContents(SLIDE_CONTENTS_URL),
-      );
-    },3000)
-  })
+renderTable()
+
+function createTableItem (){
+  const tableRow = document.createElement("tr");
+  Object.keys(userItemName).forEach((key)=>{
+    const createItem = createAttributedElements("th",{class:"user-table__header"},userItemName[key]);
+    tableRow.appendChild(createItem);
+  });
 }
 
-const getNewsContents = () =>{
-  return new Promise((resolve) => {
-    resolve(fetchContents(NEWS_CONETNTS_URL))
-  })
-}
-
-
-async function init() {
-  showLoadingImage();
-  let slideImages;
-  let newsArticle;
-  try{
-    await Promise.all([getSliderContents(),getNewsContents()]).then(([slideContents,newsContents]) =>{
-      slideImages = slideContents.slide;
-      newsArticle = newsContents.data;
-    })
-  }catch(error){
-    console.error(error);
-    displayErrorMassage(error)
-  }finally{
-    removeLoading();
-  }
-  const sliderArea = document.getElementById('js-mainvisual-images');
-  const categoryTab = document.getElementById('js-tab');
-  addSliderContents(sliderArea,slideImages);
-  addTabContents(categoryTab,newsArticle)
-}
-
-init();
-
+ createTableItem ()
