@@ -15,21 +15,18 @@ const userItemName = {
   userAge : "年齢"
 }
 
-const userItemNameKey = Object.keys(userItemName);
-console.log(userItemNameKey);
-
-console.log(Object.keys(userItemName).length);
-
-function renderTable() {
+function renderTable(tableValue) {
+  const tableArea = document.getElementById('js-table-contents');
   const userTable = createAttributedElements("table",{id:"js-user-table",class:"user-table"});
-  const tbody = document.createElement("tbody")
-  userTable.appendChild(tbody);
+  const tbody = document.createElement("tbody");
+  tbody.appendChild(createTableItem());
+  tbody.appendChild(createTableValue(tableValue));
+  tableArea.appendChild(userTable).appendChild(tbody);
+  console.log(userTable);
 }
 
-renderTable()
-
 function createTableItem (){
-  const frag = createDocumentFragment();
+  const frag = document.createDocumentFragment();
   const tableRow = document.createElement("tr");
   Object.keys(userItemName).forEach((key)=>{
     const createItem = createAttributedElements("th",{class:"user-table__header"},userItemName[key]);
@@ -40,7 +37,7 @@ function createTableItem (){
 }
 
 function createTableValue(userLists){
-  console.log(userLists);
+  const userItemNameKey = Object.keys(userItemName);
   const frag = document.createDocumentFragment();
   userLists.find((user)=>{
     const tableRow = document.createElement("tr");
@@ -56,7 +53,7 @@ function createTableValue(userLists){
   return frag;
 }
 
-const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
+const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503";
 
 async function fetchContents(endpoint){
   const response = await fetch(endpoint);
@@ -64,7 +61,7 @@ async function fetchContents(endpoint){
     const json = await response.json();
     return json;
   } else{
-    console.error(`${response.status}:${response.statusText}`)
+    console.error(`${response.status}:${response.statusText}`);
     displayErrorMassage("Internet Server Error");
   }
 }
@@ -89,8 +86,10 @@ async function init(){
   }finally{
     removeLoading();
   }
-  console.log(userLists);
-  createTableValue(userLists);
+  if(userLists.length > 0){
+    renderTable(userLists);
+  }
+
 }
 
 init();
