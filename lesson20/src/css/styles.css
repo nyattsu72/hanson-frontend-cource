@@ -41,10 +41,16 @@ a {
 }
 
 .error-message{
+  width: 80%;
+  margin: 10% auto 0;
   background-color: #ffd6d6;
   padding: 2rem;
   border-radius: 4px;
   color: #ba2a2a;
+}
+
+.error-message:not(:first-child){
+  margin-top: 10px;
 }
 
 .user-table{

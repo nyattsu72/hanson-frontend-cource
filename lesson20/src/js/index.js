@@ -2,10 +2,9 @@ import { createAttributedElements } from './utiles/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
 
 function displayErrorMassage(error) {
-  const slideImageArea = document.getElementById("js-mainvisual-images-inner");
-  const textBox = createAttributedElements("p", "error-message");
-  textBox.textContent = error;
-  slideImageArea.appendChild(textBox);
+  const displayArea = document.getElementById("js-table-contents");
+  const errorMassage = createAttributedElements("p", {class:"error-message"},error);
+  displayArea.appendChild(errorMassage);
 }
 
 const userItemName = {
