@@ -15,6 +15,9 @@ const userItemName = {
   userAge : "年齢"
 }
 
+const userItemNameKey = Object.keys(userItemName);
+console.log(userItemNameKey);
+
 console.log(Object.keys(userItemName).length);
 
 function renderTable() {
@@ -26,11 +29,31 @@ function renderTable() {
 renderTable()
 
 function createTableItem (){
+  const frag = createDocumentFragment();
   const tableRow = document.createElement("tr");
   Object.keys(userItemName).forEach((key)=>{
     const createItem = createAttributedElements("th",{class:"user-table__header"},userItemName[key]);
     tableRow.appendChild(createItem);
   });
+  frag.appendChild(tableRow);
+  return frag;
+}
+
+function createTableValue(userLists){
+  console.log(userLists);
+  const frag = document.createDocumentFragment();
+  userLists.find((user)=>{
+    const tableRow = document.createElement("tr");
+    userItemNameKey.find((key)=>{
+      for(let userKey in user){
+        if(userKey == key){
+          const tableValue = createAttributedElements("td",{class:"user-table__value"},user[userKey]);
+          frag.appendChild(tableRow).appendChild(tableValue);
+        }
+      }
+    })
+  })
+  return frag;
 }
 
 const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
@@ -67,6 +90,7 @@ async function init(){
     removeLoading();
   }
   console.log(userLists);
+  createTableValue(userLists);
 }
 
 init();
