@@ -38,9 +38,9 @@ function createTableItem (){
 function createTableValue(userLists){
   const userItemNameKey = Object.keys(userItemName);
   const frag = document.createDocumentFragment();
-  userLists.find((user)=>{
+  userLists.forEach((user)=>{
     const tableRow = document.createElement("tr");
-    userItemNameKey.find((key)=>{
+    userItemNameKey.forEach((key)=>{
       for(let userKey in user){
         if(userKey === key){
           const tableValue = createAttributedElements("td",{class:"user-table__value"},user[userKey]);
