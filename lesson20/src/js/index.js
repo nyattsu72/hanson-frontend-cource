@@ -42,7 +42,7 @@ function createTableValue(userLists){
     const tableRow = document.createElement("tr");
     userItemNameKey.find((key)=>{
       for(let userKey in user){
-        if(userKey == key){
+        if(userKey === key){
           const tableValue = createAttributedElements("td",{class:"user-table__value"},user[userKey]);
           frag.appendChild(tableRow).appendChild(tableValue);
         }
@@ -52,7 +52,7 @@ function createTableValue(userLists){
   return frag;
 }
 
-const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl&status=503";
+const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
 
 async function fetchContents(endpoint){
   const response = await fetch(endpoint);
