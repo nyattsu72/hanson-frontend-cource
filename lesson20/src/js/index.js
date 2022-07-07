@@ -21,7 +21,6 @@ function renderTable(tableValue) {
   tbody.appendChild(createTableItem());
   tbody.appendChild(createTableValue(tableValue));
   tableArea.appendChild(userTable).appendChild(tbody);
-  console.log(userTable);
 }
 
 function createTableItem (){
