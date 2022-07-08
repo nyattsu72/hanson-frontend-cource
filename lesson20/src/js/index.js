@@ -9,8 +9,8 @@ function displayErrorMassage(error) {
 
 const userItemName = {
   userID : "ID",
-  userName : "名前",
   userGender : "性別",
+  userName : "名前",
   userAge : "年齢"
 }
 
@@ -40,18 +40,14 @@ function createTableValue(userLists){
   userLists.forEach((user)=>{
     const tableRow = document.createElement("tr");
     userItemNameKey.forEach((key)=>{
-      for(let userKey in user){
-        if(userKey === key){
-          const tableValue = createAttributedElements("td",{class:"user-table__value"},user[userKey]);
+          const tableValue = createAttributedElements("td",{class:"user-table__value"},user[key]);
           frag.appendChild(tableRow).appendChild(tableValue);
-        }
-      }
     })
   })
   return frag;
 }
 
-const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl?status=503";
+const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
 
 async function fetchContents(endpoint){
   const response = await fetch(endpoint);
