@@ -1,4 +1,4 @@
-import { createAttributedElements } from './utiles/createAttributeWithEllement';
+import { createAttributedElements } from './utils/createAttributeWithEllement';
 import { showLoadingImage, removeLoading } from './modules/loading';
 
 function displayErrorMassage(error) {
