@@ -51,17 +51,17 @@ function createTableValue(userLists){
   return frag;
 }
 
-const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
+const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl?status=503";
 
 async function fetchContents(endpoint){
   const response = await fetch(endpoint);
   if(response.ok){
     const json = await response.json();
     return json;
-  } else{
-    console.error(`${response.status}:${response.statusText}`);
-    displayErrorMassage("Internet Server Error");
   }
+  console.error(`${response.status}:${response.statusText}`);
+  displayErrorMassage("Internet Server Error");
+
 }
 
 const getUserLists = (sec) =>{
