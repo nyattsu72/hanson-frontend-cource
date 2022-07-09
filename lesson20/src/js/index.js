@@ -37,6 +37,11 @@ function createTableItem (){
 
 function createTableValue(userLists){
   const tbody = document.createElement("tbody");
+  tbody.appendChild(addTableValue(userLists));
+  return tbody;
+}
+
+const addTableValue = (userLists) => {
   const userColumnNameKey = Object.keys(usercolumnName);
   const frag = document.createDocumentFragment();
   userLists.forEach((user)=>{
@@ -46,8 +51,7 @@ function createTableValue(userLists){
           frag.appendChild(tableRow).appendChild(tableValue);
     })
   })
-  tbody.appendChild(frag);
-  return tbody;
+  return frag;
 }
 
 const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
