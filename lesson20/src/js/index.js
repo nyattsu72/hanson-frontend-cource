@@ -7,7 +7,7 @@ function displayErrorMassage(error) {
   displayArea.appendChild(errorMassage);
 }
 
-const userItemName = {
+const usercolumnName = {
   userID : "ID",
   userGender : "性別",
   userName : "名前",
@@ -26,8 +26,8 @@ function renderTable(tableValue) {
 function createTableItem (){
   const frag = document.createDocumentFragment();
   const tableRow = document.createElement("tr");
-  Object.keys(userItemName).forEach((key)=>{
-    const createItem = createAttributedElements("th",{class:"user-table__header"},userItemName[key]);
+  Object.keys(usercolumnName).forEach((key)=>{
+    const createItem = createAttributedElements("th",{class:"user-table__header"},usercolumnName[key]);
     tableRow.appendChild(createItem);
   });
   frag.appendChild(tableRow);
@@ -35,11 +35,11 @@ function createTableItem (){
 }
 
 function createTableValue(userLists){
-  const userItemNameKey = Object.keys(userItemName);
+  const userColumnNameKey = Object.keys(usercolumnName);
   const frag = document.createDocumentFragment();
   userLists.forEach((user)=>{
     const tableRow = document.createElement("tr");
-    userItemNameKey.forEach((key)=>{
+    userColumnNameKey.forEach((key)=>{
           const tableValue = createAttributedElements("td",{class:"user-table__value"},user[key]);
           frag.appendChild(tableRow).appendChild(tableValue);
     })
