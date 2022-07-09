@@ -1,4 +1,4 @@
-import { createAttributedElements } from '../utils/createAttributeWithEllement'
+import { createAttributedElements } from '../utils/createAttributeWithEllement.js'
 
 export function showLoadingImage(targetElement) {
   const renderLoadingBox = createAttributedElements('div',{id:"js-loading",class:"loading",})

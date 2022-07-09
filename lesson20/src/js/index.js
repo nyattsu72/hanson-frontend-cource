@@ -1,5 +1,5 @@
-import { createAttributedElements } from './utils/createAttributeWithEllement';
-import { showLoadingImage, removeLoading } from './modules/loading';
+import { createAttributedElements } from './utils/createAttributeWithEllement.js';
+import { showLoadingImage, removeLoading } from './modules/loading.js';
 
 function displayErrorMassage(error) {
   const displayArea = document.getElementById("js-table-contents");
@@ -17,24 +17,26 @@ const usercolumnName = {
 function renderTable(tableValue) {
   const tableArea = document.getElementById('js-table-contents');
   const userTable = createAttributedElements("table",{id:"js-user-table",class:"user-table"});
-  const tbody = document.createElement("tbody");
-  tbody.appendChild(createTableItem());
-  tbody.appendChild(createTableValue(tableValue));
-  tableArea.appendChild(userTable).appendChild(tbody);
+  const frag = document.createDocumentFragment();
+  frag.appendChild(createTableItem());
+  frag.appendChild(createTableValue(tableValue));
+  tableArea.appendChild(userTable).appendChild(frag);
 }
 
 function createTableItem (){
+  const thead = document.createElement('thead');
   const frag = document.createDocumentFragment();
   const tableRow = document.createElement("tr");
   Object.keys(usercolumnName).forEach((key)=>{
     const createItem = createAttributedElements("th",{class:"user-table__header"},usercolumnName[key]);
     tableRow.appendChild(createItem);
   });
-  frag.appendChild(tableRow);
+  frag.appendChild(thead).appendChild(tableRow);
   return frag;
 }
 
 function createTableValue(userLists){
+  const tbody = document.createElement("tbody");
   const userColumnNameKey = Object.keys(usercolumnName);
   const frag = document.createDocumentFragment();
   userLists.forEach((user)=>{
@@ -44,7 +46,8 @@ function createTableValue(userLists){
           frag.appendChild(tableRow).appendChild(tableValue);
     })
   })
-  return frag;
+  tbody.appendChild(frag);
+  return tbody;
 }
 
 const USER_LISTS_URL = "https://api.json-generator.com/templates/2n667LPMsECB/data?access_token=b0154huvd1stffra1six9olbgg34r4zofcqgwzfl";
