@@ -16,39 +16,32 @@ const userColumnName = {
 
 function renderTable(tableValue) {
   const tableArea = document.getElementById('js-table-contents');
+  const tbody = document.createElement("tbody");
   const userTable = createAttributedElements("table",{id:"js-user-table",class:"user-table"});
-  const frag = document.createDocumentFragment();
-  frag.appendChild(createTableItem());
-  frag.appendChild(createTableValue(tableValue));
-  tableArea.appendChild(userTable).appendChild(frag);
+  userTable.appendChild(createTableHead());
+  userTable.appendChild(tbody).appendChild(createTableValue(tableValue));
+  tableArea.appendChild(userTable);
 }
 
-function createTableItem (){
+function createTableHead (){
   const thead = document.createElement('thead');
-  const frag = document.createDocumentFragment();
   const tableRow = document.createElement("tr");
   Object.keys(userColumnName).forEach((key)=>{
-    const createItem = createAttributedElements("th",{class:"user-table__header"},userColumnName[key]);
-    tableRow.appendChild(createItem);
+    const createTableHeadElement = createAttributedElements("th",{class:"user-table__header"},userColumnName[key]);
+    thead.appendChild(tableRow).appendChild(createTableHeadElement);
   });
-  frag.appendChild(thead).appendChild(tableRow);
-  return frag;
+
+  return thead;
 }
 
 function createTableValue(userLists){
-  const tbody = document.createElement("tbody");
-  tbody.appendChild(addTableValue(userLists));
-  return tbody;
-}
-
-const addTableValue = (userLists) => {
   const userColumnNameKey = Object.keys(userColumnName);
   const frag = document.createDocumentFragment();
   userLists.forEach((user)=>{
     const tableRow = document.createElement("tr");
     userColumnNameKey.forEach((key)=>{
-          const tableValue = createAttributedElements("td",{class:"user-table__value"},user[key]);
-          frag.appendChild(tableRow).appendChild(tableValue);
+      const tableValue = createAttributedElements("td",{class:"user-table__value"},user[key]);
+      frag.appendChild(tableRow).appendChild(tableValue);
     })
   })
   return frag;
