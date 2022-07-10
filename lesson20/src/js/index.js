@@ -19,7 +19,7 @@ function renderTable(tableValue) {
   const tbody = document.createElement("tbody");
   const userTable = createAttributedElements("table",{id:"js-user-table",class:"user-table"});
   userTable.appendChild(createTableHead());
-  userTable.appendChild(tbody).appendChild(createTableValue(tableValue));
+  userTable.appendChild(tbody).appendChild(createTableData(tableValue));
   tableArea.appendChild(userTable);
 }
 
@@ -34,7 +34,7 @@ function createTableHead (){
   return thead;
 }
 
-function createTableValue(userLists){
+function createTableData(userLists){
   const userColumnNameKey = Object.keys(userColumnName);
   const frag = document.createDocumentFragment();
   userLists.forEach((user)=>{
